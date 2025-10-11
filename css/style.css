@@ -2,7 +2,6 @@
   --texto-principal: #2B2B2B;
   --fondo: #F3F0E9;
   --rojo-japones: #f42b1dd5;
-  --rojo-oscuro: #80231c;
   --verde-pastel: #C7E3D4;
   --verde-pastel-oscuro: #3C6649;
 }
@@ -11,9 +10,6 @@ body.dark-mode {
   --fondo: #2B1E1B;
   --texto-principal: #F3F0E9;
   --rojo-japones: #E85348;
-  --verde-pastel: #C7E3D4;
-  --rojo-oscuro: #80231C;
-  --verde-pastel-oscuro: #3C6649;
 }
 
 body {
@@ -25,111 +21,36 @@ body {
 }
 
 header {
-  background-color: var(--fondo);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding:1rem 1.5rem;
+  background-color: var(--fondo);
   border-bottom: 3px solid var(--rojo-japones);
 }
 
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--rojo-japones);
-}
+.logo { font-size:1.8rem; font-weight:bold; color: var(--rojo-japones); }
+.menu-btn { background:none; border:none; color: var(--rojo-japones); font-size:2rem; cursor:pointer; z-index:1001; }
 
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-}
+.sidebar { position: fixed; left:-220px; top:0; width:200px; height:100%; background-color: var(--fondo); border-right:3px solid var(--rojo-japones); transition:left 0.3s; z-index:1000; }
+.sidebar.active { left:0; }
+.sidebar ul { list-style:none; padding:60px 0 0; margin:0; }
+.sidebar li { padding:15px 20px; }
+.sidebar a { text-decoration:none; color: var(--texto-principal); font-weight:500; }
+.sidebar a:hover { color: var(--rojo-japones); }
 
-nav a {
-  text-decoration: none;
-  color: var(--texto-principal);
-  font-weight: 500;
-}
+.overlay { position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); opacity:0; visibility:hidden; transition:0.3s; z-index:500; }
+.overlay.active { opacity:1; visibility:visible; }
 
-nav a:hover {
-  color: var(--rojo-japones);
-}
+/* Toggle profesional */
+.switch { position:relative; width:60px; height:30px; display:flex; align-items:center; }
+.switch input { display:none; }
+.slider { position:absolute; width:60px; height:30px; background-color: var(--rojo-japones); border-radius:30px; transition: background-color 0.4s; }
+.circle { position:absolute; width:24px; height:24px; top:3px; left:3px; border-radius:50%; background:white; display:flex; align-items:center; justify-content:center; transition: transform 0.4s; }
+.icono { width:18px; height:18px; pointer-events:none; transition:opacity 0.3s; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); }
 
-/* Interruptor modo oscuro */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 26px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--rojo-japones);
-  border-radius: 34px;
-  transition: background-color 0.4s;
-}
-
-.slider::before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  border-radius: 50%;
-  transition: transform 0.4s;
-}
-
-input:checked + .slider {
-  background-color: var(--verde-pastel-oscuro);
-}
-
-input:checked + .slider::before {
-  transform: translateX(24px);
-}
-
-/* Sección de presentación */
-.presentacion {
-  text-align: center;
-  padding: 5rem 2rem;
-  background-color: var(--verde-pastel);
-  border-radius: 12px;
-  margin: 2rem auto;
-  max-width: 900px;
-}
-
-.presentacion h1 {
-  color: var(--rojo-japones);
-  font-size: 2.5rem;
-}
-
-.boton-principal {
-  background-color: var(--rojo-japones);
-  color: white;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-  margin-top: 1rem;
-}
-
-.boton-principal:hover {
-  background-color: #d42115;
-}
+/* Contenido principal */
+.presentacion { text-align:center; padding:5rem 2rem; background-color: var(--verde-pastel); border-radius:12px; margin:3rem auto; max-width:900px; }
+.presentacion h1 { color: var(--rojo-japones); font-size:2.5rem; }
+.boton-principal { background-color: var(--rojo-japones); color:white; padding:0.8rem 1.5rem; border-radius:8px; text-decoration:none; font-weight:bold; display:inline-block; margin-top:1rem; }
+.boton-principal:hover { background-color:#d42115; }
