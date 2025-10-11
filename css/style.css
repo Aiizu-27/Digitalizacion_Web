@@ -1,0 +1,98 @@
+:root {
+    --ivory: #F3F0E9;
+    --rojo-japones: #f42b1dd5;
+    --verde-pastel: #C7E3D4;
+    --texto-principal: #2B2B2B;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--ivory);
+    color: var(--texto-principal);
+}
+
+header {
+    background-color: var(--ivory);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 3px solid var(--rojo-japones);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--rojo-japones);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--texto-principal);
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: var(--rojo-japones);
+}
+
+.presentacion {
+    text-align: center;
+    padding: 5rem 2rem;
+    background-color: var(--verde-pastel);
+    border-radius: 12px;
+    margin: 2rem auto;
+    max-width: 900px;
+}
+
+.presentacion h1 {
+    color: var(--rojo-japones);
+    font-size: 2.5rem;
+}
+
+.boton-principal {
+    background-color: var(--rojo-japones);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.boton-principal:hover {
+    background-color: #d42115;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--rojo-japones);
+    color: white;
+    margin-top: 2rem;
+}
+
+footer .redes a {
+    color: white;
+    text-decoration: none;
+    margin: 0 0.3rem;
+}
+
+footer .redes a:hover {
+    text-decoration: underline;
+}
+
+.contenido {
+    text-align: center;
+    padding: 4rem 2rem;
+}

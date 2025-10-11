@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubicación - DAILY DOSE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .mapa-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+            width: 100%;
+        }
+
+        .mapa-container iframe {
+            width: 90%;
+            max-width: 900px;
+            height: 500px;
+            border: 0;
+            border-radius: 12px;
+        }
+
+        .mapa-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--ivory);
+            background-color: var(--rojo-japones);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .contenido h1 {
+            color: var(--rojo-japones);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">DAILY DOSE</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="carta.html">Carta</a></li>
+                <li><a href="novedades.html">Novedades</a></li>
+                <li><a href="pedidos.html">Pedidos</a></li>
+                <li><a href="registro.html">Registro</a></li>
+                <li><a href="ubicacion.html">Ubicación</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contenido">
+        <h1>Ubicación</h1>
+        <p>Encuéntranos en el corazón de Malasaña, Madrid.</p>
+
+        <div class="mapa-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3031.015272444563!2d-3.703790284596833!3d40.42679417936416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4228bc6f7c7d6b%3A0x97edc26aa2d9472a!2sMalasa%C3%B1a%2C%20Madrid!5e0!3m2!1ses!2ses!4v1707471940000!5m2!1ses!2ses" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div class="mapa-overlay">Próximamente</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 DAILY DOSE · Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>
