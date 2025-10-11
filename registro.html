@@ -21,13 +21,77 @@
         </nav>
     </header>
 
+
     <main class="contenido">
         <h1>Registro</h1>
         <p>Crea tu cuenta para acceder a promociones y pedidos personalizados.</p>
     </main>
 
-    <footer>
-        <p>© 2025 DAILY DOSE · Todos los derechos reservados</p>
-    </footer>
+    <div class="registroContenido">
+    <div class="formulario">
+        <h1>Bienvenido a ...</h1>
+        <p>Inicia sesión con tu cuenta corporativa</p>
+
+        <!-- Formulario de inicio de sesión -->
+        <form action="/login" method="POST">
+            <!-- Campo de usuario -->
+            <div class="cajas">
+                <input type="text" name="correo" placeholder=" " required>
+                <label>Usuario</label>
+            </div>
+            <br>
+
+            <!-- Campo de contraseña con icono de ojo -->
+            <div class="cajas">
+                <input type="password" name="contrasena" id="clave" placeholder=" " required>
+                <label>Contraseña</label>
+                <!-- Imagen de ojo para mostrar/ocultar la contraseña -->
+                <svg id="iconoOjo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path id="ojoPath1" stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                    <path id="ojoPath2" stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+
+            </div>
+            <br>
+
+            <!-- Botón de enviar -->
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    </div>
+
+    <!-- Script para mostrar/ocultar contraseña -->
+    <script>
+        const inputClave = document.getElementById("clave");
+        const iconoOjo = document.getElementById("iconoOjo");
+        const ojoPath1 = document.getElementById("ojoPath1");
+        const ojoPath2 = document.getElementById("ojoPath2");
+
+        // Paths del icono de "ojo abierto"
+        const abiertoPath1 = "M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z";
+        const abiertoPath2 = "M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z";
+
+        // Paths del icono de "ojo cerrado"
+        const cerradoPath1 = "M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395";
+        const cerradoPath2 = "M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88";
+
+        // Evento de clic en el icono del ojo
+        iconoOjo.addEventListener("click", () => {
+            const estaOculta = inputClave.type === "password";
+
+            // Cambia el tipo del input
+            inputClave.type = estaOculta ? "text" : "password";
+
+            // Cambia el SVG según el estado
+            if (estaOculta) {
+            ojoPath1.setAttribute("d", cerradoPath1);
+            ojoPath2.setAttribute("d", cerradoPath2);
+            } else {
+            ojoPath1.setAttribute("d", abiertoPath1);
+            ojoPath2.setAttribute("d", abiertoPath2);
+            }
+        });
+    </script>
+    </div>
+
 </body>
 </html>
