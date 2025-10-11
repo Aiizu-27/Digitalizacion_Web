@@ -9,12 +9,12 @@
 
 body.dark-mode {
   /* Colores modo oscuro */
-  --fondo: #2B1E1B;              /* Fondo general tipo café */
+  --fondo: #2B1E1B;                  /* Fondo general tipo café */
   --texto-principal: #F3F0E9;        /* Texto principal claro */
-  --color-japones: #E85348;        /* Rojo japonés - botones, títulos, acentos */
-  --verde-pastel: #C7E3D4;       /* Verde pastel - detalles o fondos suaves */
-  --rojo-oscuro: #80231C;              /* Rojo oscuro - hover o énfasis */
-  --verde-pastel-oscuro: #3C6649;        /* Verde oscuro para líneas sutiles o sombras */
+  --color-japones: #E85348;          /* Rojo japonés - botones, títulos, acentos */
+  --verde-pastel: #C7E3D4;           /* Verde pastel - detalles o fondos suaves */
+  --rojo-oscuro: #80231C;            /* Rojo oscuro - hover o énfasis */
+  --verde-pastel-oscuro: #3C6649;    /* Verde oscuro para líneas sutiles o sombras */
 }
 
 /*Contenido principal de las páginas*/
@@ -28,12 +28,13 @@ body {
 /* Botón/icono para activar modo oscuro */
 #iconoTema {
   position: absolute;
+  color: var(--color-japones);
   right: 1%;
   width: 30px;
   height: 30px;
   cursor: pointer;
   z-index: 1000;
-  stroke: var(#E85348);                     /* O blanco/negro según el fondo */
+  stroke: var(--color-japones);                     /* O blanco/negro según el fondo */
   transition: transform 0.3s ease;
 }
 

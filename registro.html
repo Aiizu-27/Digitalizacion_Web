@@ -17,6 +17,10 @@
                 <li><a href="pedidos.html">Pedidos</a></li>
                 <li><a href="registro.html">Registro</a></li>
                 <li><a href="ubicacion.html">Ubicación</a></li>
+                <li><!-- Icono de luna (modo oscuro) -->
+                    <svg id="iconoTema" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path id="iconPath" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+                </svg></li>
             </ul>
         </nav>
     </header>
@@ -92,6 +96,31 @@
         });
     </script>
     </div>
+
+    <!-- Script para activar/desactivar modo oscuro -->
+    <script>
+        // Referencias al SVG y al path dentro del SVG
+        const btnDark = document.getElementById("iconoTema");
+        const iconPath = document.getElementById("iconPath");
+
+        // Definimos las rutas (paths) para los iconos de luna y sol
+        const moonPath = "M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z";  // icono luna
+        const sunPath = "M12 3v1m0 16v1m9-9h-1M4 12H3m15.36 6.36l-.71-.71M6.34 6.34l-.71-.71m12.72 0l-.71.71M6.34 17.66l-.71.71M12 8a4 4 0 100 8 4 4 0 000-8z";   // icono sol
+
+        // Añadimos el evento click al SVG
+        btnDark.addEventListener("click", () => {
+        // Cambiamos la clase dark-mode del body
+        document.body.classList.toggle("dark-mode");
+
+        // Cambiamos el path según el modo actual
+        if (document.body.classList.contains("dark-mode")) {
+            iconPath.setAttribute("d", sunPath);
+        } else {
+            iconPath.setAttribute("d", moonPath);
+        }
+        });
+
+    </script>
 
 </body>
 </html>
