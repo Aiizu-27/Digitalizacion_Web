@@ -1,212 +1,135 @@
 :root {
-    --texto-principal: #2B2B2B;      /*Texto principal*/
-    --fondo: #F3F0E9;                /*Fondo principal*/
-    --rojo-japones: #f42b1dd5;       /*Color principal Marca*/
-    --rojo-oscuro: #80231c;          /*Enfásis hoover*/
-    --verde-pastel: #C7E3D4;         /*Fondos secciones*/
-    --verde-pastel-oscuro: #3C6649;  /*Elementos secundarios - Iconos*/
+  --texto-principal: #2B2B2B;
+  --fondo: #F3F0E9;
+  --rojo-japones: #f42b1dd5;
+  --rojo-oscuro: #80231c;
+  --verde-pastel: #C7E3D4;
+  --verde-pastel-oscuro: #3C6649;
 }
 
 body.dark-mode {
-  /* Colores modo oscuro */
-  --fondo: #2B1E1B;                  /* Fondo general tipo café */
-  --texto-principal: #F3F0E9;        /* Texto principal claro */
-  --color-japones: #E85348;          /* Rojo japonés - botones, títulos, acentos */
-  --verde-pastel: #C7E3D4;           /* Verde pastel - detalles o fondos suaves */
-  --rojo-oscuro: #80231C;            /* Rojo oscuro - hover o énfasis */
-  --verde-pastel-oscuro: #3C6649;    /* Verde oscuro para líneas sutiles o sombras */
+  --fondo: #2B1E1B;
+  --texto-principal: #F3F0E9;
+  --rojo-japones: #E85348;
+  --verde-pastel: #C7E3D4;
+  --rojo-oscuro: #80231C;
+  --verde-pastel-oscuro: #3C6649;
 }
 
-/*Contenido principal de las páginas*/
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--fondo);
-    color: var(--texto-principal);
-}
-
-/* Botón/icono para activar modo oscuro */
-#iconoTema {
-  position: absolute;
-  color: var(--color-japones);
-  right: 1%;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  z-index: 1000;
-  stroke: var(--color-japones);                     /* O blanco/negro según el fondo */
-  transition: transform 0.3s ease;
-}
-
-#iconoTema:hover {
-  transform: scale(1.1);
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--fondo);
+  color: var(--texto-principal);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 header {
-    background-color: var(--fondo);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-bottom: 3px solid var(--rojo-japones);
+  background-color: var(--fondo);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 3px solid var(--rojo-japones);
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--rojo-japones);
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--rojo-japones);
 }
 
-/*Barra de navegación*/
 nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
 }
 
 nav a {
-    text-decoration: none;
-    color: var(--texto-principal);
-    font-weight: 500;
+  text-decoration: none;
+  color: var(--texto-principal);
+  font-weight: 500;
 }
 
 nav a:hover {
-    color: var(--rojo-japones);
+  color: var(--rojo-japones);
 }
 
+/* Interruptor modo oscuro */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--rojo-japones);
+  border-radius: 34px;
+  transition: background-color 0.4s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--verde-pastel-oscuro);
+}
+
+input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+/* Sección de presentación */
 .presentacion {
-    text-align: center;
-    padding: 5rem 2rem;
-    background-color: var(--verde-pastel);
-    border-radius: 12px;
-    margin: 2rem auto;
-    max-width: 900px;
+  text-align: center;
+  padding: 5rem 2rem;
+  background-color: var(--verde-pastel);
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 900px;
 }
 
 .presentacion h1 {
-    color: var(--rojo-japones);
-    font-size: 2.5rem;
+  color: var(--rojo-japones);
+  font-size: 2.5rem;
 }
 
 .boton-principal {
-    background-color: var(--rojo-japones);
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    margin-top: 1rem;
+  background-color: var(--rojo-japones);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 1rem;
 }
 
 .boton-principal:hover {
-    background-color: #d42115;
-}
-
-
-.registroContenido {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative;
-}
-
-/* Contenedor del formulario */
-.formulario {
-  background: var(--fondo);
-  border: solid var( --rojo-japones) 1px;
-  border-radius: 20px;
-  padding: 10px;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  width: 30%;
-  color: var(--texto-principal);
-}
-
-/* Estilo del formulario en modo oscuro */
-body.dark-mode .formulario {
-  background: var(--fondo);
-  color: var(--texto-principal);
-}
-
-/* Caja de cada input */
-.cajas {
-  border-bottom: solid var( --rojo-japones) 1px;
-  border-left: solid var( --rojo-japones) 1px;
-  border-right: solid var( --rojo-japones) 1px;
-  border-radius: 10px;
-  height: 50px;
-  position: relative;
-  width: 75%;
-  margin: 10px auto;
-  background-color: var(--verde-pastel);
-}
-
-/* Estilo de los campos de entrada */
-.cajas input {
-  padding: 15px;
-  font-size: 16px;
-  border: none;
-  background: none;
-  outline: none;
-  color: var(--texto-principal);
-}
-
-/* Oculta el placeholder cuando el input está vacío */
-.cajas input::placeholder {
-  color: transparent;
-}
-
-/* Label flotante dentro de la caja */
-.cajas label {
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  color: #555;
-  font-size: 18px;
-  pointer-events: none;
-  transition: 0.3s ease;
-  transform-origin: left top;
-}
-
-/* Efecto flotante del label cuando el input tiene texto o foco */
-.cajas input:focus + label,
-.cajas input:not(:placeholder-shown) + label {
-  transform: translateY(-20px) scale(0.8);
-  color: grey;
-}
-
-/*Botón contraseña*/
-#iconoOjo {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  stroke: var( --rojo-japones);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-#iconoOjo:hover {
-  transform: translateY(-50%) scale(1.1);
-}
-
-
-/* Botón de enviar */
-button {
-  width: 75%;
-  height: 50px;
-  border-radius: 10px;
-  background-color: var( --rojo-japones);
-  color: white;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
+  background-color: #d42115;
 }

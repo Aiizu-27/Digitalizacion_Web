@@ -1,55 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAILY DOSE - Tu dosis diaria de café</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAILY DOSE - Tu dosis diaria de café</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <div class="logo">DAILY DOSE</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="carta.html">Carta</a></li>
-                <li><a href="novedades.html">Novedades</a></li>
-                <li><a href="pedidos.html">Pedidos</a></li>
-                <li><a href="registro.html">Registro</a></li>
-                <li><a href="ubicacion.html">Ubicación</a></li>
-                <li><!-- Icono de luna (modo oscuro) -->
-                    <svg id="iconoTema" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path id="iconPath" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
-                </svg></li>
-            </ul>
-        </nav>
-        
-    </header>
-    
-    
-    <!-- Script para activar/desactivar modo oscuro -->
-    <script>
-        // Referencias al SVG y al path dentro del SVG
-        const btnDark = document.getElementById("iconoTema");
-        const iconPath = document.getElementById("iconPath");
+  <header>
+    <div class="logo">DAILY DOSE</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="carta.html">Carta</a></li>
+        <li><a href="novedades.html">Novedades</a></li>
+        <li><a href="pedidos.html">Pedidos</a></li>
+        <li><a href="registro.html">Registro</a></li>
+        <li><a href="ubicacion.html">Ubicación</a></li>
+        <li>
+          <label class="switch">
+            <input type="checkbox" id="toggleTema">
+            <span class="slider"></span>
+          </label>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-        // Definimos las rutas (paths) para los iconos de luna y sol
-        const moonPath = "M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z";  // icono luna
-        const sunPath = "M12 3v1m0 16v1m9-9h-1M4 12H3m15.36 6.36l-.71-.71M6.34 6.34l-.71-.71m12.72 0l-.71.71M6.34 17.66l-.71.71M12 8a4 4 0 100 8 4 4 0 000-8z";   // icono sol
+  <section class="presentacion">
+    <h1>Bienvenido a Daily Dose</h1>
+    <p>Tu dosis diaria de café con el mejor ambiente.</p>
+    <a href="carta.html" class="boton-principal">Ver carta</a>
+  </section>
 
-        // Añadimos el evento click al SVG
-        btnDark.addEventListener("click", () => {
-        // Cambiamos la clase dark-mode del body
-        document.body.classList.toggle("dark-mode");
-
-        // Cambiamos el path según el modo actual
-        if (document.body.classList.contains("dark-mode")) {
-            iconPath.setAttribute("d", sunPath);
-        } else {
-            iconPath.setAttribute("d", moonPath);
-        }
-        });
-
-    </script>
+  <script>
+    const toggle = document.getElementById("toggleTema");
+    toggle.addEventListener("change", () => {
+      document.body.classList.toggle("dark-mode", toggle.checked);
+    });
+  </script>
 </body>
 </html>
+
