@@ -4,20 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DAILY DOSE - Tu dosis diaria de café</title>
+<!-- Enlace al CSS externo -->
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<!-- Header / Cabecera de la página -->
 <header>
+  <!-- Botón para abrir/cerrar el menú lateral -->
   <button id="menuBtn" class="menu-btn">&#9776;</button>
+  
+  <!-- Logo de la web -->
   <div class="logo">DAILY DOSE</div>
 
+  <!-- Sección derecha del header: modo oscuro + usuario -->
   <div class="header-right">
     <!-- Toggle modo oscuro -->
     <label class="switch">
       <input type="checkbox" id="toggleTema">
       <span class="slider">
         <span class="circle">
-          <!-- Sol -->
+          <!-- Icono Sol (para modo claro) -->
           <svg class="icono sol" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="5" fill="var(--rojo-japones)" />
             <g stroke="var(--rojo-japones)" stroke-width="2">
@@ -31,7 +38,7 @@
               <line x1="18" y1="6" x2="19.8" y2="4.2"/>
             </g>
           </svg>
-          <!-- Luna -->
+          <!-- Icono Luna (para modo oscuro) -->
           <svg class="icono luna" viewBox="0 0 24 24">
             <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="var(--verde-pastel-oscuro)"/>
           </svg>
@@ -48,6 +55,7 @@
   </div>
 </header>
 
+<!-- Menú lateral / sidebar -->
 <nav id="sidebar" class="sidebar">
   <ul>
     <li><a href="index.html">Inicio</a></li>
@@ -59,8 +67,10 @@
   </ul>
 </nav>
 
+<!-- Overlay semi-transparente al abrir el menú lateral -->
 <div id="overlay" class="overlay"></div>
 
+<!-- Sección principal / presentación de la web -->
 <section class="presentacion">
   <h1>Bienvenido a Daily Dose</h1>
   <p>Tu dosis diaria de café con el mejor ambiente.</p>
@@ -68,35 +78,48 @@
 </section>
 
 <script>
-// Toggle modo oscuro
-const toggle = document.getElementById("toggleTema");
+// ==========================
+// JavaScript: Modo oscuro
+// ==========================
+const toggle = document.getElementById("toggleTema"); // checkbox
 const body = document.body;
 const circle = document.querySelector(".circle");
 const sol = document.querySelector(".sol");
 const luna = document.querySelector(".luna");
 
 toggle.addEventListener("change", () => {
+    // Añade o quita la clase dark-mode al body
     body.classList.toggle("dark-mode", toggle.checked);
+
+    // Animación del toggle (mover el círculo y cambiar iconos)
     if(toggle.checked){
         circle.style.transform = "translateX(26px)";
-        sol.style.opacity = "0";
-        luna.style.opacity = "1";
+        sol.style.opacity = "0"; // Oculta el sol
+        luna.style.opacity = "1"; // Muestra la luna
     } else {
         circle.style.transform = "translateX(0)";
-        sol.style.opacity = "1";
-        luna.style.opacity = "0";
+        sol.style.opacity = "1"; // Muestra el sol
+        luna.style.opacity = "0"; // Oculta la luna
     }
 });
 
-// Menú lateral
+// ==========================
+// JavaScript: Menú lateral
+// ==========================
 const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
+
 function toggleMenu() {
+    // Activa/desactiva la clase 'active' en el sidebar y overlay
     sidebar.classList.toggle("active");
     overlay.classList.toggle("active");
+
+    // Cambia el icono del botón (hamburguesa <-> X)
     menuBtn.innerHTML = sidebar.classList.contains("active") ? "&#10005;" : "&#9776;";
 }
+
+// Eventos para abrir/cerrar menú
 menuBtn.addEventListener("click", toggleMenu);
 overlay.addEventListener("click", toggleMenu);
 </script>

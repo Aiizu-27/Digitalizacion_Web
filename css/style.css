@@ -1,3 +1,6 @@
+/* ============================= */
+/* VARIABLES GLOBALES (colores) */
+/* ============================= */
 :root {
     --texto-principal: #2B2B2B;
     --fondo: #F3F0E9;
@@ -7,7 +10,9 @@
     --verde-pastel-oscuro: #3C6649;
 }
 
-/* Modo oscuro */
+/* ============================= */
+/* MODO OSCURO */
+/* ============================= */
 body.dark-mode {
     --fondo: #2B1E1B;
     --texto-principal: #F3F0E9;
@@ -17,20 +22,25 @@ body.dark-mode {
     --verde-pastel-oscuro: #3C6649;
 }
 
+/* ============================= */
+/* ESTILOS GENERALES DEL BODY */
+/* ============================= */
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: var(--fondo);
-    color: var(--texto-principal);
+    background-color: var(--fondo); /* color de fondo principal */
+    color: var(--texto-principal);  /* color de texto principal */
 }
 
-/* Header */
+/* ============================= */
+/* HEADER / CABECERA */
+/* ============================= */
 header {
     display:flex;
     align-items:center;
     padding: 1rem 2rem;
     background-color: var(--fondo);
-    border-bottom: 3px solid var(--rojo-japones);
+    border-bottom: 3px solid var(--rojo-japones); /* línea decorativa */
     position: relative;
 }
 
@@ -52,10 +62,12 @@ header {
     display:flex;
     align-items:center;
     gap:1rem;
-    margin-left:auto;
+    margin-left:auto; /* empuja los elementos a la derecha */
 }
 
-/* Icono usuario */
+/* ============================= */
+/* ICONO DE USUARIO / PERFIL */
+/* ============================= */
 .iconoUsuario {
     display:flex;
     align-items:center;
@@ -66,11 +78,13 @@ header {
 }
 
 .iconoUsuario svg:hover {
-    color: var(--verde-pastel-oscuro);
-    transform: scale(1.1);
+    color: var(--verde-pastel-oscuro); /* cambia color al pasar el cursor */
+    transform: scale(1.1); /* efecto de agrandado */
 }
 
-/* Toggle modo oscuro */
+/* ============================= */
+/* TOGGLE DE MODO OSCURO */
+/* ============================= */
 .switch {
     position: relative;
     display: inline-block;
@@ -78,15 +92,15 @@ header {
     height: 24px;
 }
 
-.switch input { display:none; }
+.switch input { display:none; } /* Oculta el checkbox real */
 
 .slider {
     position: absolute;
     cursor:pointer;
     top:0; left:0; right:0; bottom:0;
     background-color: #ccc;
-    border-radius: 34px;
-    transition:.4s;
+    border-radius: 34px; /* esquinas redondeadas */
+    transition:.4s; /* animación suave */
 }
 
 .circle {
@@ -96,49 +110,70 @@ header {
     width:20px; height:20px;
     background-color:white;
     border-radius:50%;
-    transition:.4s;
+    transition:.4s; /* animación de movimiento */
     display:flex;
     align-items:center;
     justify-content:center;
 }
 
-.icono { position:absolute; width:16px; height:16px; top:2px; left:2px; transition:.4s; }
-.icono.sol { opacity:1; }
-.icono.luna { opacity:0; }
+.icono { 
+    position:absolute; 
+    width:16px; height:16px; 
+    top:2px; left:2px; 
+    transition:.4s; 
+}
+.icono.sol { opacity:1; } /* visible en modo claro */
+.icono.luna { opacity:0; } /* oculto en modo claro */
 
-/* Sidebar */
+/* ============================= */
+/* SIDEBAR / MENÚ LATERAL */
+/* ============================= */
 .sidebar {
     position: fixed;
-    left:-250px;
+    left:-250px; /* oculto por defecto */
     top:0;
     width:250px;
     height:100%;
     background-color: var(--fondo);
-    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2); /* sombra lateral */
     transition: left 0.3s ease;
     z-index:1000;
     padding-top:3rem;
 }
 
-.sidebar.active { left:0; }
+.sidebar.active { left:0; } /* posición visible cuando se activa */
+
 .sidebar ul { list-style:none; padding:0; margin:0; }
 .sidebar ul li { margin:1rem 0; }
-.sidebar ul li a { text-decoration:none; color:var(--texto-principal); font-weight:500; padding:0.5rem 1rem; display:block; }
+.sidebar ul li a { 
+    text-decoration:none; 
+    color:var(--texto-principal); 
+    font-weight:500; 
+    padding:0.5rem 1rem; 
+    display:block; 
+}
 .sidebar ul li a:hover { color:var(--rojo-japones); }
 
-/* Overlay */
+/* ============================= */
+/* OVERLAY (FONDO OSCURO MENÚ) */
+/* ============================= */
 .overlay {
     position: fixed;
     top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.4); /* semitransparente */
     opacity:0;
     pointer-events:none;
     transition: opacity 0.3s;
     z-index:900;
 }
-.overlay.active { opacity:1; pointer-events:auto; }
+.overlay.active { 
+    opacity:1; 
+    pointer-events:auto; /* interactuable cuando está activo */
+}
 
-/* Presentación */
+/* ============================= */
+/* SECCIÓN DE PRESENTACIÓN PRINCIPAL */
+/* ============================= */
 .presentacion {
     text-align:center;
     padding:5rem 2rem;
@@ -148,7 +183,11 @@ header {
     max-width:900px;
 }
 
-.presentacion h1 { color: var(--rojo-japones); font-size:2.5rem; }
+.presentacion h1 { 
+    color: var(--rojo-japones); 
+    font-size:2.5rem; 
+}
+
 .boton-principal {
     background-color: var(--rojo-japones);
     color:white;
@@ -157,4 +196,7 @@ header {
     text-decoration:none;
     font-weight:bold;
 }
-.boton-principal:hover { background-color:#d42115; }
+
+.boton-principal:hover { 
+    background-color:#d42115; /* cambio de color al pasar cursor */
+}
