@@ -35,7 +35,7 @@
                     </svg>
                     <!-- Icono Luna -->
                     <svg class="icono luna" viewBox="0 0 24 24">
-                        <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="var(--verde-pastel-oscuro)"/>
+                        <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="var(--rojo-japones)"/>
                     </svg>
                 </span>
             </span>
@@ -80,10 +80,13 @@
             <div class="cajas password-box">
                 <input type="password" name="contrasena" id="claveLogin" placeholder=" " required>
                 <label>Contraseña</label>
-                <span class="icono-ojo">
-                    <svg id="iconoOjoLogin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path id="ojoPath1Login" stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                        <path id="ojoPath2Login" stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                <span class="icono-ojo" id="iconoOjoLogin">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <!-- Ojo abierto -->
+                        <path class="ojo-abierto" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle class="ojo-abierto" cx="12" cy="12" r="3"/>
+                        <!-- Ojo cerrado -->
+                        <path class="ojo-cerrado" d="M2 2l20 20" style="display:none;"/>
                     </svg>
                 </span>
             </div>
@@ -103,10 +106,16 @@
             <div class="cajas password-box">
                 <input type="password" name="contrasena" id="claveRegistro" placeholder=" " required>
                 <label>Contraseña</label>
-                <span class="icono-ojo">
-                    <svg id="iconoOjoRegistro" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path id="ojoPath1Registro" stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                        <path id="ojoPath2Registro" stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+    <!--ARREGLAR-->
+                <span class="icono-ojo" id="iconoOjoLogin">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <!-- Ojo abierto -->
+                        <path class="ojo-abierto" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle class="ojo-abierto" cx="12" cy="12" r="3"/>
+                        <!-- Ojo cerrado -->
+                        <path class="ojo-cerrado" stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18"/>
+                        <path class="ojo-cerrado" stroke-linecap="round" stroke-linejoin="round" d="M10.477 10.477a3 3 0 104.243 4.243"/>
+                        <path class="ojo-cerrado" stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322C3.423 7.51 7.36 4.5 12 4.5s8.573 3.007 9.963 7.178c.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5S3.423 16.49 2.036 12.322z"/>
                     </svg>
                 </span>
             </div>
@@ -173,17 +182,33 @@
         formLogin.style.display = "none";
     });
 
-    // Mostrar/Ocultar contraseñas
-    function togglePassword(inputId, iconId){
+    //Cambiar ojo
+    function togglePassword(inputId, iconId) {
         const input = document.getElementById(inputId);
         const icon = document.getElementById(iconId);
+        const ojoAbierto = icon.querySelectorAll(".ojo-abierto");
+        const ojoCerrado = icon.querySelectorAll(".ojo-cerrado");
+
+        // Inicial: ojo cerrado oculto
+        ojoCerrado.forEach(path => path.style.display = "none");
+
         icon.addEventListener("click", () => {
-            input.type = input.type === "password" ? "text" : "password";
+            const tipo = input.type === "password" ? "text" : "password";
+            input.type = tipo;
+
+            if (tipo === "text") {
+                ojoAbierto.forEach(path => path.style.display = "none");
+                ojoCerrado.forEach(path => path.style.display = "block");
+            } else {
+                ojoAbierto.forEach(path => path.style.display = "block");
+                ojoCerrado.forEach(path => path.style.display = "none");
+            }
         });
     }
 
-    togglePassword("claveLogin","iconoOjoLogin");
-    togglePassword("claveRegistro","iconoOjoRegistro");
+togglePassword("claveLogin", "iconoOjoLogin");
+togglePassword("claveRegistro", "iconoOjoRegistro");
+
 </script>
 
 </body>
