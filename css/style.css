@@ -1,5 +1,5 @@
 /* ============================= */
-/* VARIABLES GLOBALES (colores) */
+/* VARIABLES GLOBALES DE COLORES */
 /* ============================= */
 :root {
     --texto-principal: #2B2B2B;
@@ -28,8 +28,8 @@ body.dark-mode {
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: var(--fondo); /* color de fondo principal */
-    color: var(--texto-principal);  /* color de texto principal */
+    background-color: var(--fondo);
+    color: var(--texto-principal);
 }
 
 /* ============================= */
@@ -40,7 +40,7 @@ header {
     align-items:center;
     padding: 1rem 2rem;
     background-color: var(--fondo);
-    border-bottom: 3px solid var(--rojo-japones); /* línea decorativa */
+    border-bottom: 3px solid var(--rojo-japones);
     position: relative;
 }
 
@@ -62,7 +62,7 @@ header {
     display:flex;
     align-items:center;
     gap:1rem;
-    margin-left:auto; /* empuja los elementos a la derecha */
+    margin-left:auto;
 }
 
 /* ============================= */
@@ -78,8 +78,8 @@ header {
 }
 
 .iconoUsuario svg:hover {
-    color: var(--verde-pastel-oscuro); /* cambia color al pasar el cursor */
-    transform: scale(1.1); /* efecto de agrandado */
+    color: var(--verde-pastel-oscuro);
+    transform: scale(1.1);
 }
 
 /* ============================= */
@@ -99,8 +99,8 @@ header {
     cursor:pointer;
     top:0; left:0; right:0; bottom:0;
     background-color: #ccc;
-    border-radius: 34px; /* esquinas redondeadas */
-    transition:.4s; /* animación suave */
+    border-radius: 34px;
+    transition:.4s;
 }
 
 .circle {
@@ -110,7 +110,7 @@ header {
     width:20px; height:20px;
     background-color:white;
     border-radius:50%;
-    transition:.4s; /* animación de movimiento */
+    transition:.4s;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -122,26 +122,27 @@ header {
     top:2px; left:2px; 
     transition:.4s; 
 }
-.icono.sol { opacity:1; } /* visible en modo claro */
-.icono.luna { opacity:0; } /* oculto en modo claro */
+
+.icono.sol { opacity:1; }   /* Visible en modo claro */
+.icono.luna { opacity:0; }  /* Oculto en modo claro */
 
 /* ============================= */
 /* SIDEBAR / MENÚ LATERAL */
 /* ============================= */
 .sidebar {
     position: fixed;
-    left:-250px; /* oculto por defecto */
+    left:-250px;   /* Oculto por defecto */
     top:0;
     width:250px;
     height:100%;
     background-color: var(--fondo);
-    box-shadow: 2px 0 5px rgba(0,0,0,0.2); /* sombra lateral */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
     transition: left 0.3s ease;
     z-index:1000;
     padding-top:3rem;
 }
 
-.sidebar.active { left:0; } /* posición visible cuando se activa */
+.sidebar.active { left:0; } /* Visible cuando se activa */
 
 .sidebar ul { list-style:none; padding:0; margin:0; }
 .sidebar ul li { margin:1rem 0; }
@@ -155,24 +156,25 @@ header {
 .sidebar ul li a:hover { color:var(--rojo-japones); }
 
 /* ============================= */
-/* OVERLAY (FONDO OSCURO MENÚ) */
+/* OVERLAY (FONDO SEMITRANSPARENTE DEL MENÚ) */
 /* ============================= */
 .overlay {
     position: fixed;
     top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.4); /* semitransparente */
+    background: rgba(0,0,0,0.4);
     opacity:0;
     pointer-events:none;
     transition: opacity 0.3s;
     z-index:900;
 }
+
 .overlay.active { 
     opacity:1; 
-    pointer-events:auto; /* interactuable cuando está activo */
+    pointer-events:auto;
 }
 
 /* ============================= */
-/* SECCIÓN DE PRESENTACIÓN PRINCIPAL */
+/* SECCIÓN PRINCIPAL / PRESENTACIÓN */
 /* ============================= */
 .presentacion {
     text-align:center;
@@ -198,5 +200,115 @@ header {
 }
 
 .boton-principal:hover { 
-    background-color:#d42115; /* cambio de color al pasar cursor */
+    background-color:#d42115; 
+}
+
+/* ============================= */
+/* FORMULARIO / LOGIN Y REGISTRO */
+/* ============================= */
+.formulario {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid var(--rojo-japones);
+    border-radius: 10px;
+    background-color: var(--fondo);
+}
+
+.cajas { 
+    position: relative; 
+    margin-bottom: 1.5rem; 
+}
+
+.cajas input {
+    width: 100%;
+    padding: 10px 10px 10px 5px;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    outline: none;
+    color: var(--texto-principal)
+}
+
+.cajas label {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    color: var(--texto-principal);
+    transition: .3s;
+}
+
+.cajas input:focus + label,
+.cajas input:not(:placeholder-shown) + label {
+    top: -10px;
+    font-size: 0.8rem;
+    color: var(--rojo-japones);
+}
+
+/* Botones de enviar */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--rojo-japones);
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover { background-color: #d42115; }
+
+/* ============================= */
+/* PASSWORD BOX / ICONO OJO */
+/* ============================= */
+.password-box {
+    position: relative;
+}
+
+.password-box .icono-ojo {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #999;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-box .icono-ojo:hover { color: var(--rojo-japones); }
+
+.password-box .icono-ojo svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+}
+
+/* ============================= */
+/* TABS LOGIN / REGISTRO */
+/* ============================= */
+.form-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.form-tabs button {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: none;
+    background: var(--verde-pastel);
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.form-tabs button.active {
+    background: var(--rojo-japones);
+    color: white;
 }

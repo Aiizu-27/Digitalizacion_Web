@@ -1,126 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - DAILY DOSE</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro - DAILY DOSE</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <div class="logo">DAILY DOSE</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="carta.html">Carta</a></li>
-                <li><a href="novedades.html">Novedades</a></li>
-                <li><a href="pedidos.html">Pedidos</a></li>
-                <li><a href="registro.html">Registro</a></li>
-                <li><a href="ubicacion.html">Ubicación</a></li>
-                <li><!-- Icono de luna (modo oscuro) -->
-                    <svg id="iconoTema" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path id="iconPath" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
-                </svg></li>
-            </ul>
-        </nav>
-    </header>
 
+<!-- HEADER -->
+<header>
+    <button id="menuBtn" class="menu-btn">&#9776;</button>
+    <div class="logo">DAILY DOSE</div>
 
-    <main class="contenido">
-        <h1>Registro</h1>
-        <p>Crea tu cuenta para acceder a promociones y pedidos personalizados.</p>
-    </main>
+    <div class="header-right">
+        <!-- Toggle modo oscuro -->
+        <label class="switch">
+            <input type="checkbox" id="toggleTema">
+            <span class="slider">
+                <span class="circle">
+                    <!-- Icono Sol -->
+                    <svg class="icono sol" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5" fill="var(--rojo-japones)" />
+                        <g stroke="var(--rojo-japones)" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="4"/>
+                            <line x1="12" y1="20" x2="12" y2="23"/>
+                            <line x1="1" y1="12" x2="4" y2="12"/>
+                            <line x1="20" y1="12" x2="23" y2="12"/>
+                            <line x1="4.2" y1="4.2" x2="6" y2="6"/>
+                            <line x1="18" y1="18" x2="19.8" y2="19.8"/>
+                            <line x1="4.2" y1="19.8" x2="6" y2="18"/>
+                            <line x1="18" y1="6" x2="19.8" y2="4.2"/>
+                        </g>
+                    </svg>
+                    <!-- Icono Luna -->
+                    <svg class="icono luna" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="var(--verde-pastel-oscuro)"/>
+                    </svg>
+                </span>
+            </span>
+        </label>
 
-    <div class="registroContenido">
+        <!-- Icono usuario / perfil -->
+        <a href="registro.html" class="iconoUsuario" title="Iniciar sesión / Registrarse">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="28" height="28">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 0112 15a9 9 0 016.879 2.804M12 12a5 5 0 100-10 5 5 0 000 10z"/>
+            </svg>
+        </a>
+    </div>
+</header>
+
+<!-- SIDEBAR -->
+<nav id="sidebar" class="sidebar">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="carta.html">Carta</a></li>
+    <li><a href="novedades.html">Novedades</a></li>
+    <li><a href="pedidos.html">Pedidos</a></li>
+    <li><a href="registro.html">Registro</a></li>
+    <li><a href="ubicacion.html">Ubicación</a></li>
+  </ul>
+</nav>
+<div id="overlay" class="overlay"></div>
+
+<!-- FORMULARIO -->
+<div class="registroContenido">
     <div class="formulario">
-        <h1>Bienvenido a ...</h1>
-        <p>Inicia sesión con tu cuenta corporativa</p>
+        <div class="form-tabs">
+            <button id="tabLogin" class="active">Iniciar sesión</button>
+            <button id="tabRegistro">Registrarse</button>
+        </div>
 
-        <!-- Formulario de inicio de sesión -->
-        <form action="/login" method="POST">
-            <!-- Campo de usuario -->
+        <!-- FORMULARIO LOGIN -->
+        <form id="formLogin">
             <div class="cajas">
-                <input type="text" name="correo" placeholder=" " required>
-                <label>Usuario</label>
+                <input type="email" name="correo" placeholder=" " required>
+                <label>Correo electrónico</label>
             </div>
-            <br>
-
-            <!-- Campo de contraseña con icono de ojo -->
-            <div class="cajas">
-                <input type="password" name="contrasena" id="clave" placeholder=" " required>
+            <div class="cajas password-box">
+                <input type="password" name="contrasena" id="claveLogin" placeholder=" " required>
                 <label>Contraseña</label>
-                <!-- Imagen de ojo para mostrar/ocultar la contraseña -->
-                <svg id="iconoOjo" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path id="ojoPath1" stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                    <path id="ojoPath2" stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                </svg>
-
+                <span class="icono-ojo">
+                    <svg id="iconoOjoLogin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path id="ojoPath1Login" stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                        <path id="ojoPath2Login" stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                </span>
             </div>
-            <br>
-
-            <!-- Botón de enviar -->
             <button type="submit">Iniciar sesión</button>
         </form>
+
+        <!-- FORMULARIO REGISTRO -->
+        <form id="formRegistro" style="display:none;">
+            <div class="cajas">
+                <input type="text" name="nombre" placeholder=" " required>
+                <label>Nombre</label>
+            </div>
+            <div class="cajas">
+                <input type="email" name="correo" placeholder=" " required>
+                <label>Correo electrónico</label>
+            </div>
+            <div class="cajas password-box">
+                <input type="password" name="contrasena" id="claveRegistro" placeholder=" " required>
+                <label>Contraseña</label>
+                <span class="icono-ojo">
+                    <svg id="iconoOjoRegistro" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path id="ojoPath1Registro" stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                        <path id="ojoPath2Registro" stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                </span>
+            </div>
+            <button type="submit">Registrarse</button>
+        </form>
     </div>
+</div>
 
-    <!-- Script para mostrar/ocultar contraseña -->
-    <script>
-        const inputClave = document.getElementById("clave");
-        const iconoOjo = document.getElementById("iconoOjo");
-        const ojoPath1 = document.getElementById("ojoPath1");
-        const ojoPath2 = document.getElementById("ojoPath2");
 
-        // Paths del icono de "ojo abierto"
-        const abiertoPath1 = "M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z";
-        const abiertoPath2 = "M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z";
+<!-- JAVASCRIPT -->
+<script>
+    // Modo oscuro
+    const toggle = document.getElementById("toggleTema");
+    const body = document.body;
+    const circle = document.querySelector(".circle");
+    const sol = document.querySelector(".sol");
+    const luna = document.querySelector(".luna");
 
-        // Paths del icono de "ojo cerrado"
-        const cerradoPath1 = "M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395";
-        const cerradoPath2 = "M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88";
-
-        // Evento de clic en el icono del ojo
-        iconoOjo.addEventListener("click", () => {
-            const estaOculta = inputClave.type === "password";
-
-            // Cambia el tipo del input
-            inputClave.type = estaOculta ? "text" : "password";
-
-            // Cambia el SVG según el estado
-            if (estaOculta) {
-            ojoPath1.setAttribute("d", cerradoPath1);
-            ojoPath2.setAttribute("d", cerradoPath2);
-            } else {
-            ojoPath1.setAttribute("d", abiertoPath1);
-            ojoPath2.setAttribute("d", abiertoPath2);
-            }
-        });
-    </script>
-    </div>
-
-    <!-- Script para activar/desactivar modo oscuro -->
-    <script>
-        // Referencias al SVG y al path dentro del SVG
-        const btnDark = document.getElementById("iconoTema");
-        const iconPath = document.getElementById("iconPath");
-
-        // Definimos las rutas (paths) para los iconos de luna y sol
-        const moonPath = "M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z";  // icono luna
-        const sunPath = "M12 3v1m0 16v1m9-9h-1M4 12H3m15.36 6.36l-.71-.71M6.34 6.34l-.71-.71m12.72 0l-.71.71M6.34 17.66l-.71.71M12 8a4 4 0 100 8 4 4 0 000-8z";   // icono sol
-
-        // Añadimos el evento click al SVG
-        btnDark.addEventListener("click", () => {
-        // Cambiamos la clase dark-mode del body
-        document.body.classList.toggle("dark-mode");
-
-        // Cambiamos el path según el modo actual
-        if (document.body.classList.contains("dark-mode")) {
-            iconPath.setAttribute("d", sunPath);
+    toggle.addEventListener("change", () => {
+        body.classList.toggle("dark-mode", toggle.checked);
+        if(toggle.checked){
+            circle.style.transform = "translateX(26px)";
+            sol.style.opacity = "0";
+            luna.style.opacity = "1";
         } else {
-            iconPath.setAttribute("d", moonPath);
+            circle.style.transform = "translateX(0)";
+            sol.style.opacity = "1";
+            luna.style.opacity = "0";
         }
-        });
+    });
 
-    </script>
+    // Menú lateral
+    const menuBtn = document.getElementById("menuBtn");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    function toggleMenu() {
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+        menuBtn.innerHTML = sidebar.classList.contains("active") ? "&#10005;" : "&#9776;";
+    }
+
+    menuBtn.addEventListener("click", toggleMenu);
+    overlay.addEventListener("click", toggleMenu);
+
+    
+    // Cambiar entre login y registro
+    const tabLogin = document.getElementById("tabLogin");
+    const tabRegistro = document.getElementById("tabRegistro");
+    const formLogin = document.getElementById("formLogin");
+    const formRegistro = document.getElementById("formRegistro");
+
+    tabLogin.addEventListener("click", () => {
+        tabLogin.classList.add("active");
+        tabRegistro.classList.remove("active");
+        formLogin.style.display = "block";
+        formRegistro.style.display = "none";
+    });
+
+    tabRegistro.addEventListener("click", () => {
+        tabRegistro.classList.add("active");
+        tabLogin.classList.remove("active");
+        formRegistro.style.display = "block";
+        formLogin.style.display = "none";
+    });
+
+    // Mostrar/Ocultar contraseñas
+    function togglePassword(inputId, iconId){
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        icon.addEventListener("click", () => {
+            input.type = input.type === "password" ? "text" : "password";
+        });
+    }
+
+    togglePassword("claveLogin","iconoOjoLogin");
+    togglePassword("claveRegistro","iconoOjoRegistro");
+</script>
 
 </body>
 </html>
+
