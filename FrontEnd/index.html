@@ -77,51 +77,7 @@
   <a href="carta.html" class="boton-principal">Ver carta</a>
 </section>
 
-<script>
-// ==========================
-// JavaScript: Modo oscuro
-// ==========================
-const toggle = document.getElementById("toggleTema"); // checkbox
-const body = document.body;
-const circle = document.querySelector(".circle");
-const sol = document.querySelector(".sol");
-const luna = document.querySelector(".luna");
-
-toggle.addEventListener("change", () => {
-    // Añade o quita la clase dark-mode al body
-    body.classList.toggle("dark-mode", toggle.checked);
-
-    // Animación del toggle (mover el círculo y cambiar iconos)
-    if(toggle.checked){
-        circle.style.transform = "translateX(26px)";
-        sol.style.opacity = "0"; // Oculta el sol
-        luna.style.opacity = "1"; // Muestra la luna
-    } else {
-        circle.style.transform = "translateX(0)";
-        sol.style.opacity = "1"; // Muestra el sol
-        luna.style.opacity = "0"; // Oculta la luna
-    }
-});
-
-// ==========================
-// JavaScript: Menú lateral
-// ==========================
-const menuBtn = document.getElementById("menuBtn");
-const sidebar = document.getElementById("sidebar");
-const overlay = document.getElementById("overlay");
-
-function toggleMenu() {
-    // Activa/desactiva la clase 'active' en el sidebar y overlay
-    sidebar.classList.toggle("active");
-    overlay.classList.toggle("active");
-
-    // Cambia el icono del botón (hamburguesa <-> X)
-    menuBtn.innerHTML = sidebar.classList.contains("active") ? "&#10005;" : "&#9776;";
-}
-
-// Eventos para abrir/cerrar menú
-menuBtn.addEventListener("click", toggleMenu);
-overlay.addEventListener("click", toggleMenu);
-</script>
+<!-- JS -->
+<script src="js/script.js"></script>
 </body>
 </html>
