@@ -16,7 +16,7 @@
 body.dark-mode {
     --fondo: #2B1E1B;
     --texto-principal: #F3F0E9;
-    --color-japones: #E85348;
+    --rojo-japones: #E85348;
     --verde-pastel: #C7E3D4;
     --rojo-oscuro: #80231C;
     --verde-pastel-oscuro: #3C6649;
@@ -225,7 +225,7 @@ header {
     padding: 10px 10px 10px 5px;
     font-size: 1rem;
     border: none;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid var(--rojo-japones);
     background: transparent;
     outline: none;
     color: var(--texto-principal)
@@ -258,7 +258,7 @@ button {
     cursor: pointer;
 }
 
-button:hover { background-color: #d42115; }
+button:hover { background-color: var(--rojo-oscuro); }
 
 /* ============================= */
 /* PASSWORD BOX / ICONO OJO */
