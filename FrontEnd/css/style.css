@@ -23,8 +23,15 @@ body.dark-mode {
 }
 
 /* ============================= */
-/* ESTILOS GENERALES DEL BODY */
+/* FUENTES PERSONALIZADAS */
 /* ============================= */
+@font-face {
+    font-family: 'CooperBold';
+    src: url('../fonts/CooperBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -45,9 +52,13 @@ header {
 }
 
 .logo {
-    font-size:1.8rem;
-    font-weight:bold;
+    font-family: 'CooperBold', sans-serif;
     color: var(--rojo-japones);
+    font-size: 2rem;
+    letter-spacing: 1px;
+    transform: scaleY(0.9);
+    -webkit-text-stroke: 1px var(--rojo-japones);  /*Añadir grosor a la tipografía*/
+    text-shadow: 0px 1px 0px var(--rojo-japones);
 }
 
 #menuBtn {
@@ -56,6 +67,7 @@ header {
     border:none;
     cursor:pointer;
     margin-right:1rem;
+    color: var(--rojo-japones)
 }
 
 .header-right {
@@ -131,7 +143,7 @@ header {
 /* ============================= */
 .sidebar {
     position: fixed;
-    left:-250px;   /* Oculto por defecto */
+    left:-250px;
     top:0;
     width:250px;
     height:100%;
@@ -142,7 +154,7 @@ header {
     padding-top:3rem;
 }
 
-.sidebar.active { left:0; } /* Visible cuando se activa */
+.sidebar.active { left:0; }
 
 .sidebar ul { list-style:none; padding:0; margin:0; }
 .sidebar ul li { margin:1rem 0; }
