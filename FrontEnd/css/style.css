@@ -33,10 +33,8 @@ body.dark-mode {
 }
 
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--fondo);
-    color: var(--texto-principal);
+  height: 100vh;
+  background: var(--fondo);
 }
 
 /* ============================= */
@@ -211,82 +209,46 @@ header {
 .icono.sol { opacity: 1; }
 .icono.luna { opacity: 0; }
 
-/* ============================= */
-/* SIDEBAR / MENÚ LATERAL */
-/* ============================= */
-.sidebar {
-    position: fixed;
-    left: -250px;
-    top: 0;
-    width: 250px;
-    height: 100%;
-    background-color: var(--fondo);
-    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-    transition: left 0.3s ease;
-    z-index: 1000;
-    padding-top: 3rem;
+
+/*PAGINA INICIAL*/
+/* Contenedor fila 1: 2/3 y 1/3 */
+/* Fila 1: 2/3 y 1/3 */
+.fila1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  width: 95%;
+  height: 300px;
+  margin: 2rem auto 0 auto;
 }
 
-.sidebar.active { left: 0; }
+.div1 { background-color: var(--verde-pastel); border-radius: 10px 0 0 10px; }
+.div2 { background-color: var(--rojo-japones); border-radius: 0 10px 10px 0; }
 
-.sidebar ul { list-style: none; padding: 0; margin: 0; }
-.sidebar ul li { margin: 1rem 0; }
-.sidebar ul li a { 
-    text-decoration: none; 
-    color: var(--texto-principal); 
-    font-weight: 500; 
-    padding: 0.5rem 1rem; 
-    display: block; 
-}
-.sidebar ul li a:hover { color: var(--rojo-japones); }
-
-/* ============================= */
-/* OVERLAY (FONDO SEMITRANSPARENTE DEL MENÚ) */
-/* ============================= */
-.overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.4);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-    z-index: 900;
+/* Fila 2: 50%-50% */
+.fila2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 95%;
+  height: 250px;
+  margin: 10px auto 0 auto; /* pequeña separación con fila 1 */
 }
 
-.overlay.active { 
-    opacity: 1; 
-    pointer-events: auto;
+.div3 { background-color: var(--verde-pastel-oscuro); border-radius: 10px 0 0 10px; }
+.div4 { background-color: var(--rojo-oscuro); border-radius: 0 10px 10px 0; }
+
+/* Fila 3: ancho completo */
+.fila3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 95%;
+  height: 200px;   /* ajustable */
+  margin: 10px auto 0 auto;
 }
 
-/* ============================= */
-/* SECCIÓN PRINCIPAL / PRESENTACIÓN */
-/* ============================= */
-.presentacion {
-    text-align: center;
-    padding: 5rem 2rem;
-    background-color: var(--verde-pastel);
-    border-radius: 12px;
-    margin: 2rem auto;
-    max-width: 900px;
-}
+.div5 { background-color: var(--verde-pastel); border-radius: 10px; }
 
-.presentacion h1 { 
-    color: var(--rojo-japones); 
-    font-size: 2.5rem; 
-}
-
-.boton-principal {
-    background-color: var(--rojo-japones);
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.boton-principal:hover { 
-    background-color: #d42115; 
-}
 
 /* ============================= */
 /* FORMULARIO / LOGIN Y REGISTRO */
