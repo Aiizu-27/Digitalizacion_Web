@@ -32,9 +32,13 @@ body.dark-mode {
     font-style: normal;
 }
 
-body {
-  height: 100vh;
-  background: var(--fondo);
+html, body { 
+    margin: 0; 
+    padding: 0; 
+    height: 100vh; /* altura de la ventana */ 
+    background: var(--fondo); 
+    display: flex; flex-direction: column; 
+    box-sizing: border-box;
 }
 
 /* ============================= */
@@ -213,6 +217,7 @@ header {
 /*PAGINA INICIAL*/
 /* Contenedor fila 1: 2/3 y 1/3 */
 /* Fila 1: 2/3 y 1/3 */
+
 .fila1 {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -240,14 +245,21 @@ header {
 
 /* Fila 3: ancho completo */
 .fila3 {
-  display: grid;
-  grid-template-columns: 1fr;
-  width: 95%;
-  height: 200px;   /* ajustable */
-  margin: 10px auto 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 95%;
+    height: 100vh;   /* ajustable */
+    margin: 10px auto 0 auto;
+    flex: 1 0 auto; /* ocupa todo el espacio restante */
+    width: 95%;
+    margin: 10px auto 0 auto; /* centrado horizontal */
 }
 
-.div5 { background-color: var(--verde-pastel); border-radius: 10px; }
+.div5 { 
+    background-color: var(--verde-pastel-oscuro); 
+    height: 100%; 
+    border-radius: 10px 10px 0 0; /* solo arriba redondeado */ 
+}
 
 
 /* ============================= */
