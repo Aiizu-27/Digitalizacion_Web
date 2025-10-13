@@ -93,3 +93,29 @@ function togglePassword(inputId, iconId) {
 
 togglePassword("claveLogin", "iconoOjoLogin");
 togglePassword("claveRegistro", "iconoOjoRegistro");
+
+// ==========================
+// Registro PHP
+// ==========================
+const registroForm = document.getElementById('formRegistro');
+
+registroForm.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const data = {
+        nombre: registroForm.nombre.value,
+        correo: registroForm.correo.value,
+        contrasena: registroForm.contrasena.value
+    };
+
+    fetch('registro.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(resp => {
+        alert(resp.message); // muestra mensaje de PHP
+    })
+    .catch(err => console.error(err));
+});
