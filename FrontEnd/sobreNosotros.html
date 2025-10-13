@@ -3,73 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubicación - DAILY DOSE</title>
+    <title>Sobre nosotros - DAILY DOSE</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        .mapa-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            margin: 3rem 0;
-            width: 100%;
-        }
-
-        .mapa-container iframe {
-            width: 90%;
-            max-width: 900px;
-            height: 500px;
-            border: 0;
-            border-radius: 12px;
-        }
-
-        .mapa-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--ivory);
-            background-color: var(--rojo-japones);
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .contenido h1 {
-            color: var(--rojo-japones);
-        }
-    </style>
 </head>
 <body>
-    <header>
-        <div class="logo">DAILY DOSE</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="carta.html">Carta</a></li>
-                <li><a href="novedades.html">Novedades</a></li>
-                <li><a href="pedidos.html">Pedidos</a></li>
-                <li><a href="registro.html">Registro</a></li>
-                <li><a href="ubicacion.html">Ubicación</a></li>
-            </ul>
-        </nav>
-    </header>
+<!-- Header / Cabecera de la página -->
+<header>
+  <!-- Logo de la web -->
+  <div class="logo">DAILY DOSE</div>
+  <!-- Botón para abrir/cerrar el menú lateral -->
+  <button id="menuBtn" class="menu-btn">&#9776;</button>
 
-    <main class="contenido">
-        <h1>Ubicación</h1>
-        <p>Encuéntranos en el corazón de Malasaña, Madrid.</p>
+  <!-- Sección derecha del header: modo oscuro + usuario -->
+  <div class="header-right">
+    <!-- Toggle modo oscuro -->
+    <label class="switch">
+      <input type="checkbox" id="toggleTema">
+      <span class="slider">
+        <span class="circle">
+          <!-- Icono Sol (para modo claro) -->
+          <svg class="icono sol" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5" fill="var(--rojo-japones)" />
+            <g stroke="var(--rojo-japones)" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="4"/>
+              <line x1="12" y1="20" x2="12" y2="23"/>
+              <line x1="1" y1="12" x2="4" y2="12"/>
+              <line x1="20" y1="12" x2="23" y2="12"/>
+              <line x1="4.2" y1="4.2" x2="6" y2="6"/>
+              <line x1="18" y1="18" x2="19.8" y2="19.8"/>
+              <line x1="4.2" y1="19.8" x2="6" y2="18"/>
+              <line x1="18" y1="6" x2="19.8" y2="4.2"/>
+            </g>
+          </svg>
+          <!-- Icono Luna (para modo oscuro) -->
+          <svg class="icono luna" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="var(--rojo-japones)"/>
+          </svg>
+        </span>
+      </span>
+    </label>
 
-        <div class="mapa-container">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3031.015272444563!2d-3.703790284596833!3d40.42679417936416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4228bc6f7c7d6b%3A0x97edc26aa2d9472a!2sMalasa%C3%B1a%2C%20Madrid!5e0!3m2!1ses!2ses!4v1707471940000!5m2!1ses!2ses" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-            <div class="mapa-overlay">Próximamente</div>
-        </div>
-    </main>
+    <!-- Icono de usuario / perfil -->
+    <a href="registro.html" class="iconoUsuario" title="Iniciar sesión / Registrarse">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="28" height="28">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 0112 15a9 9 0 016.879 2.804M12 12a5 5 0 100-10 5 5 0 000 10z"/>
+      </svg>
+    </a>
+  </div>
+</header>
+
+<!-- Menú lateral / sidebar -->
+<nav id="sidebar" class="sidebar">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="carta.html">Carta</a></li>
+    <li><a href="novedades.html">Novedades</a></li>
+    <li><a href="sobreNosotros.html">Sobre nosotros</a></li>
+    <!--Sección privada-->
+    <li><a href="pedidos.html">Pedidos</a></li>
+    <li><a href="promociones.html">Promociones</a></li> 
+  </ul>
+</nav>
+
+<!-- Overlay semi-transparente al abrir el menú lateral -->
+<div id="overlay" class="overlay"></div>
+
+<!-- Enlace al JS externo -->
+<script src="js/script.js"></script>
 </body>
 </html>
