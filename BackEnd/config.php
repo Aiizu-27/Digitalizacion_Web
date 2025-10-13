@@ -1,0 +1,1 @@
+//Punto central de la conexión con la base de datos
