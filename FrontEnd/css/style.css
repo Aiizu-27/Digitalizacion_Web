@@ -303,6 +303,26 @@ header {
   border-radius: 10px 10px 0 0; /* solo esquinas superiores redondeadas */
 }
 
+.div1, .div2, .div3, .div4, .div5 {
+  background: rgba(243, 240, 233, 0.25);  /* semitransparente */
+  backdrop-filter: blur(10px);             /* desenfoque de fondo */
+  -webkit-backdrop-filter: blur(10px);     /* Safari */
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* borde sutil */
+  color: var(--texto-principal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  transition: all 0.3s ease; /* opcional: suaviza hover o animaciones */
+}
+
+.div1:hover, .div2:hover, .div3:hover, .div4:hover, .div5:hover {
+  background: rgba(243, 240, 233, 0.35);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
 
 /* ============================= */
 /* FORMULARIO / LOGIN Y REGISTRO */
