@@ -1,6 +1,6 @@
-* {
+/** {
   outline: 1px solid rgb(21, 0, 255) !important;
-}
+}*/
 
 
 /* ============================= */
@@ -353,7 +353,7 @@ header {
 /* ============================= */
 /* Aseguramos que el formulario baje lo suficiente y no se superponga con el header */
 .registroContenido {
-    margin-top: 120px; /* 80px header + 40px de separación */
+    margin-top: 80px;
     padding: 2rem;
     display: flex;
     justify-content: center; /* centra el formulario horizontalmente */
