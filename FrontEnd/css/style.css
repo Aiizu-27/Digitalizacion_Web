@@ -91,16 +91,32 @@ header {
 /* MENÚ HORIZONTAL FINO Y CENTRADO */
 /* ============================= */
 .menu-container {
-    background-color: var(--verde-pastel);
-    border-radius: 10px;
-    padding: 0.6rem 1.8rem;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     display: flex;
     justify-content: center;
     align-items: center;
     flex: 1;
     max-width: 800px;
-    margin: 0 auto; /* 💡 Esto lo centra horizontalmente */
+    margin: 0 auto;
+
+    /* Efecto cristal */
+    background: rgba(255, 255, 255, 0.15); /* translúcido */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 12px; /* borde ligeramente más suave */
+    padding: 0.8rem 2rem; /* un poco más espacioso */
+    
+    /* Sombra más sutil y elegante */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    /* transición suave al pasar el mouse */
+    transition: all 0.3s ease;
+}
+
+.menu-container:hover {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
 
 .menu-header ul {
@@ -125,9 +141,8 @@ header {
     letter-spacing: 0.5px;
 }
 
-/* 🖱️ Efecto hover elegante: aparece un recuadro */
+/* Efecto hover elegante: aparece un recuadro */
 .menu-header ul li a:hover {
-    border-color: var(--rojo-japones);
     color: var(--rojo-japones);
     background-color: rgba(244, 43, 29, 0.05);
     box-shadow: 0 0 5px rgba(244, 43, 29, 0.2);
@@ -340,10 +355,18 @@ header {
     max-width: 400px;
     width: 90%;
     padding: 2rem;
-    border: 1px solid var(--rojo-japones);
     border-radius: 10px;
-    background-color: var(--fondo);
+
+    /* Efecto cristal */
+    background: rgba(255, 255, 255, 0.1); /* Fondo translúcido */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde suave */
+    backdrop-filter: blur(10px); /* Desenfoque del fondo */
+    -webkit-backdrop-filter: blur(10px); /* Para Safari */
+
+    /* Otros estilos */
     box-sizing: border-box;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1); /* Sombra suave */
+    color: var(--texto); /* Asegúrate de tener una variable para el color del texto */
 }
 
 .cajas { 
