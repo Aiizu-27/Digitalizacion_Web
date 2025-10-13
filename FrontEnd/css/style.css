@@ -17,9 +17,9 @@ body.dark-mode {
     --fondo: #2B1E1B;
     --texto-principal: #F3F0E9;
     --rojo-japones: #E85348;
-    --verde-pastel: #C7E3D4;
+    --verde-pastel-oscuro: #C7E3D4;
     --rojo-oscuro: #80231C;
-    --verde-pastel-oscuro: #3C6649;
+    --verde-pastel: #3C6649;
 }
 
 /* ============================= */
@@ -43,12 +43,13 @@ body {
 /* HEADER / CABECERA */
 /* ============================= */
 header {
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
     padding: 1rem 2rem;
     background-color: var(--fondo);
     border-bottom: 3px solid var(--rojo-japones);
     position: relative;
+    flex-wrap: wrap;
 }
 
 .logo {
@@ -57,33 +58,104 @@ header {
     font-size: 2rem;
     letter-spacing: 1px;
     transform: scaleY(0.9);
-    -webkit-text-stroke: 1px var(--rojo-japones);  /*Añadir grosor a la tipografía*/
+    -webkit-text-stroke: 1px var(--rojo-japones);
     text-shadow: 0px 1px 0px var(--rojo-japones);
 }
 
 #menuBtn {
-    font-size:1.5rem;
-    background:none;
-    border:none;
-    cursor:pointer;
-    margin-right:1rem;
-    color: var(--rojo-japones)
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 1rem;
+    color: var(--rojo-japones);
 }
 
 .header-right {
-    display:flex;
-    align-items:center;
-    gap:1rem;
-    margin-left:auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+    flex-wrap: wrap;
+}
+
+/* ============================= */
+/* MENÚ HORIZONTAL FINO Y CENTRADO */
+/* ============================= */
+.menu-container {
+    background-color: var(--verde-pastel);
+    border-radius: 10px;
+    padding: 0.6rem 1.8rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    max-width: 800px;
+    margin: 0 auto; /* 💡 Esto lo centra horizontalmente */
+}
+
+.menu-header ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-header ul li a {
+    text-decoration: none;
+    color: var(--texto-principal);
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+    border: 1.5px solid transparent;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+/* 🖱️ Efecto hover elegante: aparece un recuadro */
+.menu-header ul li a:hover {
+    border-color: var(--rojo-japones);
+    color: var(--rojo-japones);
+    background-color: rgba(244, 43, 29, 0.05);
+    box-shadow: 0 0 5px rgba(244, 43, 29, 0.2);
+    transform: translateY(-2px);
+}
+
+.menu-header ul li a {
+    white-space: nowrap;
+}
+
+/* ============================= */
+/* RESPONSIVE (móvil) */
+/* ============================= */
+@media (max-width: 768px) {
+    .menu-container {
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .menu-header ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .menu-header ul li a {
+        font-size: 0.95rem;
+    }
 }
 
 /* ============================= */
 /* ICONO DE USUARIO / PERFIL */
 /* ============================= */
 .iconoUsuario {
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--rojo-japones);
     cursor: pointer;
     transition: transform 0.3s, color 0.3s;
@@ -104,115 +176,116 @@ header {
     height: 24px;
 }
 
-.switch input { display:none; } /* Oculta el checkbox real */
+.switch input { display: none; }
 
 .slider {
     position: absolute;
-    cursor:pointer;
-    top:0; left:0; right:0; bottom:0;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-color: var(--verde-pastel);
     border-radius: 34px;
-    transition:.4s;
+    transition: .4s;
 }
 
 .circle {
     position: absolute;
-    top:2px;
-    left:2px;
-    width:20px; height:20px;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
     background-color: var(--fondo);
-    border-radius:50%;
-    transition:.4s;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    border-radius: 50%;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icono { 
-    position:absolute; 
-    width:16px; height:16px; 
-    top:2px; left:2px; 
-    transition:.4s; 
+    position: absolute; 
+    width: 16px; height: 16px; 
+    top: 2px; left: 2px; 
+    transition: .4s; 
 }
 
-.icono.sol { opacity:1; }   /* Visible en modo claro */
-.icono.luna { opacity:0; }  /* Oculto en modo claro */
+.icono.sol { opacity: 1; }
+.icono.luna { opacity: 0; }
 
 /* ============================= */
 /* SIDEBAR / MENÚ LATERAL */
 /* ============================= */
 .sidebar {
     position: fixed;
-    left:-250px;
-    top:0;
-    width:250px;
-    height:100%;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
     background-color: var(--fondo);
     box-shadow: 2px 0 5px rgba(0,0,0,0.2);
     transition: left 0.3s ease;
-    z-index:1000;
-    padding-top:3rem;
+    z-index: 1000;
+    padding-top: 3rem;
 }
 
-.sidebar.active { left:0; }
+.sidebar.active { left: 0; }
 
-.sidebar ul { list-style:none; padding:0; margin:0; }
-.sidebar ul li { margin:1rem 0; }
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar ul li { margin: 1rem 0; }
 .sidebar ul li a { 
-    text-decoration:none; 
-    color:var(--texto-principal); 
-    font-weight:500; 
-    padding:0.5rem 1rem; 
-    display:block; 
+    text-decoration: none; 
+    color: var(--texto-principal); 
+    font-weight: 500; 
+    padding: 0.5rem 1rem; 
+    display: block; 
 }
-.sidebar ul li a:hover { color:var(--rojo-japones); }
+.sidebar ul li a:hover { color: var(--rojo-japones); }
 
 /* ============================= */
 /* OVERLAY (FONDO SEMITRANSPARENTE DEL MENÚ) */
 /* ============================= */
 .overlay {
     position: fixed;
-    top:0; left:0; right:0; bottom:0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0,0,0,0.4);
-    opacity:0;
-    pointer-events:none;
+    opacity: 0;
+    pointer-events: none;
     transition: opacity 0.3s;
-    z-index:900;
+    z-index: 900;
 }
 
 .overlay.active { 
-    opacity:1; 
-    pointer-events:auto;
+    opacity: 1; 
+    pointer-events: auto;
 }
 
 /* ============================= */
 /* SECCIÓN PRINCIPAL / PRESENTACIÓN */
 /* ============================= */
 .presentacion {
-    text-align:center;
-    padding:5rem 2rem;
+    text-align: center;
+    padding: 5rem 2rem;
     background-color: var(--verde-pastel);
-    border-radius:12px;
-    margin:2rem auto;
-    max-width:900px;
+    border-radius: 12px;
+    margin: 2rem auto;
+    max-width: 900px;
 }
 
 .presentacion h1 { 
     color: var(--rojo-japones); 
-    font-size:2.5rem; 
+    font-size: 2.5rem; 
 }
 
 .boton-principal {
     background-color: var(--rojo-japones);
-    color:white;
-    padding:0.8rem 1.5rem;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .boton-principal:hover { 
-    background-color:#d42115; 
+    background-color: #d42115; 
 }
 
 /* ============================= */
@@ -240,7 +313,7 @@ header {
     border-bottom: 2px solid var(--rojo-japones);
     background: transparent;
     outline: none;
-    color: var(--texto-principal)
+    color: var(--texto-principal);
 }
 
 .cajas label {
@@ -323,4 +396,48 @@ button:hover { background-color: var(--rojo-oscuro); }
 .form-tabs button.active {
     background: var(--rojo-japones);
     color: white;
+}
+
+/* ============================= */
+/* MEDIA QUERIES / RESPONSIVE */
+/* ============================= */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        margin-left: 0;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .sidebar {
+        width: 80%;
+    }
+
+    .formulario {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .presentacion h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .boton-principal {
+        padding: 0.6rem 1rem;
+    }
+
+    .form-tabs button {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
 }
