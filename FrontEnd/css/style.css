@@ -45,13 +45,27 @@ html, body {
 /* HEADER / CABECERA */
 /* ============================= */
 header {
-    display: flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: var(--fondo);
-    border-bottom: 3px solid var(--rojo-japones);
-    position: relative;
-    flex-wrap: wrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  height: 80px; /* altura del header */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* espacio entre logo y header-right */
+  padding: 0 2rem;
+  background-color: var(--fondo);
+  border-bottom: 3px solid var(--rojo-japones);
+  box-sizing: border-box;
+}
+
+/* Aseguramos que la sección de la derecha siempre esté alineada y visible */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0; /* evita que se encoja si falta espacio */
 }
 
 .logo {
@@ -71,14 +85,6 @@ header {
     cursor: pointer;
     margin-right: 1rem;
     color: var(--rojo-japones);
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-left: auto;
-    flex-wrap: wrap;
 }
 
 /* ============================= */
@@ -218,23 +224,26 @@ header {
 /* PÁGINA INICIAL */
 /* ============================= */
 /* Contenedor inicial que ocupa toda la pantalla visible */
-/* Contenedor inicial */
+/* --- CONTENEDOR DEL VIDEO FIJO --- */
 .contenedor-fijo {
-    width: 100%;
-    height: 100vh;           /* ocupa toda la pantalla */
-    position: relative;       /* para que el contenido esté encima del video */
-    overflow: hidden;         /* corta los bordes del video */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0; /* detrás de todo */
 }
 
-/* Video de fondo */
+/* --- VIDEO DE FONDO --- */
 .video-fondo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;       /* cubre toda la pantalla sin deformarse */
-    z-index: 0;              /* detrás del contenido */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
 /* Contenido encima del video */
@@ -251,10 +260,16 @@ header {
 }
 
 
-/* Contenido principal que aparece al hacer scroll */
+/* --- CONTENIDO PRINCIPAL SCROLLEABLE --- */
 .contenido-principal {
-    width: 100%;
+  position: relative;
+  z-index: 5; /* por encima del video, pero debajo del header */
+  position: relative;
+  z-index: 5;
+  margin-top: calc(100vh + 80px); /* 100vh del video + altura del header */
+  background: transparent;
 }
+
 .fila1, .fila2, .fila3 {
     width: 95%;
     margin: 2rem auto 0 auto;
@@ -272,10 +287,21 @@ header {
 .div3 { background-color: var(--verde-pastel-oscuro); border-radius: 10px 0 0 10px; }
 .div4 { background-color: var(--rojo-oscuro); border-radius: 0 10px 10px 0; }
 
-/* Fila 3 */
-.fila3 { grid-template-columns: 1fr; height: auto; }
-.div5 { background-color: var(--verde-pastel-oscuro); border-radius: 10px 10px 0 0; height: 100%; }
+/* Última fila (fila3) */
+.fila3 {
+  grid-template-columns: 1fr;
+  min-height: 100vh;      /* ocupa toda la pantalla */
+  margin-bottom: 0;       /* sin espacio extra */
+  border-radius: 0;       /* bordes rectos abajo */
+  overflow: hidden;       /* asegura que nada sobresalga */
+}
 
+/* Div interno de fila3 */
+.div5 {
+  background-color: var(--verde-pastel-oscuro);
+  height: 100%;
+  border-radius: 10px 10px 0 0; /* solo esquinas superiores redondeadas */
+}
 
 
 /* ============================= */
