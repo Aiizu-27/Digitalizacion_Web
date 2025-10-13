@@ -1,3 +1,8 @@
+* {
+  outline: 1px solid rgb(21, 0, 255) !important;
+}
+
+
 /* ============================= */
 /* VARIABLES GLOBALES DE COLORES */
 /* ============================= */
@@ -31,6 +36,7 @@ body.dark-mode {
     font-weight: bold;
     font-style: normal;
 }
+
 
 html, body {
     margin: 0;
@@ -351,7 +357,7 @@ header {
     padding: 2rem;
     display: flex;
     justify-content: center; /* centra el formulario horizontalmente */
-    background-color: var(--fondo);
+    background-color: transparent !important; /* elimina el fondo crema */
 }
 
 .formulario {
@@ -409,7 +415,7 @@ button {
     padding: 10px;
     background-color: var(--rojo-japones);
     border: none;
-    color: white;
+    color: var(--texto-principal);
     font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
@@ -469,7 +475,7 @@ button:hover { background-color: var(--rojo-oscuro); }
 
 .form-tabs button.active {
     background: var(--rojo-japones);
-    color: white;
+    color: var(--texto-principal);
 }
 
 /* ============================= */
