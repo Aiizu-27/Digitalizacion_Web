@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
 <!-- Header / Cabecera de la página -->
 <header>
     <!-- Logo de la web -->
@@ -66,25 +65,36 @@
   </div>
 </header>
 
-<div class="contenido-fijo">
-  
-</div>
+  <!-- Contenedor de pantalla inicial -->
+  <div class="contenedor-fijo">
+    <!-- Video de fondo -->
+    <video class="video-fondo" autoplay muted loop>
+      <source src="Imagenes/VideoInicio.mp4" type="video/mp4">
+      Tu navegador no soporta videos HTML5.
+    </video>
 
-<div class="contenido-principal">
-<div class="fila1">
-  <div class="div1"></div>
-  <div class="div2"></div>
-</div>
+    <!-- Contenido encima del video -->
+    <div class="contenido-sobre-video">
+    </div>
+  </div>
 
-<div class="fila2">
-  <div class="div3"></div>
-  <div class="div4"></div>
-</div>
+  <!-- Contenido principal que aparecerá al hacer scroll -->
+  <div class="contenido-principal">
+    <div class="fila1">
+      <div class="div1"></div>
+      <div class="div2"></div>
+    </div>
 
-<div class="fila3">
-  <div class="div5"></div>
-</div>
-</div>
+    <div class="fila2">
+      <div class="div3"></div>
+      <div class="div4"></div>
+    </div>
+
+    <div class="fila3">
+      <div class="div5"></div>
+    </div>
+  </div>
+
 <!-- JS -->
 <script src="js/script.js"></script>
 </body>
