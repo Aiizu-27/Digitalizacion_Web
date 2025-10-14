@@ -302,14 +302,14 @@ header {
 }
 
 /* Fila 1 */
-.fila1 { grid-template-columns: 2fr 1fr; height: 300px; }
-.div1 { background-color: var(--verde-pastel); border-radius: 10px 0 0 10px; }
-.div2 { background-color: var(--rojo-japones); border-radius: 0 10px 10px 0; }
+.fila1 { grid-template-columns: 2fr 1fr; min-height: 300px; height: auto;}
+.div1 {border-radius: 10px 0 0 10px; }
+.div2 {border-radius: 0 10px 10px 0; }
 
 /* Fila 2 */
-.fila2 { grid-template-columns: 1fr 1fr; height: 250px; }
-.div3 { background-color: var(--verde-pastel-oscuro); border-radius: 10px 0 0 10px; }
-.div4 { background-color: var(--rojo-oscuro); border-radius: 0 10px 10px 0; }
+.fila2 { grid-template-columns: 1fr 1fr; min-height: 250px; height: auto;}
+.div3 { border-radius: 10px 0 0 10px; }
+.div4 {border-radius: 0 10px 10px 0; }
 
 /* Última fila (fila3) */
 .fila3 {
@@ -322,7 +322,6 @@ header {
 
 /* Div interno de fila3 */
 .div5 {
-  background-color: var(--verde-pastel-oscuro);
   height: 100%;
   border-radius: 10px 10px 0 0; /* solo esquinas superiores redondeadas */
 }
@@ -345,6 +344,40 @@ header {
   background: rgba(243, 240, 233, 0.35);
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.div2 {
+    flex-direction: column;          /* Para que el texto y la imagen estén en columna */
+    text-align: center;              /* Centrar texto */
+    padding: 2rem 1rem;              /* Espacio interno */
+    gap: 1rem;                       /* Separación entre elementos internos */
+}
+
+.div2 h1 {
+    font-size: 2rem;
+    color: var(--rojo-japones);                     /* Texto blanco sobre rojo */
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+}
+
+.div2 p {
+    font-size: 1rem;
+    color: var(--texto-principal);
+    max-width: 300px;                /* Limitar ancho del texto */
+    margin: 0 auto 1rem auto;        /* Centrado y margen inferior */
+    line-height: 1.5;
+}
+
+.div2 .imagen-app img {
+    width: 120px;                     /* Tamaño adecuado del logo de app */
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+.div2 .imagen-app img:hover {
+    transform: scale(1.05);          /* Pequeña animación al pasar el mouse */
 }
 
 
