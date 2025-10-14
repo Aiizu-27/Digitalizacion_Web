@@ -8,11 +8,24 @@
 </head>
 <body>
 <!-- Header / Cabecera de la página -->
+<!-- Header / Cabecera de la página -->
 <header>
-  <!-- Logo de la web -->
+    <!-- Logo de la web -->
   <div class="logo">DAILY DOSE</div>
-  <!-- Botón para abrir/cerrar el menú lateral -->
-  <button id="menuBtn" class="menu-btn">&#9776;</button>
+
+  <!-- Menú horizontal -->
+  <div class="menu-container">
+  <nav class="menu-header">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="carta.html">Carta</a></li>
+      <li><a href="novedades.html">Novedades</a></li>
+      <li><a href="sobreNosotros.html">Sobre nosotros</a></li>
+      <li><a href="pedidos.html">Pedidos</a></li>
+      <li><a href="promociones.html">Promociones</a></li>
+    </ul>
+  </nav>
+  </div>
 
   <!-- Sección derecha del header: modo oscuro + usuario -->
   <div class="header-right">
@@ -51,22 +64,6 @@
     </a>
   </div>
 </header>
-
-<!-- Menú lateral / sidebar -->
-<nav id="sidebar" class="sidebar">
-  <ul>
-    <li><a href="index.html">Inicio</a></li>
-    <li><a href="carta.html">Carta</a></li>
-    <li><a href="novedades.html">Novedades</a></li>
-    <li><a href="sobreNosotros.html">Sobre nosotros</a></li>
-    <!--Sección privada-->
-    <li><a href="pedidos.html">Pedidos</a></li>
-    <li><a href="promociones.html">Promociones</a></li> 
-  </ul>
-</nav>
-
-<!-- Overlay semi-transparente al abrir el menú lateral -->
-<div id="overlay" class="overlay"></div>
 
 <!-- Enlace al JS externo -->
 <script src="js/script.js"></script>
