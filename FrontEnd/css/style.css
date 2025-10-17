@@ -564,3 +564,44 @@ button:hover { background-color: var(--rojo-oscuro); }
         font-size: 0.9rem;
     }
 }
+
+/* Botón del menú hamburguesa */
+#menuBtn {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: var(--rojo-japones);
+  cursor: pointer;
+}
+
+/* Estilos móviles */
+@media (max-width: 768px) {
+  #menuBtn {
+    display: block;
+  }
+
+  .menu-container {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  .menu-container.active {
+    display: flex;
+  }
+
+  .menu-header ul {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding-left: 1rem;
+  }
+
+  .menu-header ul li a {
+    width: 100%;
+    display: block;
+    padding: 0.8rem 1rem;
+  }
+}
