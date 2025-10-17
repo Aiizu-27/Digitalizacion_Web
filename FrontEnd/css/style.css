@@ -243,6 +243,12 @@ header {
 .icono.sol { opacity: 1; }
 .icono.luna { opacity: 0; }
 
+.menu-header a.activo {
+  color: var(--rojo-japones);
+  font-weight: bold;
+}
+
+
 
 /* ============================= */
 /* PÁGINA INICIAL */
