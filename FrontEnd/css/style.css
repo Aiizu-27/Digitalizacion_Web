@@ -243,6 +243,8 @@ header {
 .icono.sol { opacity: 1; }
 .icono.luna { opacity: 0; }
 
+
+/*esto ahora mismo no sirve es para header.php*/
 .menu-header a.activo {
   color: var(--rojo-japones);
   font-weight: bold;
