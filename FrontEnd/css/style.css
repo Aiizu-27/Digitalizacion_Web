@@ -512,6 +512,16 @@ button:hover { background-color: var(--rojo-oscuro); }
 }
 
 /* ============================= */
+/* SECCIÓN SOBRE NOSOTROS */
+/* ============================= */
+.RedesSociales {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* ============================= */
 /* MEDIA QUERIES / RESPONSIVE */
 /* ============================= */
 @media (max-width: 768px) {
