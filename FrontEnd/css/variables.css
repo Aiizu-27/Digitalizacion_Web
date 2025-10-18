@@ -1,0 +1,45 @@
+/* ============================= */
+/* VARIABLES GLOBALES DE COLORES */
+/* ============================= */
+:root {
+    --texto-principal: #2B2B2B;
+    --fondo: #F3F0E9;
+    --rojo-japones: #f42b1dd5;
+    --rojo-oscuro: #80231c;
+    --verde-pastel: #C7E3D4;
+    --verde-pastel-oscuro: #3C6649;
+
+    /* Efecto cristal (modo claro) */
+    --cristal-fondo: rgba(255, 255, 255, 0.35);
+    --cristal-borde: rgba(255, 255, 255, 0.45);
+    --cristal-sombra: rgba(0, 0, 0, 0.2);
+    --cristal-hover: rgba(255, 255, 255, 0.45);
+    --cristal-gradiente: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.2),
+        rgba(244, 43, 29, 0.15)
+    );
+}
+
+/* ============================= */
+/* MODO OSCURO */
+/* ============================= */
+body.dark-mode {
+    --fondo: #2B1E1B;
+    --texto-principal: #F3F0E9;
+    --rojo-japones: #E85348;
+    --verde-pastel-oscuro: #C7E3D4;
+    --rojo-oscuro: #80231C;
+    --verde-pastel: #3C6649;
+
+    /* Efecto cristal (modo oscuro) */
+    --cristal-fondo: rgba(43, 30, 27, 0.45);
+    --cristal-borde: rgba(255, 255, 255, 0.1);
+    --cristal-sombra: rgba(0, 0, 0, 0.6);
+    --cristal-hover: rgba(60, 50, 48, 0.6);
+    --cristal-gradiente: linear-gradient(
+        to bottom right,
+        rgba(232, 83, 72, 0.08),
+        rgba(20, 15, 14, 0.6)
+    );
+}
