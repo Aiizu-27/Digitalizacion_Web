@@ -58,24 +58,17 @@ header {
   left: 0;
   width: 100%;
   z-index: 10;
-  height: 80px; /* altura del header */
+  height: 80px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* espacio entre logo y header-right */
+  justify-content: space-between; 
   padding: 0 2rem;
   background-color: var(--fondo);
   border-bottom: 3px solid var(--rojo-japones);
   box-sizing: border-box;
 }
 
-/* Aseguramos que la sección de la derecha siempre esté alineada y visible */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-shrink: 0; /* evita que se encoja si falta espacio */
-}
-
+/* Logo */
 .logo {
     font-family: 'CooperBold', sans-serif;
     font-weight: bold;
@@ -85,15 +78,6 @@ header {
     transform: scaleY(0.9);
     -webkit-text-stroke: 1px var(--rojo-japones);
     text-shadow: 0px 1px 0px var(--rojo-japones);
-}
-
-#menuBtn {
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-right: 1rem;
-    color: var(--rojo-japones);
 }
 
 /* ============================= */
@@ -107,19 +91,14 @@ header {
     max-width: 800px;
     margin: 0 auto;
 
-    /* Efecto cristal */
-    background: rgba(255, 255, 255, 0.15); /* translúcido */
+    background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 
-    border-radius: 12px; /* borde ligeramente más suave */
-    padding: 0.8rem 2rem; /* un poco más espacioso */
-    
-    /* Sombra más sutil y elegante */
+    border-radius: 12px;
+    padding: 0.8rem 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-
-    /* transición suave al pasar el mouse */
     transition: all 0.3s ease;
 }
 
@@ -148,37 +127,14 @@ header {
     border-radius: 8px;
     transition: all 0.3s ease;
     letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
-/* Efecto hover elegante: aparece un recuadro */
 .menu-header ul li a:hover {
     color: var(--rojo-japones);
     background-color: rgba(244, 43, 29, 0.05);
     box-shadow: 0 0 5px rgba(244, 43, 29, 0.2);
     transform: translateY(-2px);
-}
-
-.menu-header ul li a {
-    white-space: nowrap;
-}
-
-/* ============================= */
-/* RESPONSIVE (móvil) */
-/* ============================= */
-@media (max-width: 768px) {
-    .menu-container {
-        width: 100%;
-        margin: 1rem 0;
-    }
-
-    .menu-header ul {
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-
-    .menu-header ul li a {
-        font-size: 0.95rem;
-    }
 }
 
 /* ============================= */
@@ -243,13 +199,71 @@ header {
 .icono.sol { opacity: 1; }
 .icono.luna { opacity: 0; }
 
-
-/*esto ahora mismo no sirve es para header.php*/
+/* ============================= */
+/* LINK ACTIVO HEADER */
 .menu-header a.activo {
   color: var(--rojo-japones);
   font-weight: bold;
 }
 
+/* ============================= */
+/* BOTÓN HAMBURGUESA (solo móvil) */
+#menuBtn {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--rojo-japones);
+}
+
+/* ============================= */
+/* RESPONSIVE / MÓVIL */
+/* Escritorio */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-right-mobile {
+  display: none; /* solo visible en móvil */
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+  .header-right {
+    display: none; /* oculto en móvil */
+  }
+
+  .header-right-mobile {
+    display: flex; /* dentro del menú */
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  #menuBtn { display: block; }
+
+  .menu-container {
+    display: none; /* se muestra con JS */
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--fondo);
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .menu-header ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .menu-header ul li a {
+    width: 100%;
+    padding: 0.8rem 1rem;
+  }
+}
 
 
 /* ============================= */
@@ -527,48 +541,4 @@ button:hover { background-color: var(--rojo-oscuro); }
     justify-content: center;
     gap: 1.5rem;
     margin-top: 1rem;
-}
-
-/* ============================= */
-/* MEDIA QUERIES / RESPONSIVE */
-/* ============================= */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .header-right {
-        margin-left: 0;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-    }
-
-    .sidebar {
-        width: 80%;
-    }
-
-    .formulario {
-        width: 90%;
-        padding: 1.5rem;
-    }
-
-    .presentacion h1 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo {
-        font-size: 1.8rem;
-    }
-
-    .boton-principal {
-        padding: 0.6rem 1rem;
-    }
-
-    .form-tabs button {
-        padding: 0.6rem;
-        font-size: 0.9rem;
-    }
 }

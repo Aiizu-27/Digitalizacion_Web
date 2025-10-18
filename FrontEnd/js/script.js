@@ -131,14 +131,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const menuBtn = document.getElementById("menuBtn");
-  const menu = document.getElementById("menu");
+//menu en movil
+const menuBtn = document.getElementById('menuBtn');
+const menuContainer = document.getElementById('menu');
 
-  if (menuBtn && menu) {
-    menuBtn.addEventListener("click", () => {
-      menu.classList.toggle("active");
-      menuBtn.textContent = menu.classList.contains("active") ? "✖" : "☰";
-    });
-  }
+menuBtn.addEventListener('click', () => {
+    if(menuContainer.style.display === "flex") {
+        menuContainer.style.display = "none";
+    } else {
+        menuContainer.style.display = "flex";
+    }
 });
