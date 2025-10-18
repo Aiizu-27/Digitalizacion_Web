@@ -133,12 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //menu en movil
 const menuBtn = document.getElementById('menuBtn');
-const menuContainer = document.getElementById('menu');
+const menu = document.getElementById('menu');
 
 menuBtn.addEventListener('click', () => {
-    if(menuContainer.style.display === "flex") {
-        menuContainer.style.display = "none";
-    } else {
-        menuContainer.style.display = "flex";
-    }
+    menu.classList.toggle('open');
 });
+
