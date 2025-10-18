@@ -4,50 +4,47 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ==========================
-    // Modo oscuro
-    // ==========================
-    const toggle = document.getElementById("toggleTema");
-    const body = document.body;
-    const circle = document.querySelector(".circle");
-    const sol = document.querySelector(".sol");
-    const luna = document.querySelector(".luna");
+// ------------ TOGGLE DARK MODE ------------
 
-    if(toggle){
-        toggle.addEventListener("change", () => {
-            body.classList.toggle("dark-mode", toggle.checked);
+// Seleccionamos toggles
+const toggleMobile = document.getElementById("toggleTemaMobile");
+const toggleDesktop = document.getElementById("toggleTemaDesktop");
+const body = document.body;
 
-            if(toggle.checked){
-                circle.style.transform = "translateX(26px)";
-                sol.style.opacity = "0";
-                luna.style.opacity = "1";
-            } else {
-                circle.style.transform = "translateX(0)";
-                sol.style.opacity = "1";
-                luna.style.opacity = "0";
-            }
-        });
-    }
+// Función para cambiar modo oscuro y animación del toggle
+function toggleDarkMode(toggle, solIcon, lunaIcon, circle) {
+    toggle.addEventListener("change", () => {
+        body.classList.toggle("dark-mode", toggle.checked);
+        solIcon.style.opacity = toggle.checked ? "0" : "1";
+        lunaIcon.style.opacity = toggle.checked ? "1" : "0";
+        circle.style.transform = toggle.checked ? "translateX(26px)" : "translateX(0)";
+    });
+}
 
-    // ==========================
-    // Menú lateral
-    // ==========================
-    const menuBtn = document.getElementById("menuBtn");
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
+// Móvil
+if(toggleMobile){
+    const solMobile = document.querySelector(".header-right-mobile .sol");
+    const lunaMobile = document.querySelector(".header-right-mobile .luna");
+    const circleMobile = document.querySelector(".header-right-mobile .circle");
+    toggleDarkMode(toggleMobile, solMobile, lunaMobile, circleMobile);
+}
 
-    function toggleMenu() {
-        if(!sidebar || !overlay || !menuBtn) return;
+// Escritorio
+if(toggleDesktop){
+    const solDesktop = document.querySelector(".header-right .sol");
+    const lunaDesktop = document.querySelector(".header-right .luna");
+    const circleDesktop = document.querySelector(".header-right .circle");
+    toggleDarkMode(toggleDesktop, solDesktop, lunaDesktop, circleDesktop);
+}
 
-        sidebar.classList.toggle("active");
-        overlay.classList.toggle("active");
-        menuBtn.innerHTML = sidebar.classList.contains("active") ? "&#10005;" : "&#9776;";
-    }
+// ------------ MENÚ HAMBURGUESA ------------
 
-    if(menuBtn && overlay){
-        menuBtn.addEventListener("click", toggleMenu);
-        overlay.addEventListener("click", toggleMenu);
-    }
+const menuBtn = document.getElementById("menuBtn");
+const menu = document.getElementById("menu");
+
+menuBtn.addEventListener("click", () => {
+    menu.classList.toggle("menu-abierto");
+});
 
     // ==========================
     // Cambiar entre login y registro
