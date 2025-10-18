@@ -128,18 +128,17 @@ menuBtn.addEventListener("click", () => {
 
 });
 
-//Menú móvil
-const menuBtn = document.getElementById("menuBtn");
-const menu = document.getElementById("menu");
-const menuCerrar = document.getElementById("menuCerrar");
+const menuBtn = document.getElementById('menuBtn');
+const menuCerrar = document.getElementById('menuCerrar');
+const menu = document.getElementById('menu');
 
 // Abrir menú
-menuBtn.addEventListener("click", () => {
-    menu.classList.add("menu-abierto");
+menuBtn.addEventListener('click', () => {
+    menu.classList.add('open');
 });
 
-// Cerrar menú
-menuCerrar.addEventListener("click", () => {
-    menu.classList.remove("menu-abierto");
+// Cerrar menú con la X
+menuCerrar.addEventListener('click', () => {
+    menu.classList.remove('open');
 });
 
