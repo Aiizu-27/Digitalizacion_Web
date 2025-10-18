@@ -13,6 +13,17 @@
     --rojo-oscuro: #80231c;
     --verde-pastel: #C7E3D4;
     --verde-pastel-oscuro: #3C6649;
+
+    /* 🌫️ Efecto cristal (modo claro) */
+    --cristal-fondo: rgba(255, 255, 255, 0.35);
+    --cristal-borde: rgba(255, 255, 255, 0.45);
+    --cristal-sombra: rgba(0, 0, 0, 0.2);
+    --cristal-hover: rgba(255, 255, 255, 0.45);
+    --cristal-gradiente: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.2),
+        rgba(244, 43, 29, 0.15)
+    );
 }
 
 /* ============================= */
@@ -25,6 +36,17 @@ body.dark-mode {
     --verde-pastel-oscuro: #C7E3D4;
     --rojo-oscuro: #80231C;
     --verde-pastel: #3C6649;
+
+    /* 🌙 Efecto cristal (modo oscuro) */
+    --cristal-fondo: rgba(43, 30, 27, 0.45);
+    --cristal-borde: rgba(255, 255, 255, 0.1);
+    --cristal-sombra: rgba(0, 0, 0, 0.6);
+    --cristal-hover: rgba(60, 50, 48, 0.6);
+    --cristal-gradiente: linear-gradient(
+        to bottom right,
+        rgba(232, 83, 72, 0.08),
+        rgba(20, 15, 14, 0.6)
+    );
 }
 
 /* ============================= */
@@ -240,6 +262,11 @@ header {
     color: var(--rojo-oscuro);
 }
 
+/*BOTÓN X (solo móvil)*/
+#menuCerrar {
+    display: none;
+}
+
 /* ============================= */
 /* RESPONSIVE / MÓVIL */
 /* Escritorio */
@@ -314,6 +341,113 @@ header {
 }
 
 /* ============================= */
+/* FOOTER */
+/* ============================= */
+footer {
+  position: relative;
+  z-index: 4;
+  margin-top: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(128, 0, 0, 0.2) 0%,
+    rgba(128, 0, 0, 0.6) 100%
+  );
+  color: var(--texto-principal);
+  text-align: center;
+  padding: 3rem 0 2rem 0; /* espacio superior extra */
+  border-top: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.footer-cristal {
+  background: linear-gradient(
+    to top,
+    rgba(150, 0, 0, 0.35),
+    rgba(255, 50, 50, 0.15)
+  );
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -4px 25px rgba(255, 0, 0, 0.2);
+  color: var(--texto-principal);
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-cristal .footer-contenido {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.footer-cristal h3, 
+.footer-cristal h4 {
+  color: var(--rojo-japones);
+  margin-bottom: 1rem;
+}
+
+.footer-cristal p, 
+.footer-cristal a {
+  color: var(--texto-principal);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.footer-cristal a:hover {
+  color: var(--rojo-japones);
+}
+
+.footer-cristal .footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-cristal .footer-links li {
+  margin: 0.5rem 0;
+}
+
+.footer-cristal .iconos-redes a img {
+  width: 26px;
+  height: 26px;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
+}
+
+.footer-cristal .iconos-redes a:hover img {
+  transform: scale(1.2);
+}
+
+.footer-cristal .footer-copy {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--texto-secundario);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+  width: 100%;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .footer-cristal .footer-contenido {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-cristal .iconos-redes {
+    justify-content: center;
+  }
+}
+
+/* ============================= */
 /* PÁGINA INICIAL */
 /* ============================= */
 /* Contenedor inicial que ocupa toda la pantalla visible */
@@ -356,11 +490,14 @@ header {
 /* --- CONTENIDO PRINCIPAL SCROLLEABLE --- */
 .contenido-principal {
   position: relative;
-  z-index: 5; /* por encima del video, pero debajo del header */
-  position: relative;
   z-index: 5;
-  margin-top: calc(100vh + 80px); /* 100vh del video + altura del header */
-  background: transparent;
+  margin-top: calc(100vh + 80px);
+  padding-bottom: 180px; /* deja aire antes del footer */
+  background: linear-gradient(
+    to bottom,
+    rgba(243, 240, 233, 0.05) 0%,
+    rgba(128, 0, 0, 0.15) 100%
+  );
 }
 
 .fila1, .fila2, .fila3 {
@@ -382,17 +519,12 @@ header {
 
 /* Última fila (fila3) */
 .fila3 {
-  grid-template-columns: 1fr;
-  min-height: 100vh;      /* ocupa toda la pantalla */
-  margin-bottom: 0;       /* sin espacio extra */
-  border-radius: 0;       /* bordes rectos abajo */
-  overflow: hidden;       /* asegura que nada sobresalga */
+   min-height: 300px; 
+   height: auto;
 }
-
 /* Div interno de fila3 */
 .div5 {
-  height: 100%;
-  border-radius: 10px 10px 0 0; /* solo esquinas superiores redondeadas */
+  border-radius: 10px; /* solo esquinas superiores redondeadas */
 }
 
 .div1, .div2, .div3, .div4, .div5 {
