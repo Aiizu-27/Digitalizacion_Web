@@ -250,7 +250,9 @@ header {
     right: -100%; /* fuera de pantalla inicialmente */
     height: 100vh;
     width: 250px;
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start; /* contenido arriba */
     padding: 2rem 1rem;
     background-color: var(--fondo);
     box-shadow: -4px 0 20px rgba(0,0,0,0.2);
@@ -263,19 +265,28 @@ header {
     right: 0;
   }
 
-  /* Colocar toggle + usuario arriba */
+  /* Toggle + usuario arriba */
   .header-right-mobile {
     display: flex;
-    justify-content: flex-start; /* alineado a la izquierda */
+    justify-content: flex-start; /* izquierda */
     align-items: center;
     gap: 1rem;
     margin-bottom: 2rem; /* espacio debajo de toggle + usuario */
   }
 
-  /* Lista de links debajo */
+  /* Lista de links debajo del toggle + usuario */
   .menu-header ul {
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start; /* alineación arriba */
     gap: 1rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Links alineados a la izquierda */
+  .menu-header ul li a {
+    text-align: left;
   }
 }
 
