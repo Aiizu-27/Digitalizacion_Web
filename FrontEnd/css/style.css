@@ -217,6 +217,23 @@ header {
     color: var(--rojo-japones);
 }
 
+.cerrarMenu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--rojo-japones);
+    cursor: pointer;
+    z-index: 25;
+    transition: color 0.3s;
+}
+
+.cerrarMenu:hover {
+    color: var(--rojo-oscuro);
+}
+
 /* ============================= */
 /* RESPONSIVE / MÓVIL */
 /* Escritorio */
