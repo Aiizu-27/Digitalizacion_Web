@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carta - DAILY DOSE</title>
-    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 <header>
@@ -100,41 +103,7 @@
   </div>
 </header>
 
-<main class="carta-container">
-    <aside class="filtros">
-        <h3>Categorías</h3>
-        <ul>
-            <li><a href="carta.php">Todas</a></li>
-            <?php foreach($categorias as $cat): ?>
-                <li><a href="carta.php?categoria=<?php echo urlencode($cat); ?>"><?php echo $cat; ?></a></li>
-            <?php endforeach; ?>
-        </ul>
-    </aside>
 
-    <section class="productos-section">
-        <!-- Buscador -->
-        <div class="buscador">
-            <form method="GET" action="carta.php">
-                <input type="text" name="busqueda" placeholder="Buscar producto..." value="<?php echo htmlspecialchars($busqueda); ?>">
-                <?php if($filtroCategoria != ''): ?>
-                    <input type="hidden" name="categoria" value="<?php echo htmlspecialchars($filtroCategoria); ?>">
-                <?php endif; ?>
-                <button type="submit">Buscar</button>
-            </form>
-        </div>
-
-        <!-- Productos -->
-        <div class="productos-grid">
-            <?php foreach($productos as $p): ?>
-            <div class="producto-card">
-                <h4><?php echo $p['nombre']; ?></h4>
-                <p><?php echo $p['ingredientes']; ?></p>
-                <span class="precio"><?php echo $p['precio']; ?> €</span>
-            </div>
-            <?php endforeach; ?>
-        </div>
-    </section>
-</main>
 
 <script src="js/script.js"></script>
 </body>

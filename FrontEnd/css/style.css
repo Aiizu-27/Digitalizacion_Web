@@ -2,17 +2,6 @@
   outline: 1px solid rgb(21, 0, 255) !important;
 }*/
 
-/* ============================= */
-/* FUENTES PERSONALIZADAS */
-/* ============================= */
-@font-face {
-    font-family: 'CooperBold';
-    src: url('../fonts/CooperBold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-
 html, body {
     margin: 0;
     padding: 0;

@@ -43,3 +43,13 @@ body.dark-mode {
         rgba(20, 15, 14, 0.6)
     );
 }
+
+/* ============================= */
+/* FUENTES PERSONALIZADAS */
+/* ============================= */
+@font-face {
+    font-family: 'CooperBold';
+    src: url('../fonts/CooperBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
