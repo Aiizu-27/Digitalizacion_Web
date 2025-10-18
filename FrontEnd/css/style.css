@@ -528,23 +528,23 @@ footer {
 }
 
 .div1, .div2, .div3, .div4, .div5 {
-  background: rgba(243, 240, 233, 0.25);  /* semitransparente */
-  backdrop-filter: blur(10px);             /* desenfoque de fondo */
-  -webkit-backdrop-filter: blur(10px);     /* Safari */
+  background: var(--cristal-fondo);       /* semitransparente usando variable */
+  backdrop-filter: blur(10px);            /* desenfoque de fondo */
+  -webkit-backdrop-filter: blur(10px);    /* Safari */
   border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.3); /* borde sutil */
+  border: 1px solid var(--cristal-borde); /* borde sutil usando variable */
   color: var(--texto-principal);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  transition: all 0.3s ease; /* opcional: suaviza hover o animaciones */
+  transition: all 0.3s ease; /* suaviza hover o animaciones */
 }
 
 .div1:hover, .div2:hover, .div3:hover, .div4:hover, .div5:hover {
-  background: rgba(243, 240, 233, 0.35);
+  background: var(--cristal-hover);       /* fondo al pasar el mouse */
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px var(--cristal-sombra); /* sombra usando variable */
 }
 
 .div2 {
