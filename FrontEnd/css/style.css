@@ -104,7 +104,7 @@ header {
 
 /* menú abierto */
 .menu-container.open {
-    right: 0;
+    right: 0;                   /*TENGO QUE ARREGLAR ESTA PUTA MIERDA*/
 }
 
 
