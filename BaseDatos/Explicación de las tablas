@@ -1,0 +1,135 @@
+1. CLIENTES
+
+Propósito:
+
+Almacena la información de los clientes registrados.
+
+Aquí se guardan datos personales, contacto y el total de puntos acumulados.
+
+Uso en la app/web:
+
+Registro e inicio de sesión.
+
+Visualización de puntos disponibles.
+
+Historial de pedidos y recompensas.
+
+2. EMPLEADOS
+
+Propósito:
+
+Guarda los datos del personal que trabaja en la cafetería.
+
+Incluye nombre, puesto, salario, turno y fecha de contratación.
+
+Uso en la app/web:
+
+Gestión interna de personal.
+
+Registro de quién toma pedidos, quién realiza la venta, etc.
+
+3. PROVEEDORES
+
+Propósito:
+
+Mantener información sobre los proveedores de productos o materias primas.
+
+Teléfono, email y dirección.
+
+Uso en la app/web:
+
+Automatización de pedidos a proveedores.
+
+Consulta de contactos y seguimiento de entregas.
+
+4. PRODUCTOS
+
+Propósito:
+
+Almacena todos los productos disponibles en la cafetería (café, snacks, pastelería).
+
+Cada producto está ligado a un proveedor y tiene precio y stock.
+
+Uso en la app/web:
+
+Mostrar productos a los clientes.
+
+Controlar inventario y disponibilidad para pedidos online o TPV.
+
+5. PEDIDOS
+
+Propósito:
+
+Registra cada pedido realizado, ya sea en el local o online.
+
+Relaciona el pedido con el cliente y el empleado que lo gestionó.
+
+Uso en la app/web:
+
+Historial de pedidos por cliente o por empleado.
+
+Base para calcular los puntos ganados en la fidelización.
+
+6. DETALLE_PEDIDO
+
+Propósito:
+
+Desglosa cada pedido en productos individuales, cantidad, precio unitario y subtotal.
+
+Uso en la app/web:
+
+Mostrar al cliente el detalle de su pedido.
+
+Control interno de ventas por producto.
+
+7. INVENTARIO
+
+Propósito:
+
+Registrar movimientos de stock (entrada o salida de productos).
+
+Uso en la app/web:
+
+Controlar niveles de stock en tiempo real.
+
+Alertas automáticas cuando el stock está bajo.
+
+8. LOYALTY_TRANSACTIONS
+
+Propósito:
+
+Registrar cada movimiento de puntos de los clientes.
+
+Tipo GANADO cuando el cliente compra, tipo GASTADO cuando canjea puntos.
+
+Opcionalmente vinculado a un pedido.
+
+Uso en la app/web:
+
+Mostrar historial de puntos por cliente.
+
+Calcular puntos disponibles para canjear.
+
+9. RECOMPENSAS
+
+Propósito:
+
+Define las recompensas que un cliente puede obtener usando sus puntos.
+
+Ejemplo: café gratis, descuento, pack de productos.
+
+Uso en la app/web:
+
+Mostrar las opciones disponibles según puntos acumulados.
+
+10. CANJES
+
+Propósito:
+
+Registrar cuándo un cliente canjea puntos por una recompensa.
+
+Uso en la app/web:
+
+Historial de recompensas obtenidas.
+
+Actualizar puntos del cliente y mostrar confirmación del canje.
