@@ -1,14 +1,26 @@
 <?php
+// Datos de conexión
 $host = "localhost";      // o 127.0.0.1
-$usuario = "root";        // tu usuario de MySQL
-$contrasena = "";         // tu contraseña de MySQL
-$basedatos = "DailyDose"; // tu base de datos
+$usuario = "root";        // usuario MySQL
+$contrasena = "";         // contraseña MySQL
+$basedatos = "DailyDose"; // nombre exacto de la BD
 
-$conn = new mysqli($host, $usuario, $contrasena, $basedatos);
+// Intentar conexión
+$conn = mysqli_connect($host, $usuario, $contrasena, $basedatos);
 
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-} else {
-    echo "¡Conexión exitosa a la base de datos!";
+// Verificar conexión
+if (!$conn) {
+    die("❌ Conexión fallida: " . mysqli_connect_error());
 }
+
+echo "✅ Conexión exitosa a la base de datos '$basedatos'";
+
+// Opcional: mostrar la lista de tablas
+$result = mysqli_query($conn, "SHOW TABLES");
+echo "<br>Tablas en la base de datos:<br>";
+while($row = mysqli_fetch_row($result)) {
+    echo $row[0] . "<br>";
+}
+
+mysqli_close($conn);
 ?>
