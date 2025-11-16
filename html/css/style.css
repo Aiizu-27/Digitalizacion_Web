@@ -296,7 +296,10 @@ button:hover { background-color: var(--rojo-oscuro); }
 /* Ajuste para que no choque con el header fijo */
 .panel-usuario {
     max-width: 600px;
-    margin-top: 80px;
+
+    /* Solo bajar lo necesario, no auto ni demás márgenes */
+    margin: 100px auto 40px;
+
     padding: 2rem;
     background-color: var(--cristal-fondo);
     backdrop-filter: blur(12px);
