@@ -1,13 +1,9 @@
-?php include "includes/header.php"; ?
-
 <header>
-  <!-- Logo de la web -->
   <div class="logo">DAILY DOSE</div>
 
-  <!-- Botón de menú (solo visible en móvil) -->
   <button id="menuBtn" aria-label="Abrir menú">☰</button>
+  <button id="menuCerrar" aria-label="Cerrar menú">&times;</button>
 
-  <!-- Menú horizontal -->
   <div class="menu-container" id="menu">
     <nav class="menu-header">
       <ul>
@@ -20,14 +16,11 @@
     </nav>
   </div>
 
-  <!-- Sección derecha del header: modo oscuro + usuario -->
   <div class="header-right">
-    <!-- Toggle modo oscuro -->
     <label class="switch">
       <input type="checkbox" id="toggleTema">
       <span class="slider">
         <span class="circle">
-          <!-- Icono Sol -->
           <svg class="icono sol" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="5" fill="var(--rojo-japones)" />
             <g stroke="var(--rojo-japones)" stroke-width="2">
@@ -41,7 +34,6 @@
               <line x1="18" y1="6" x2="19.8" y2="4.2"/>
             </g>
           </svg>
-          <!-- Icono Luna -->
           <svg class="icono luna" viewBox="0 0 24 24">
             <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="var(--rojo-japones)"/>
           </svg>
@@ -49,7 +41,6 @@
       </span>
     </label>
 
-    <!-- Icono de usuario / perfil -->
     <a href="registro.php" class="iconoUsuario" title="Iniciar sesión / Registrarse">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="28" height="28">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
