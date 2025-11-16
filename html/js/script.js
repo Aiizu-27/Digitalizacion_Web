@@ -95,3 +95,24 @@ document.getElementById('formLogin').addEventListener('submit', function(e){
     .catch(err => console.error("Error en fetch:", err));
 });
 
+// REGISTRO
+document.getElementById('formRegistro').addEventListener('submit', function(e){
+    e.preventDefault();
+    const formData = new FormData(this);
+
+    fetch('registro_usuario.php', { method:'POST', body: formData })
+    .then(res => res.text())
+    .then(data => {
+        if(data === "registro_ok"){
+            alert("Registro exitoso. Ya puedes iniciar sesión.");
+            document.getElementById('tabLogin').click(); // Cambia a pestaña login
+            this.reset();
+        } else if(data === "correo_existente"){
+            alert("Este correo ya está registrado.");
+        } else {
+            alert("Error desconocido: " + data);
+        }
+    })
+    .catch(err => console.error("Error en fetch:", err));
+});
+

@@ -1,28 +1,50 @@
 //Procesa el registro de los usuarios
 
 <?php
-include('config.php'); // conexión a MySQL
+session_start();
 
-header('Content-Type: application/json'); // devolver JSON
+// Datos de conexión
+$host = "localhost";
+$usuario = "admin_dd";
+$contrasena = "271304Lu"; // Tu contraseña MySQL
+$basedatos = "dailydose";
 
-$input = json_decode(file_get_contents('php://input'), true);
-$nombre = $conn->real_escape_string($input['nombre']);
-$correo = $conn->real_escape_string($input['correo']);
-$contrasena = password_hash($input['contrasena'], PASSWORD_DEFAULT);
+// Conexión
+$conn = new mysqli($host, $usuario, $contrasena, $basedatos);
 
-// Comprobar si correo ya existe
-$sql = "SELECT * FROM CLIENTES WHERE CORREO = '$correo'";
-$result = $conn->query($sql);
-
-if($result->num_rows > 0){
-    echo json_encode(['success' => false, 'message' => 'El correo ya está registrado']);
-} else {
-    $sqlInsert = "INSERT INTO CLIENTES (NOMBRE, CORREO, CONTRASENA, PUNTOS) VALUES ('$nombre', '$correo', '$contrasena', 0)";
-    if($conn->query($sqlInsert)){
-        echo json_encode(['success' => true, 'message' => 'Registro exitoso']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Error al registrar']);
-    }
+if ($conn->connect_error) {
+    die("Error_conexion:" . $conn->connect_error);
 }
 
+// Recoger datos
+$nombre = $_POST['nombre'] ?? '';
+$correo = $_POST['correo'] ?? '';
+$pass = $_POST['contrasena'] ?? '';
+
+// Verificar si correo ya existe
+$stmt = $conn->prepare("SELECT ID_CLIENTE FROM CLIENTES WHERE CORREO = ?");
+$stmt->bind_param("s", $correo);
+$stmt->execute();
+$resultado = $stmt->get_result();
+
+if($resultado->num_rows > 0){
+    echo "correo_existente";
+    $stmt->close();
+    $conn->close();
+    exit;
+}
+
+// Insertar usuario (contraseña plana)
+$stmt = $conn->prepare("INSERT INTO CLIENTES (NOMBRE, CORREO, CONTRASENA) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $nombre, $correo, $pass);
+
+if($stmt->execute()){
+    echo "registro_ok";
+} else {
+    echo "error_insert";
+}
+
+// Cerrar conexiones
+$stmt->close();
 $conn->close();
+?>
