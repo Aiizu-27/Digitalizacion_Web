@@ -86,9 +86,12 @@ document.getElementById('formLogin').addEventListener('submit', function(e){
             window.location.href = "panel_usuario.php";
         } else if(data === "contraseña_incorrecta"){
             alert("Contraseña incorrecta");
-        } else {
+        } else if(data === "usuario_no_encontrado"){
             alert("Usuario no encontrado");
+        } else {
+            alert("Error desconocido: " + data);
         }
-    });
+    })
+    .catch(err => console.error("Error en fetch:", err));
 });
 
