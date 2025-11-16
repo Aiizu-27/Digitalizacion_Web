@@ -298,8 +298,6 @@ button:hover { background-color: var(--rojo-oscuro); }
     max-width: 600px;
     margin-top: 80px;
     padding: 2rem;
-    display: flex;
-    justify-content: center; /* centra el formulario horizontalmente */
     background-color: var(--cristal-fondo);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
