@@ -289,44 +289,53 @@ button:hover { background-color: var(--rojo-oscuro); }
 }
 
 
-/* Contenedor principal del panel */
+/* ============================= */
+/* PANEL DE USUARIO */
+/* ============================= */
+
+/* Ajuste para que no choque con el header fijo */
 .panel-usuario {
     max-width: 600px;
-    margin: 50px auto;
+    margin: 120px auto 50px auto; /* espacio top para header de 80px + margen */
     padding: 30px;
-    background-color: #fdfdfd;
+    background-color: var(--cristal-fondo);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--cristal-borde);
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 20px var(--cristal-sombra);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--texto-principal);
+    transition: background-color 0.3s ease;
 }
 
 /* Título de bienvenida */
 .panel-usuario h1 {
     text-align: center;
-    color: #333;
     margin-bottom: 25px;
     font-size: 28px;
+    color: var(--rojo-japones);
 }
 
 /* Contenedor de información del usuario */
 .info-usuario {
-    background-color: #fafafa;
+    background: var(--cristal-fondo);
+    border: 1px solid var(--cristal-borde);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 30px;
-    border: 1px solid #e0e0e0;
 }
 
 /* Cada línea de información */
 .info-usuario p {
     font-size: 16px;
-    color: #555;
     margin: 10px 0;
+    color: var(--texto-principal);
 }
 
 /* Negrita para los títulos */
 .info-usuario p strong {
-    color: #333;
+    color: var(--rojo-japones);
 }
 
 /* Botón de cerrar sesión */
@@ -334,24 +343,25 @@ button:hover { background-color: var(--rojo-oscuro); }
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: #ff5a5f;
-    color: white;
+    background-color: var(--rojo-japones);
+    color: var(--fondo);
     font-size: 16px;
     font-weight: bold;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .panel-usuario form button:hover {
-    background-color: #e0484d;
+    background-color: var(--rojo-oscuro);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 /* Responsivo */
 @media (max-width: 500px) {
     .panel-usuario {
-        margin: 20px;
+        margin: 100px 20px 30px 20px;
         padding: 20px;
     }
     .panel-usuario h1 {
