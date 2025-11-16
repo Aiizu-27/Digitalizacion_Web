@@ -1,9 +1,10 @@
 -- CLIENTES
 INSERT INTO CLIENTES (NOMBRE, CORREO, CONTRASENA, TELEFONO, PUNTOS) VALUES
-('Ana García', 'ana@dailydose.com', 'pass123', '600123456', 50),
-('Luis Fernández', 'luis@dailydose.com', 'pass456', '600654321', 30),
-('Marta López', 'marta@dailydose.com', 'pass789', '600987654', 20),
-('Carlos Ruiz', 'carlos@dailydose.com', 'pass321', '600456789', 40);
+('Ana García', 'ana@dailydose.com', '$2b$12$SgQEOccvjzLbse0jAKIC0.QQclCO2e0I0VSFaJwJVLilMj.mg7EqK', '600123456', 50),
+('Luis Fernández', 'luis@dailydose.com', '$2b$12$X0lnD6Tr1ChL3.LkDK.y2uHwhzJHYQCkXyAiKi07HFd3hUlPBEIt.', '600654321', 30),
+('Marta López', 'marta@dailydose.com', '$2b$12$97FpOdEtC9GRDQqePFsdwOzzTK.kczE4YQ1hOTG8kndGLcazmQriK', '600987654', 20),
+('Carlos Ruiz', 'carlos@dailydose.com', '$2b$12$rCyjQTlyf2Tt7GfH8UDLxO3RHpGRdPFgm7g9l/zDhBO2LDeZ9YXm2', '600456789', 40);
+
 
 -- EMPLEADOS
 INSERT INTO EMPLEADOS (NOMBRE, APELLIDOS, PUESTO, SALARIO, TURNO, FECHA_CONTRATACION) VALUES
