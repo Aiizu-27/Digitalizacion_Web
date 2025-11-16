@@ -79,7 +79,7 @@ document.getElementById('formLogin').addEventListener('submit', function(e){
     e.preventDefault();
     const formData = new FormData(this);
 
-    fetch('login_usuarios.php', { method:'POST', body: formData })
+    fetch('login_usuario.php', { method:'POST', body: formData })
     .then(res => res.text())
     .then(data => {
         if(data === "login_ok"){
