@@ -12,10 +12,10 @@
     <nav class="menu-header">
       <ul>
         <li><a href="index.php">Inicio</a></li>
-        <li><a href="carta/carta.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'carta.php' ? 'activo' : ''; ?>">Carta</a></li>
-        <li><a href="novedades/novedades.php">Novedades</a></li>
-        <li><a href="pedidos/pedidos.php">Pedidos</a></li>
-        <li><a href="promociones/promociones.php">Promociones</a></li>
+        <li><a href="carta.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'carta.php' ? 'activo' : ''; ?>">Carta</a></li>
+        <li><a href="novedades.php">Novedades</a></li>
+        <li><a href="pedidos.php">Pedidos</a></li>
+        <li><a href="promociones.php">Promociones</a></li>
       </ul>
     </nav>
   </div>

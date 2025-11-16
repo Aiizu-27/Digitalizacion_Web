@@ -11,8 +11,9 @@
 <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
+
 <!-- Header / Cabecera de la página -->
-<?php include "includes/header.php"; ?>
+<?php include "header.php"; ?>
 
   <!-- Contenedor de pantalla inicial -->
   <div class="contenedor-fijo">
