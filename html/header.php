@@ -7,11 +7,11 @@
   <div class="menu-container" id="menu">
     <nav class="menu-header">
       <ul>
-        <li><a href="index.php">Inicio</a></li>
+        <li><a href="index.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'activo' : ''; ?>">Inicio</a></li>
         <li><a href="carta.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'carta.php' ? 'activo' : ''; ?>">Carta</a></li>
-        <li><a href="novedades.php">Novedades</a></li>
-        <li><a href="pedidos.php">Pedidos</a></li>
-        <li><a href="promociones.php">Promociones</a></li>
+        <li><a href="novedades.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'novedades.php' ? 'activo' : ''; ?>">Novedades</a></li>
+        <li><a href="pedidos.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'pedidos.php' ? 'activo' : ''; ?>">Pedidos</a></li>
+        <li><a href="promociones.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'promociones.php' ? 'activo' : ''; ?>">Promociones</a></li>
       </ul>
     </nav>
   </div>
