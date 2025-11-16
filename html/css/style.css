@@ -4,7 +4,7 @@
 
 html, body {
     margin: 0;
-    padding: 0;
+    padding-top: 80px;
     height: auto;         /* permite que el body crezca según el contenido */
     min-height: 100vh;    /* al menos ocupa toda la ventana visible */
     background: var(--fondo);
