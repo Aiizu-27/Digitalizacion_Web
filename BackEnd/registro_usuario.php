@@ -1,5 +1,3 @@
-//Procesa el registro de los usuarios
-
 <?php
 session_start();
 
@@ -20,6 +18,7 @@ if ($conn->connect_error) {
 $nombre = $_POST['nombre'] ?? '';
 $correo = $_POST['correo'] ?? '';
 $pass = $_POST['contrasena'] ?? '';
+$telefono = $_POST['telefono'] ?? ''; // Nuevo campo teléfono
 
 // Verificar si correo ya existe
 $stmt = $conn->prepare("SELECT ID_CLIENTE FROM CLIENTES WHERE CORREO = ?");
@@ -34,14 +33,14 @@ if($resultado->num_rows > 0){
     exit;
 }
 
-// Insertar usuario (contraseña plana)
-$stmt = $conn->prepare("INSERT INTO CLIENTES (NOMBRE, CORREO, CONTRASENA) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $nombre, $correo, $pass);
+// Insertar usuario (contraseña plana por ahora)
+$stmt = $conn->prepare("INSERT INTO CLIENTES (NOMBRE, CORREO, CONTRASENA, TELEFONO) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("ssss", $nombre, $correo, $pass, $telefono);
 
 if($stmt->execute()){
     echo "registro_ok";
 } else {
-    echo "error_insert";
+    echo "error_insert: " . $stmt->error; // Para debug
 }
 
 // Cerrar conexiones
