@@ -74,3 +74,21 @@ document.addEventListener('DOMContentLoaded', () => {
   togglePassword("claveRegistro", "iconoOjoRegistro");
 });
 
+// LOGIN
+document.getElementById('formLogin').addEventListener('submit', function(e){
+    e.preventDefault();
+    const formData = new FormData(this);
+
+    fetch('login_usuarios.php', { method:'POST', body: formData })
+    .then(res => res.text())
+    .then(data => {
+        if(data === "login_ok"){
+            window.location.href = "panel_usuario.php";
+        } else if(data === "contraseña_incorrecta"){
+            alert("Contraseña incorrecta");
+        } else {
+            alert("Usuario no encontrado");
+        }
+    });
+});
+
