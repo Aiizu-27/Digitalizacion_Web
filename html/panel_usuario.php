@@ -57,5 +57,8 @@ $conn->close();
     </form>
 </div>
 
+<!-- Enlace al JS externo -->
+<script src="js/script.js"></script>
+
 </body>
 </html>
