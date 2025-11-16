@@ -1,9 +1,9 @@
 <?php
 // Datos de conexión
 $host = "localhost";      // o 127.0.0.1
-$usuario = "root";        // usuario MySQL
+$usuario = "admin_dd";        // usuario MySQL
 $contrasena = "";         // contraseña MySQL
-$basedatos = "DailyDose"; // nombre exacto de la BD
+$basedatos = "dailydose"; // nombre exacto de la BD
 
 // Intentar conexión
 $conn = mysqli_connect($host, $usuario, $contrasena, $basedatos);
