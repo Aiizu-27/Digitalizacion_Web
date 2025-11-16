@@ -5,9 +5,9 @@ session_start();
 
 // Datos de conexión
 $host = "localhost";
-$usuario = "root";
-$contrasena = "";
-$basedatos = "DailyDose";
+$usuario = "admin_dd";
+$contrasena = "271304Lu";
+$basedatos = "dailydose";
 
 $conn = new mysqli($host, $usuario, $contrasena, $basedatos);
 
