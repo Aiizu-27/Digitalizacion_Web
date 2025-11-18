@@ -65,7 +65,7 @@
     <div class="footer-redes">
       <h4>Síguenos</h4>
       <div class="iconos-redes">
-        <a href="https://www.instagram.com/_aiizu_27_?igsh=bGJkd2tlNmNkcjJq"><img src="Imagenes/instagram.svg" alt="Instagram"></a>
+        <a href="#"><img src="Imagenes/instagram.svg" alt="Instagram"></a>
         <a href="#"><img src="Imagenes/twitter.svg" alt="Twitter"></a>
       </div>
     </div>
