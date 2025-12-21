@@ -1,6 +1,4 @@
-/* ============================= */
 /* HEADER / CABECERA */
-/* ============================= */
 header {
   position: fixed;
   top: 0;
@@ -29,9 +27,7 @@ header {
     text-shadow: 0px 1px 0px var(--rojo-japones);
 }
 
-/* ============================= */
 /* MENÚ HORIZONTAL FINO Y CENTRADO */
-/* ============================= */
 .menu-container {
     display: flex;
     justify-content: center;
