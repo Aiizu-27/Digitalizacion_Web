@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DAILY DOSE - Tu dosis diaria de café</title>
-<!-- Enlace al CSS externo -->
-<link rel="stylesheet" href="css/variables.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/header.css">
-<link rel="stylesheet" href="css/footer.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAILY DOSE - Tu dosis diaria de café</title>
+    <!-- Enlace al CSS externo -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+  </head>
 
-<!-- Header / Cabecera de la página -->
-<?php include "header.php"; ?>
+  <body>
+
+  <!-- Header / Cabecera de la página -->
+  <?php include "header.php"; ?>
 
   <!-- Contenedor de pantalla inicial -->
   <div class="contenedor-fijo">
@@ -53,28 +54,28 @@
     </div>
   </div>
 
-<footer class="footer-cristal">
-  <div class="footer-contenido">
-    <div class="footer-info">
-      <h3>DAILY DOSE</h3>
-      <p>Tu dosis diaria de café.</p>
-      <p>Calle del Café, 12 · Madrid</p>
-      <p><a href="mailto:contacto@dailydose.com">contacto@dailydose.com</a></p>
-    </div>
+  <footer class="footer-cristal">
+    <div class="footer-contenido">
+      <div class="footer-info">
+        <h3>DAILY DOSE</h3>
+        <p>Tu dosis diaria de café.</p>
+        <p>Calle del Café, 12 · Madrid</p>
+        <p><a href="mailto:contacto@dailydose.com">contacto@dailydose.com</a></p>
+      </div>
 
-    <div class="footer-redes">
-      <h4>Síguenos</h4>
-      <div class="iconos-redes">
-        <a href="#"><img src="Imagenes/instagram.svg" alt="Instagram"></a>
-        <a href="#"><img src="Imagenes/twitter.svg" alt="Twitter"></a>
+      <div class="footer-redes">
+        <h4>Síguenos</h4>
+        <div class="iconos-redes">
+          <a href="#"><img src="Imagenes/instagram.svg" alt="Instagram"></a>
+          <a href="#"><img src="Imagenes/twitter.svg" alt="Twitter"></a>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="footer-copy">
-    <p>&copy; 2025 DAILY DOSE · Todos los derechos reservados</p>
-  </div>
-</footer>
+    <div class="footer-copy">
+      <p>&copy; 2025 DAILY DOSE · Todos los derechos reservados</p>
+    </div>
+  </footer>
 
 <!-- JS -->
 <script src="js/script.js"></script>
