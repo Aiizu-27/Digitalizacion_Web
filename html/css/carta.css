@@ -1,0 +1,138 @@
+/* ============================= */
+/* ESTILOS DE LA CARTA (MENU) */
+/* ============================= */
+
+/* Contenedor principal ajustado al header fijo */
+main.carta {
+    max-width: 900px;
+    margin: 0 auto;       /* Centrado horizontal */
+    padding: 2rem 1.5rem; /* Espaciado interno */
+    margin-top: 100px;    /* Espacio para no chocar con el header */
+    padding-bottom: 4rem; /* Espacio extra antes del footer */
+    min-height: 60vh;
+}
+
+/* Títulos de Categoría (Ej: Espresso Bar, Brunch...) */
+main.carta h2 {
+    font-family: 'CooperBold', sans-serif;
+    color: var(--rojo-japones);
+    font-size: 1.8rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--rojo-japones);
+    padding-bottom: 0.5rem;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+    display: inline-block; /* Para que la línea roja se ajuste al texto */
+    width: 100%;
+}
+
+/* Contenedor de la lista de productos (Tarjeta de Cristal) */
+ul.productos {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    
+    /* Efecto Cristal heredado de tus variables */
+    background: var(--cristal-fondo);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--cristal-borde);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px var(--cristal-sombra);
+    overflow: hidden; /* Para recortar los bordes de los li */
+}
+
+/* Cada Item/Producto individual */
+ul.productos li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.1); /* Separador sutil */
+    transition: all 0.3s ease;
+}
+
+/* Quitar borde al último elemento */
+ul.productos li:last-child {
+    border-bottom: none;
+}
+
+/* Efecto Hover en cada producto */
+ul.productos li:hover {
+    background: rgba(244, 43, 29, 0.05); /* Tinte rojo muy suave */
+    padding-left: 2rem; /* Pequeño desplazamiento a la derecha */
+}
+
+/* Nombre del producto */
+ul.productos li .nombre {
+    flex: 1; /* Ocupa todo el espacio disponible */
+    font-size: 1.1rem;
+    color: var(--texto-principal);
+    font-weight: 600;
+}
+
+/* Precio */
+ul.productos li .precio {
+    font-family: 'CooperBold', sans-serif;
+    color: var(--rojo-japones);
+    font-size: 1.2rem;
+    margin: 0 1.5rem;
+    white-space: nowrap; /* Evita que el precio se parta en dos líneas */
+}
+
+/* Stock */
+ul.productos li .stock {
+    font-size: 0.85rem;
+    color: var(--texto-principal);
+    opacity: 0.7;
+    background: rgba(0,0,0,0.05);
+    padding: 4px 8px;
+    border-radius: 6px;
+    min-width: 90px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Mensaje cuando no hay productos */
+main.carta p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--texto-principal);
+    margin-top: 3rem;
+    background: var(--cristal-fondo);
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+/* ============================= */
+/* RESPONSIVE (MÓVIL) */
+/* ============================= */
+@media (max-width: 600px) {
+    main.carta h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    ul.productos li {
+        flex-wrap: wrap; /* Permite que los elementos bajen si no caben */
+        gap: 0.5rem;
+    }
+
+    ul.productos li .nombre {
+        width: 100%; /* El nombre ocupa toda la línea superior */
+        font-size: 1.1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    ul.productos li .precio {
+        margin: 0; /* Quitamos márgenes laterales */
+        font-size: 1.1rem;
+    }
+
+    ul.productos li .stock {
+        margin-left: auto; /* Empuja el stock a la derecha */
+        font-size: 0.75rem;
+    }
+}
