@@ -1,5 +1,3 @@
-//Punto central de la conexión con la base de datos
-
 <?php
 // CONFIGURACIÓN DE BASE DE DATOS
 $host = "localhost";
