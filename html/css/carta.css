@@ -1,134 +1,286 @@
-/* ============================= */
-/* LAYOUT DE LA CARTA (2 COLUMNAS) */
-/* ============================= */
+/* ========================================= */
+/* ESTILOS ESPECÍFICOS DE LA CARTA (MENU)  */
+/* ========================================= */
 
-/* Contenedor Grid Principal */
+/* --- 1. LAYOUT PRINCIPAL (Rejilla de 2 columnas) --- */
 main.carta-layout {
     display: grid;
-    /* Columna menú (auto) | Columna lateral (350px fija) */
-    grid-template-columns: 1fr 320px; 
-    gap: 2rem;
+    /* La columna izquierda ocupa el espacio libre (1fr) 
+       y la derecha tiene un ancho fijo de 340px */
+    grid-template-columns: 1fr 340px; 
+    gap: 2.5rem; /* Espacio entre columnas */
+    
     max-width: 1200px;
-    margin: 100px auto 4rem auto; /* Margen superior para el header */
+    margin: 40px auto 4rem auto; /* Márgenes externos */
     padding: 0 1.5rem;
-    align-items: start; /* Importante para que el sticky funcione */
+    align-items: start; /* CRUCIAL: Alinea al inicio para que el sticky funcione */
+    min-height: 60vh;
 }
 
-/* Columna Izquierda (Lista de Productos) */
+/* --- 2. COLUMNA IZQUIERDA: LISTA DE PRODUCTOS --- */
 .columna-productos {
     width: 100%;
 }
 
-/* Columna Derecha (Lateral Fija) */
-.columna-lateral {
-    position: sticky;
-    top: 110px; /* Distancia desde arriba (Header 80px + 30px margen) */
-    height: fit-content;
+/* Títulos de Categoría (Ej: Espresso Bar) */
+.columna-productos h2 {
+    font-family: 'CooperBold', sans-serif;
+    color: var(--rojo-japones);
+    font-size: 1.8rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--rojo-japones);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    width: 100%;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.05);
 }
 
-/* ============================= */
-/* ESTILO DE LA TARJETA DE ESPECIALIDAD */
-/* ============================= */
+/* Quitar margen superior solo a la primera categoría */
+.columna-productos h2:first-of-type {
+    margin-top: 0;
+}
+
+/* Contenedor de la lista (Tarjeta de Cristal) */
+ul.productos {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    
+    /* Efecto Cristal */
+    background: var(--cristal-fondo);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--cristal-borde);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px var(--cristal-sombra);
+    overflow: hidden;
+}
+
+/* Cada ítem de producto */
+ul.productos li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    transition: all 0.3s ease;
+}
+
+ul.productos li:last-child {
+    border-bottom: none;
+}
+
+/* Efecto hover en el producto */
+ul.productos li:hover {
+    background: rgba(244, 43, 29, 0.05);
+    padding-left: 2rem; /* Pequeño desplazamiento a la derecha */
+}
+
+/* Detalles del texto */
+.info-prod {
+    flex: 1; 
+}
+
+.nombre {
+    font-size: 1.1rem;
+    color: var(--texto-principal);
+    font-weight: 600;
+    display: block;
+}
+
+/* Precio y Stock */
+.meta-prod {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.precio {
+    font-family: 'CooperBold', sans-serif;
+    color: var(--rojo-japones);
+    font-size: 1.25rem;
+    white-space: nowrap;
+}
+
+.stock {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    background: rgba(0,0,0,0.06);
+    padding: 5px 10px;
+    border-radius: 8px;
+    min-width: 80px;
+    text-align: center;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+/* Colores para el estado del stock */
+.stock-bajo { color: #d9534f; background: rgba(217, 83, 79, 0.15); }
+.stock-ok { color: var(--verde-pastel-oscuro); }
+
+.mensaje-vacio {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--texto-principal);
+    background: var(--cristal-fondo);
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+/* --- 3. COLUMNA DERECHA: SIDEBAR FIJO (STICKY) --- */
+.columna-lateral {
+    position: sticky; /* Aquí ocurre la magia */
+    top: 110px;       /* Distancia desde el borde superior (Header + margen) */
+    height: fit-content;
+    z-index: 10;
+}
+
+/* Tarjeta de Especialidad */
 .tarjeta-especialidad {
     background: var(--cristal-fondo);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--rojo-japones); /* Borde rojo para destacar */
-    border-radius: 15px;
-    padding: 1.5rem;
-    box-shadow: 0 8px 30px rgba(244, 43, 29, 0.15); /* Resplandor rojo suave */
+    border: 2px solid rgba(244, 43, 29, 0.3); /* Borde rojizo sutil */
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 10px 40px rgba(244, 43, 29, 0.1);
     color: var(--texto-principal);
     text-align: center;
+    transition: transform 0.3s ease;
 }
 
+.tarjeta-especialidad:hover {
+    transform: translateY(-5px);
+    border-color: var(--rojo-japones);
+}
+
+/* Títulos dentro de la tarjeta */
 .header-especial h3 {
     font-family: 'CooperBold', sans-serif;
     color: var(--rojo-japones);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    line-height: 1.1;
 }
 
 .fechas {
-    font-size: 0.8rem;
-    opacity: 0.7;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--texto-principal);
+    opacity: 0.6;
+    margin-top: 0.5rem;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
-/* Secciones internas */
-.seccion-grano, .seccion-metodo {
-    margin-bottom: 1.2rem;
-}
-
 .tarjeta-especialidad h4 {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--rojo-japones);
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 0.8rem;
+    border-bottom: 1px dashed rgba(0,0,0,0.15);
     display: inline-block;
+    padding-bottom: 2px;
 }
 
-.origen { font-weight: bold; font-size: 1.1rem; margin: 0.2rem 0; }
-.notas { font-style: italic; font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;}
+/* Textos de contenido (Origen, Notas, etc) */
+.origen {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0.2rem 0;
+}
+
+.notas {
+    font-style: italic;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 0.8rem;
+}
 
 .etiqueta {
     display: inline-block;
     background: var(--rojo-japones);
-    color: var(--fondo);
-    padding: 4px 10px;
+    color: var(--fondo); /* Color claro */
+    padding: 4px 12px;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* Separador */
 .tarjeta-especialidad hr {
     border: 0;
     height: 1px;
-    background: rgba(0,0,0,0.1);
-    margin: 1rem 0;
+    background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+    margin: 1.5rem 0;
 }
 
-/* Destacado Seasonal (La bebida) */
+.desc-filtro {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-top: 0.5rem;
+}
+
+/* Caja destacada de la bebida seasonal */
 .destacado-seasonal {
-    background: rgba(244, 43, 29, 0.1); /* Fondo rojo muy suave */
-    padding: 1rem;
-    border-radius: 10px;
-    margin-top: 1rem;
+    background: linear-gradient(to bottom right, rgba(244, 43, 29, 0.05), rgba(244, 43, 29, 0.15));
+    padding: 1.2rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    border: 1px solid rgba(244, 43, 29, 0.1);
 }
 
 .seasonal-nombre {
     font-family: 'CooperBold', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--rojo-japones);
     margin: 0.5rem 0;
 }
 
 .seasonal-desc {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     line-height: 1.4;
+    opacity: 0.9;
 }
 
-/* Pequeño ajuste para el stock en la lista principal */
-.stock-bajo { color: #d9534f; font-weight: bold; }
-.stock-ok { color: var(--verde-pastel-oscuro); }
-
-/* ============================= */
-/* RESPONSIVO (MOVIL) */
-/* ============================= */
+/* --- 4. RESPONSIVE DESIGN (MÓVIL) --- */
 @media (max-width: 900px) {
+    /* Cambiar layout a 1 sola columna */
     main.carta-layout {
-        grid-template-columns: 1fr; /* Una sola columna */
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 20px;
+    }
+    
+    /* Mover la especialidad arriba del todo o abajo */
+    .columna-lateral {
+        position: static; /* Ya no flota en móvil */
+        width: 100%;
+        order: -1; /* -1 para que salga PRIMERO (arriba de los cafés) */
     }
 
-    /* En móvil, la barra lateral deja de ser lateral y se pone arriba o abajo */
-    .columna-lateral {
-        position: static; /* Ya no flota */
-        order: -1; /* -1 para que salga ARRIBA de la carta, 1 para que salga ABAJO */
-        margin-bottom: 2rem;
+    /* Ajustes visuales en lista móvil */
+    ul.productos li {
+        flex-wrap: wrap; /* Permitir saltos de línea */
+        gap: 0.5rem;
+    }
+
+    .info-prod {
+        width: 100%; /* Nombre ocupa toda la línea */
+        margin-bottom: 0.2rem;
+    }
+
+    .meta-prod {
+        width: 100%;
+        justify-content: space-between; /* Precio a la izq, stock a la der */
+    }
+    
+    .precio {
+        font-size: 1.1rem;
     }
 }
