@@ -5,7 +5,7 @@
 $host = "localhost";      // servidor de la base de datos
 $usuario = "root";        // usuario de la base de datos
 $password = "";           // contraseña
-$bd = "daily_dose";       // nombre de la base de datos
+$bd = "dailydose";       // nombre de la base de datos
 
 // Crear conexión
 $conn = new mysqli($host, $usuario, $password, $bd);
