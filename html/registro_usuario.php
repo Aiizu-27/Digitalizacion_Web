@@ -2,11 +2,14 @@
 session_start();
 
 // Datos de conexión
-$usuario = "root";
-$contrasena = "13001300"; // Tu contraseña MySQL
+$host = "localhost";
+$usuario = "admin_dd";
+$contrasena = "271304Lu";
+#$usuario = "root";
+#$contrasena = "13001300"; // Tu contraseña MySQL
 $basedatos = "dailydose";
-$db_host = "prueba.ckn6a668aan5.us-east-1.rds.amazonaws.com"
-$db_port = "3306"
+#$db_host = "prueba.ckn6a668aan5.us-east-1.rds.amazonaws.com";
+#$db_port = "3306";
 
 // Conexión
 $conn = new mysqli($host, $usuario, $contrasena, $basedatos);
