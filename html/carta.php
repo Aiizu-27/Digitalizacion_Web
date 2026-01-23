@@ -16,7 +16,7 @@
 
     <main class="carta">
         <?php
-        include "db.php"; // Conexión a la base de datos
+        include "config.php"; // Conexión a la base de datos
 
         $sql = "SELECT NOMBRE, CATEGORIA, PRECIO, STOCK FROM PRODUCTOS ORDER BY CATEGORIA, NOMBRE";
         $result = $conn->query($sql);
