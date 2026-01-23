@@ -6,6 +6,8 @@ $host = "localhost";
 $usuario = "admin_dd";
 $contrasena = "271304Lu"; // Tu contraseña de MySQL
 $basedatos = "dailydose";
+$db_host = "prueba.ckn6a668aan5.us-east-1.rds.amazonaws.com"
+$db_port = "3306"
 
 // Conexión a MySQL
 $conn = new mysqli($host, $usuario, $contrasena, $basedatos);
