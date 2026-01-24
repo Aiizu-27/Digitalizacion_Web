@@ -1,118 +1,142 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const body = document.body;
+    const body = document.body;
 
-  // ---------- Toggle Dark Mode ----------
-  const toggleTema = document.getElementById("toggleTema");
-  if(toggleTema){
-    const solIcon = document.querySelector(".header-right .sol");
-    const lunaIcon = document.querySelector(".header-right .luna");
-    const circle = document.querySelector(".header-right .circle");
+    // ---------- Toggle Dark Mode ----------
+    const toggleTema = document.getElementById("toggleTema");
+    if(toggleTema){
+        const solIcon = document.querySelector(".header-right .sol");
+        const lunaIcon = document.querySelector(".header-right .luna");
+        const circle = document.querySelector(".header-right .circle");
 
-    toggleTema.addEventListener("change", () => {
-      body.classList.toggle("dark-mode", toggleTema.checked);
-      solIcon.style.opacity = toggleTema.checked ? "0" : "1";
-      lunaIcon.style.opacity = toggleTema.checked ? "1" : "0";
-      circle.style.transform = toggleTema.checked ? "translateX(26px)" : "translateX(0)";
-    });
-  }
+        toggleTema.addEventListener("change", () => {
+            body.classList.toggle("dark-mode", toggleTema.checked);
+            solIcon.style.opacity = toggleTema.checked ? "0" : "1";
+            lunaIcon.style.opacity = toggleTema.checked ? "1" : "0";
+            circle.style.transform = toggleTema.checked ? "translateX(26px)" : "translateX(0)";
+        });
+    }
 
-  // ---------- Menú hamburguesa ----------
-  const menuBtn = document.getElementById('menuBtn');
-  const menuCerrar = document.getElementById('menuCerrar');
-  const menu = document.getElementById('menu');
+    // ---------- Menú hamburguesa ----------
+    const menuBtn = document.getElementById('menuBtn');
+    const menuCerrar = document.getElementById('menuCerrar');
+    const menu = document.querySelector('.menu-container'); // Ojo: clase corregida según tu CSS anterior
 
-  if(menuBtn && menuCerrar && menu){
-    menuBtn.addEventListener('click', () => menu.classList.add('open'));
-    menuCerrar.addEventListener('click', () => menu.classList.remove('open'));
-  }
+    if(menuBtn && menuCerrar && menu){
+        menuBtn.addEventListener('click', () => menu.classList.add('open'));
+        menuCerrar.addEventListener('click', () => menu.classList.remove('open'));
+    }
 
-  // ---------- Login / Registro ----------
-  const tabLogin = document.getElementById("tabLogin");
-  const tabRegistro = document.getElementById("tabRegistro");
-  const formLogin = document.getElementById("formLogin");
-  const formRegistro = document.getElementById("formRegistro");
+    // ---------- Tabs Login / Registro ----------
+    const tabLogin = document.getElementById("tabLogin");
+    const tabRegistro = document.getElementById("tabRegistro");
+    const formLogin = document.getElementById("formLogin");
+    const formRegistro = document.getElementById("formRegistro");
 
-  if(tabLogin && tabRegistro && formLogin && formRegistro){
-    tabLogin.addEventListener("click", () => {
-      tabLogin.classList.add("active");
-      tabRegistro.classList.remove("active");
-      formLogin.style.display = "block";
-      formRegistro.style.display = "none";
-    });
-    tabRegistro.addEventListener("click", () => {
-      tabRegistro.classList.add("active");
-      tabLogin.classList.remove("active");
-      formRegistro.style.display = "block";
-      formLogin.style.display = "none";
-    });
-  }
+    if(tabLogin && tabRegistro && formLogin && formRegistro){
+        tabLogin.addEventListener("click", () => {
+            tabLogin.classList.add("active");
+            tabRegistro.classList.remove("active");
+            formLogin.style.display = "block";
+            formRegistro.style.display = "none";
+        });
+        tabRegistro.addEventListener("click", () => {
+            tabRegistro.classList.add("active");
+            tabLogin.classList.remove("active");
+            formRegistro.style.display = "block";
+            formLogin.style.display = "none";
+        });
+    }
 
-  // ---------- Mostrar / Ocultar contraseña ----------
-  function togglePassword(inputId, iconId){
-    const input = document.getElementById(inputId);
-    const icon = document.getElementById(iconId);
-    if(!input || !icon) return;
+    // ---------- Mostrar / Ocultar contraseña ----------
+    function togglePassword(inputId, iconId){
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        if(!input || !icon) return;
 
-    const ojoAbierto = icon.querySelectorAll(".ojo-abierto");
-    const ojoCerrado = icon.querySelectorAll(".ojo-cerrado");
-    ojoCerrado.forEach(p => p.style.display = "none");
-
-    icon.addEventListener("click", () => {
-      const tipo = input.type === "password" ? "text" : "password";
-      input.type = tipo;
-      if(tipo === "text"){
-        ojoAbierto.forEach(p => p.style.display = "none");
-        ojoCerrado.forEach(p => p.style.display = "block");
-      } else {
-        ojoAbierto.forEach(p => p.style.display = "block");
-        ojoCerrado.forEach(p => p.style.display = "none");
-      }
-    });
-  }
-
-  togglePassword("claveLogin", "iconoOjoLogin");
-  togglePassword("claveRegistro", "iconoOjoRegistro");
-});
-
-// LOGIN
-document.getElementById('formLogin').addEventListener('submit', function(e){
-    e.preventDefault();
-    const formData = new FormData(this);
-
-    fetch('../../actions/auth_login.php', { method:'POST', body: formData })
-    .then(res => res.text())
-    .then(data => {
-        if(data === "login_ok"){
-            window.location.href = "../../views/panel_usuario.php";
-        } else if(data === "contraseña_incorrecta"){
-            alert("Contraseña incorrecta");
-        } else if(data === "usuario_no_encontrado"){
-            alert("Usuario no encontrado");
-        } else {
-            alert("Error desconocido: " + data);
+        const ojoAbierto = icon.querySelectorAll(".ojo-abierto");
+        const ojoCerrado = icon.querySelectorAll(".ojo-cerrado");
+        // Inicializar estado visual
+        if(input.type === "password"){
+             ojoCerrado.forEach(p => p.style.display = "none");
+             ojoAbierto.forEach(p => p.style.display = "block");
         }
-    })
-    .catch(err => console.error("Error en fetch:", err));
-});
 
-// REGISTRO
-document.getElementById('formRegistro').addEventListener('submit', function(e){
-    e.preventDefault();
-    const formData = new FormData(this);
+        icon.addEventListener("click", () => {
+            const tipo = input.type === "password" ? "text" : "password";
+            input.type = tipo;
+            
+            if(tipo === "text"){
+                ojoAbierto.forEach(p => p.style.display = "none");
+                ojoCerrado.forEach(p => p.style.display = "block");
+            } else {
+                ojoAbierto.forEach(p => p.style.display = "block");
+                ojoCerrado.forEach(p => p.style.display = "none");
+            }
+        });
+    }
 
-    fetch('../../actions/auth_registro.php', { method:'POST', body: formData })
-    .then(res => res.text())
-    .then(data => {
-        if(data === "registro_ok"){
-            alert("Registro exitoso. Ya puedes iniciar sesión.");
-            document.getElementById('tabLogin').click(); // Cambia a pestaña login
-            this.reset();
-        } else if(data === "correo_existente"){
-            alert("Este correo ya está registrado.");
-        } else {
-            alert("Error desconocido: " + data);
-        }
-    })
-    .catch(err => console.error("Error en fetch:", err));
+    togglePassword("claveLogin", "iconoOjoLogin");
+    togglePassword("claveRegistro", "iconoOjoRegistro");
+
+    // ==========================================
+    // LÓGICA AJAX (Fetch) - CORREGIDA
+    // ==========================================
+
+    // LOGIN
+    if(formLogin) { // Solo ejecutar si el formulario existe
+        formLogin.addEventListener('submit', function(e){
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            // RUTA CORREGIDA: 'actions/auth_login.php' (sin ../)
+            fetch('actions/auth_login.php', { method:'POST', body: formData })
+            .then(res => res.text())
+            .then(data => {
+                // Limpiamos espacios por si acaso
+                const respuesta = data.trim(); 
+                
+                if(respuesta === "login_ok"){
+                    // RUTA CORREGIDA: Ir al controlador 'panel.php'
+                    window.location.href = "panel.php"; 
+                } else if(respuesta === "contraseña_incorrecta"){
+                    alert("Contraseña incorrecta");
+                } else if(respuesta === "usuario_no_encontrado"){
+                    alert("Usuario no encontrado");
+                } else {
+                    alert("Error: " + respuesta);
+                }
+            })
+            .catch(err => console.error("Error en fetch:", err));
+        });
+    }
+
+    // REGISTRO
+    if(formRegistro) { // Solo ejecutar si el formulario existe
+        formRegistro.addEventListener('submit', function(e){
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            // RUTA CORREGIDA: 'actions/auth_registro.php'
+            fetch('actions/auth_registro.php', { method:'POST', body: formData })
+            .then(res => res.text())
+            .then(data => {
+                const respuesta = data.trim();
+
+                if(respuesta === "registro_ok"){
+                    alert("Registro exitoso. Ya puedes iniciar sesión.");
+                    // Si existe el tabLogin, hacemos click para cambiar de pestaña
+                    if(document.getElementById('tabLogin')) {
+                        document.getElementById('tabLogin').click();
+                    }
+                    this.reset();
+                } else if(respuesta === "correo_existente"){
+                    alert("Este correo ya está registrado.");
+                } else {
+                    alert("Error: " + respuesta);
+                }
+            })
+            .catch(err => console.error("Error en fetch:", err));
+        });
+    }
 });
 

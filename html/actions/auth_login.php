@@ -1,13 +1,36 @@
 <?php
+// actions/auth_login.php
 session_start();
-require_once "../includes/config.php"; // <--- ESTO REEMPLAZA TUS 15 LÍNEAS DE CONEXIÓN
+require_once "../includes/config.php";
 
-// Recoger datos enviados por POST
-$correo = $_POST['correo'] ?? '';
+$correo = trim($_POST['correo'] ?? '');
 $pass = $_POST['contrasena'] ?? '';
 
-// ... resto de tu lógica de login (SELECT, password verify, etc) ...
-// ...
-// Al final solo cierras la conexión
+// Buscar usuario por correo
+$stmt = $conn->prepare("SELECT ID_CLIENTE, NOMBRE, CONTRASENA FROM CLIENTES WHERE CORREO = ?");
+$stmt->bind_param("s", $correo);
+$stmt->execute();
+$resultado = $stmt->get_result();
+
+if ($resultado->num_rows > 0) {
+    $usuario = $resultado->fetch_assoc();
+
+    // COMPARACIÓN DIRECTA (Texto Plano)
+    // Comparamos si lo escrito es idéntico a lo guardado en BD
+    if ($pass === $usuario['CONTRASENA']) {
+        
+        // Login correcto: Guardamos datos en sesión
+        $_SESSION['ID_CLIENTE'] = $usuario['ID_CLIENTE'];
+        $_SESSION['NOMBRE'] = $usuario['NOMBRE'];
+        
+        echo "login_ok";
+    } else {
+        echo "contraseña_incorrecta";
+    }
+} else {
+    echo "usuario_no_encontrado";
+}
+
+$stmt->close();
 $conn->close();
 ?>
