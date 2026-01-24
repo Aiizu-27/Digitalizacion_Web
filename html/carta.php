@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carta - DAILY DOSE</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/carta.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/carta.css">
 </head>
 <body>
   
     <!-- Header / Cabecera de la página -->  
-    <?php include "header.php"; ?>
+    <?php include "includes/header.php"; ?>
 
     <main class="carta-layout">
         <?php
-        include "config.php"; 
+        include "includes/config.php"; 
 
         // 1. CONSULTA DE PRODUCTOS (CARTA GENERAL)
         $sqlProductos = "SELECT NOMBRE, CATEGORIA, PRECIO, STOCK FROM PRODUCTOS ORDER BY CATEGORIA, NOMBRE";
@@ -111,7 +111,7 @@
         <?php $conn->close(); ?>
     </main>
 
-    <script src="js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
 

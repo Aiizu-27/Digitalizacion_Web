@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DAILY DOSE - Tu dosis diaria de café</title>
     <!-- Enlace al CSS externo -->
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
   </head>
 
   <body>
@@ -20,7 +20,7 @@
   <div class="contenedor-fijo">
     <!-- Video de fondo -->
     <video class="video-fondo" autoplay muted loop>
-      <source src="imagenes/VideoInicio.mp4" type="video/mp4">
+      <source src="assets/video/VideoInicio.mp4" type="video/mp4">
     </video>
 
     <!-- Contenido encima del video -->
@@ -39,7 +39,7 @@
         <br>
         <p>Ve a la tienda y descarga nuestra app para no perderte nada y tener todo al alcance de tu mano</p>
         <div class="imagen-app">
-          <img src="imagenes/APP.png">
+          <img src="assets/img/APP.png">
         </div>
       </div>
     </div>
@@ -66,8 +66,8 @@
       <div class="footer-redes">
         <h4>Síguenos</h4>
         <div class="iconos-redes">
-          <a href="#"><img src="Imagenes/instagram.svg" alt="Instagram"></a>
-          <a href="#"><img src="Imagenes/twitter.svg" alt="Twitter"></a>
+          <a href="#"><img src="assets/img/instagram.svg" alt="Instagram"></a>
+          <a href="#"><img src="assets/img/twitter.svg" alt="Twitter"></a>
         </div>
       </div>
     </div>
@@ -78,6 +78,6 @@
   </footer>
 
 <!-- JS -->
-<script src="js/script.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 </html>
