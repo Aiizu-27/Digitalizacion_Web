@@ -79,11 +79,11 @@ document.getElementById('formLogin').addEventListener('submit', function(e){
     e.preventDefault();
     const formData = new FormData(this);
 
-    fetch('login_usuario.php', { method:'POST', body: formData })
+    fetch('../actions/auth_login.php', { method:'POST', body: formData })
     .then(res => res.text())
     .then(data => {
         if(data === "login_ok"){
-            window.location.href = "panel_usuario.php";
+            window.location.href = "views/panel_usuario.php";
         } else if(data === "contraseña_incorrecta"){
             alert("Contraseña incorrecta");
         } else if(data === "usuario_no_encontrado"){
@@ -100,7 +100,7 @@ document.getElementById('formRegistro').addEventListener('submit', function(e){
     e.preventDefault();
     const formData = new FormData(this);
 
-    fetch('registro_usuario.php', { method:'POST', body: formData })
+    fetch('../actions/auth_registro.php', { method:'POST', body: formData })
     .then(res => res.text())
     .then(data => {
         if(data === "registro_ok"){
