@@ -11,6 +11,8 @@
 </head>
 <body>
 
+    <?php include "includes/header.php"; ?>
+
     <?php include "../includes/header.php"; ?>
     <div class="panel-usuario">
         <h1>Bienvenido, <?php echo htmlspecialchars($usuario_info['NOMBRE']); ?>!</h1>
