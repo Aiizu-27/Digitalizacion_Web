@@ -14,7 +14,7 @@
   <body>
 
   <!-- Header / Cabecera de la página -->
-  <?php include "header.php"; ?>
+  <?php include "includes/header.php"; ?>
 
   <!-- Contenedor de pantalla inicial -->
   <div class="contenedor-fijo">
