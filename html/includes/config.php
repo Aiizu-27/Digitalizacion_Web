@@ -1,14 +1,10 @@
 <?php
-// CONFIGURACIÓN DE BASE DE DATOS
-$host = "localhost";
-$usuario = "admin_dd";
+<?php
+// TUS DATOS NUEVOS
+$host = "dailydosedb.cfw8im4q8gip.eu-south-2.rds.amazonaws.com";
+$usuario = "admin_DD"; // (O el que hayas puesto)
 $contrasena = "271304Lu"; 
 $basedatos = "dailydose";
-
-#$usuario = "root";
-#$contrasena = "13001300";
-#$host = "prueba.ckn6a668aan5.us-east-1.rds.amazonaws.com";
-#$port = "3306";
 
 // Crear conexión
 $conn = new mysqli($host, $usuario, $contrasena, $basedatos);
