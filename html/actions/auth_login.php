@@ -25,6 +25,7 @@ $resultado = $stmt->get_result();
 if ($resultado->num_rows === 1) {
     $usuario = $resultado->fetch_assoc();
 
+
     // Verificar contraseña (HASH)
     if (password_verify($pass, $usuario['CONTRASENA'])) {
 
