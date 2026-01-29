@@ -12,11 +12,11 @@ if (empty($correo) || empty($pass)) {
     exit;
 }
 
-// Buscar usuario
+// Buscar usuario en USUARIOS
 $stmt = $conn->prepare(
-    "SELECT ID_CLIENTE, NOMBRE, CONTRASENA
-     FROM CLIENTES
-     WHERE CORREO = ?"
+    "SELECT ID_USUARIO, NOMBRE, APELLIDOS, CONTRASENA, ROL, CAMBIAR_PASSWORD
+     FROM USUARIOS
+     WHERE EMAIL = ?"
 );
 $stmt->bind_param("s", $correo);
 $stmt->execute();
@@ -25,17 +25,24 @@ $resultado = $stmt->get_result();
 if ($resultado->num_rows === 1) {
     $usuario = $resultado->fetch_assoc();
 
-
-    // Verificar contraseña (HASH)
+    // Verificar contraseña
     if (password_verify($pass, $usuario['CONTRASENA'])) {
 
-        // Seguridad extra recomendada
+        // Seguridad extra
         session_regenerate_id(true);
 
-        $_SESSION['ID_CLIENTE'] = $usuario['ID_CLIENTE'];
-        $_SESSION['NOMBRE']     = $usuario['NOMBRE'];
+        $_SESSION['ID_USUARIO']       = $usuario['ID_USUARIO'];
+        $_SESSION['NOMBRE']           = $usuario['NOMBRE'];
+        $_SESSION['APELLIDOS']        = $usuario['APELLIDOS'];
+        $_SESSION['ROL']              = $usuario['ROL'];
+        $_SESSION['CAMBIAR_PASSWORD'] = $usuario['CAMBIAR_PASSWORD'];
 
-        echo "login_ok";
+        // Si debe cambiar la contraseña
+        if ($usuario['CAMBIAR_PASSWORD']) {
+            echo "cambiar_password";
+        } else {
+            echo "login_ok";
+        }
     } else {
         echo "contraseña_incorrecta";
     }

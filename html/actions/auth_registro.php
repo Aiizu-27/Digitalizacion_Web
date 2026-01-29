@@ -3,11 +3,12 @@
 session_start();
 require_once "../includes/config.php";
 
-// Recoger datos
-$nombre   = trim($_POST['nombre'] ?? '');
-$correo   = trim($_POST['correo'] ?? '');
-$pass     = $_POST['contrasena'] ?? '';
-$telefono = trim($_POST['telefono'] ?? '');
+// Recoger datos del formulario
+$nombre    = trim($_POST['nombre'] ?? '');
+$apellidos = trim($_POST['apellidos'] ?? '');
+$correo    = trim($_POST['correo'] ?? '');
+$pass      = $_POST['contrasena'] ?? '';
+$telefono  = trim($_POST['telefono'] ?? '');
 
 // Validar campos obligatorios
 if (empty($nombre) || empty($correo) || empty($pass)) {
@@ -15,8 +16,8 @@ if (empty($nombre) || empty($correo) || empty($pass)) {
     exit;
 }
 
-// Comprobar si el correo ya existe
-$stmt = $conn->prepare("SELECT ID_CLIENTE FROM CLIENTES WHERE CORREO = ?");
+// Comprobar si el correo ya existe en USUARIOS
+$stmt = $conn->prepare("SELECT ID_USUARIO FROM USUARIOS WHERE EMAIL = ?");
 $stmt->bind_param("s", $correo);
 $stmt->execute();
 $stmt->store_result();
@@ -29,20 +30,38 @@ if ($stmt->num_rows > 0) {
 }
 $stmt->close();
 
-// Encriptar contraseña (HASH)
+// Encriptar contraseña con HASH
 $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
 
-// Insertar usuario
+// Insertar primero en USUARIOS
 $stmt = $conn->prepare(
-    "INSERT INTO CLIENTES (NOMBRE, CORREO, CONTRASENA, TELEFONO, PUNTOS)
-     VALUES (?, ?, ?, ?, 0)"
+    "INSERT INTO USUARIOS (NOMBRE, APELLIDOS, EMAIL, CONTRASENA, ROL, CAMBIAR_PASSWORD)
+     VALUES (?, ?, ?, ?, 'CLIENTE', FALSE)"
 );
-$stmt->bind_param("ssss", $nombre, $correo, $pass_hash, $telefono);
+$stmt->bind_param("ssss", $nombre, $apellidos, $correo, $pass_hash);
+
+if (!$stmt->execute()) {
+    echo "error_insert_usuario";
+    $stmt->close();
+    $conn->close();
+    exit;
+}
+
+// Obtener ID_USUARIO generado
+$id_usuario = $stmt->insert_id;
+$stmt->close();
+
+// Insertar en CLIENTES
+$stmt = $conn->prepare(
+    "INSERT INTO CLIENTES (ID_USUARIO, TELEFONO, PUNTOS)
+     VALUES (?, ?, 0)"
+);
+$stmt->bind_param("is", $id_usuario, $telefono);
 
 if ($stmt->execute()) {
     echo "registro_ok";
 } else {
-    echo "error_insert";
+    echo "error_insert_cliente";
 }
 
 $stmt->close();
