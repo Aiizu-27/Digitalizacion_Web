@@ -82,22 +82,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // LÓGICA AJAX (Fetch) - CORREGIDA
     // ==========================================
 
-    // LOGIN
-    if(formLogin) { // Solo ejecutar si el formulario existe
+    // ---------- LOGIN con redirección ----------
+    if(formLogin){
         formLogin.addEventListener('submit', function(e){
             e.preventDefault();
             const formData = new FormData(this);
 
-            // RUTA CORREGIDA: 'actions/auth_login.php' (sin ../)
-            fetch('actions/auth_login.php', { method:'POST', body: formData })
+            fetch('actions/auth_login.php', { method: 'POST', body: formData })
             .then(res => res.text())
             .then(data => {
-                // Limpiamos espacios por si acaso
-                const respuesta = data.trim(); 
-                
-                if(respuesta === "login_ok"){
-                    // RUTA CORREGIDA: Ir al controlador 'panel.php'
-                    window.location.href = "panel.php"; 
+                const respuesta = data.trim();
+
+                if(respuesta === "login_ok_admin"){
+                    window.location.href = "dashboard_admin.php"; // REDIRECCION ADMIN
+                } else if(respuesta === "login_ok_cliente"){
+                    window.location.href = "panel.php"; // REDIRECCION CLIENTE/TRABAJADOR
                 } else if(respuesta === "contraseña_incorrecta"){
                     alert("Contraseña incorrecta");
                 } else if(respuesta === "usuario_no_encontrado"){

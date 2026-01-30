@@ -1,7 +1,7 @@
 <?php
 // actions/auth_login.php
 session_start();
-require_once "../includes/config.php";
+require_once "../includes/config.php"; // tu conexión a la BD
 
 $correo = trim($_POST['correo'] ?? '');
 $pass   = $_POST['contrasena'] ?? '';
@@ -41,14 +41,22 @@ if ($resultado->num_rows === 1) {
         if ($usuario['CAMBIAR_PASSWORD']) {
             echo "cambiar_password";
         } else {
-            echo "login_ok";
+            // REDIRECCIONAR SEGÚN ROL
+            if ($usuario['ROL'] === 'ADMIN') {
+                echo "login_ok_admin";  // Admin va al dashboard_admin.php
+            } else {
+                echo "login_ok_cliente"; // Cliente/Trabajador va al panel normal
+            }
         }
+
     } else {
         echo "contraseña_incorrecta";
     }
+
 } else {
     echo "usuario_no_encontrado";
 }
 
 $stmt->close();
 $conn->close();
+?>
