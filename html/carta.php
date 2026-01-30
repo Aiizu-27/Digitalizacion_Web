@@ -55,7 +55,7 @@ $resultCategorias = $conn->query($sqlCategorias);
 /* =========================
    PRODUCTOS
 ========================= */
-$sqlProductos = "SELECT ID, NOMBRE, CATEGORIA, PRECIO, STOCK, IMAGEN 
+$sqlProductos = "SELECT ID_PRODUCTO, NOMBRE, CATEGORIA, PRECIO, STOCK, RUTA_IMAGEN 
                  FROM PRODUCTOS 
                  ORDER BY CATEGORIA, NOMBRE";
 $resultProductos = $conn->query($sqlProductos);
