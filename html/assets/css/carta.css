@@ -1,28 +1,78 @@
 /* ========================================= */
-/* ESTILOS ESPECÍFICOS DE LA CARTA (MENU)  */
+/* ESTILOS ESPECÍFICOS DE LA CARTA (MENU)     */
 /* ========================================= */
 
-/* --- 1. LAYOUT PRINCIPAL (Rejilla de 2 columnas) --- */
+/* --- 1. LAYOUT PRINCIPAL (Rejilla de 3 columnas) --- */
 main.carta-layout {
     display: grid;
-    /* La columna izquierda ocupa el espacio libre (1fr) 
-       y la derecha tiene un ancho fijo de 340px */
-    grid-template-columns: 1fr 340px; 
-    gap: 2.5rem; /* Espacio entre columnas */
-    
+    grid-template-columns: 180px 1fr 340px; /* menú | productos | especialidad */
+    gap: 2.5rem;
+
     max-width: 1200px;
-    margin: 40px auto 4rem auto; /* Márgenes externos */
+    margin: 40px auto 4rem auto;
     padding: 0 1.5rem;
-    align-items: start; /* CRUCIAL: Alinea al inicio para que el sticky funcione */
+    align-items: start;
     min-height: 60vh;
 }
 
-/* --- 2. COLUMNA IZQUIERDA: LISTA DE PRODUCTOS --- */
+/* --- 2. MENÚ LATERAL DE CATEGORÍAS (IZQUIERDA) --- */
+.menu-categorias {
+    position: sticky;
+    top: 110px;
+    height: fit-content;
+    z-index: 10;
+
+    background: var(--cristal-fondo);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--cristal-borde);
+    border-radius: 15px;
+    padding: 1.2rem 1rem;
+    box-shadow: 0 4px 20px var(--cristal-sombra);
+}
+
+.menu-categorias h3 {
+    font-family: 'CooperBold', sans-serif;
+    color: var(--rojo-japones);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.menu-categorias ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-categorias li {
+    margin-bottom: 0.8rem;
+}
+
+.menu-categorias a {
+    display: block;
+    text-decoration: none;
+    color: var(--texto-principal);
+    font-weight: 600;
+    padding: 0.4rem 0.6rem;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+.menu-categorias a:hover {
+    background: rgba(244, 43, 29, 0.08);
+    color: var(--rojo-japones);
+    padding-left: 1rem;
+}
+
+/* --- 3. COLUMNA CENTRAL: PRODUCTOS --- */
 .columna-productos {
     width: 100%;
 }
 
-/* Títulos de Categoría (Ej: Espresso Bar) */
+/* Títulos de Categoría */
 .columna-productos h2 {
     font-family: 'CooperBold', sans-serif;
     color: var(--rojo-japones);
@@ -38,18 +88,16 @@ main.carta-layout {
     text-shadow: 1px 1px 0 rgba(0,0,0,0.05);
 }
 
-/* Quitar margen superior solo a la primera categoría */
 .columna-productos h2:first-of-type {
     margin-top: 0;
 }
 
-/* Contenedor de la lista (Tarjeta de Cristal) */
+/* Lista productos (tarjeta cristal) */
 ul.productos {
     list-style: none;
     padding: 0;
     margin: 0 0 2rem 0;
-    
-    /* Efecto Cristal */
+
     background: var(--cristal-fondo);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -59,7 +107,6 @@ ul.productos {
     overflow: hidden;
 }
 
-/* Cada ítem de producto */
 ul.productos li {
     display: flex;
     justify-content: space-between;
@@ -73,15 +120,13 @@ ul.productos li:last-child {
     border-bottom: none;
 }
 
-/* Efecto hover en el producto */
 ul.productos li:hover {
     background: rgba(244, 43, 29, 0.05);
-    padding-left: 2rem; /* Pequeño desplazamiento a la derecha */
+    padding-left: 2rem;
 }
 
-/* Detalles del texto */
 .info-prod {
-    flex: 1; 
+    flex: 1;
 }
 
 .nombre {
@@ -91,7 +136,7 @@ ul.productos li:hover {
     display: block;
 }
 
-/* Precio y Stock */
+/* Precio y stock */
 .meta-prod {
     display: flex;
     align-items: center;
@@ -107,47 +152,65 @@ ul.productos li:hover {
 
 .stock {
     font-size: 0.8rem;
-    opacity: 0.8;
+    opacity: 0.85;
     background: rgba(0,0,0,0.06);
     padding: 5px 10px;
     border-radius: 8px;
     min-width: 80px;
     text-align: center;
-    white-space: nowrap;
     font-weight: 600;
 }
 
-/* Colores para el estado del stock */
-.stock-bajo { color: #d9534f; background: rgba(217, 83, 79, 0.15); }
-.stock-ok { color: var(--verde-pastel-oscuro); }
+.stock-bajo {
+    color: #d9534f;
+    background: rgba(217, 83, 79, 0.15);
+}
+
+.stock-ok {
+    color: var(--verde-pastel-oscuro);
+}
 
 .mensaje-vacio {
     text-align: center;
     font-size: 1.2rem;
-    color: var(--texto-principal);
     background: var(--cristal-fondo);
     padding: 2rem;
     border-radius: 12px;
 }
 
-/* --- 3. COLUMNA DERECHA: SIDEBAR FIJO (STICKY) --- */
+.img-producto {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.info-prod {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+/* --- 4. COLUMNA DERECHA: ESPECIALIDAD --- */
 .columna-lateral {
-    position: sticky; /* Aquí ocurre la magia */
-    top: 110px;       /* Distancia desde el borde superior (Header + margen) */
+    position: sticky;
+    top: 110px;
     height: fit-content;
     z-index: 10;
 }
 
-/* Tarjeta de Especialidad */
+/* Tarjeta especial */
 .tarjeta-especialidad {
     background: var(--cristal-fondo);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 2px solid rgba(244, 43, 29, 0.3); /* Borde rojizo sutil */
+    border: 2px solid rgba(244, 43, 29, 0.3);
     border-radius: 20px;
     padding: 2rem 1.5rem;
     box-shadow: 0 10px 40px rgba(244, 43, 29, 0.1);
-    color: var(--texto-principal);
     text-align: center;
     transition: transform 0.3s ease;
 }
@@ -157,129 +220,38 @@ ul.productos li:hover {
     border-color: var(--rojo-japones);
 }
 
-/* Títulos dentro de la tarjeta */
-.header-especial h3 {
-    font-family: 'CooperBold', sans-serif;
-    color: var(--rojo-japones);
-    font-size: 1.6rem;
-    margin: 0;
-    text-transform: uppercase;
-    line-height: 1.1;
-}
-
-.fechas {
-    font-size: 0.75rem;
-    font-weight: bold;
-    color: var(--texto-principal);
-    opacity: 0.6;
-    margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.tarjeta-especialidad h4 {
-    font-size: 0.85rem;
-    color: var(--rojo-japones);
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-    border-bottom: 1px dashed rgba(0,0,0,0.15);
-    display: inline-block;
-    padding-bottom: 2px;
-}
-
-/* Textos de contenido (Origen, Notas, etc) */
-.origen {
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin: 0.2rem 0;
-}
-
-.notas {
-    font-style: italic;
-    font-size: 0.95rem;
-    opacity: 0.85;
-    margin-bottom: 0.8rem;
-}
-
-.etiqueta {
-    display: inline-block;
-    background: var(--rojo-japones);
-    color: var(--fondo); /* Color claro */
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.tarjeta-especialidad hr {
-    border: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
-    margin: 1.5rem 0;
-}
-
-.desc-filtro {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    margin-top: 0.5rem;
-}
-
-/* Caja destacada de la bebida seasonal */
-.destacado-seasonal {
-    background: linear-gradient(to bottom right, rgba(244, 43, 29, 0.05), rgba(244, 43, 29, 0.15));
-    padding: 1.2rem;
-    border-radius: 12px;
-    margin-top: 1.5rem;
-    border: 1px solid rgba(244, 43, 29, 0.1);
-}
-
-.seasonal-nombre {
-    font-family: 'CooperBold', sans-serif;
-    font-size: 1.3rem;
-    color: var(--rojo-japones);
-    margin: 0.5rem 0;
-}
-
-.seasonal-desc {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    opacity: 0.9;
-}
-
-/* --- 4. RESPONSIVE DESIGN (MÓVIL) --- */
+/* --- 5. RESPONSIVE --- */
 @media (max-width: 900px) {
-    /* Cambiar layout a 1 sola columna */
+
     main.carta-layout {
         grid-template-columns: 1fr;
         gap: 2rem;
         margin-top: 20px;
     }
-    
-    /* Mover la especialidad arriba del todo o abajo */
-    .columna-lateral {
-        position: static; /* Ya no flota en móvil */
-        width: 100%;
-        order: -1; /* -1 para que salga PRIMERO (arriba de los cafés) */
+
+    .menu-categorias {
+        display: none;
     }
 
-    /* Ajustes visuales en lista móvil */
+    .columna-lateral {
+        position: static;
+        order: -1;
+    }
+
     ul.productos li {
-        flex-wrap: wrap; /* Permitir saltos de línea */
+        flex-wrap: wrap;
         gap: 0.5rem;
     }
 
     .info-prod {
-        width: 100%; /* Nombre ocupa toda la línea */
-        margin-bottom: 0.2rem;
+        width: 100%;
     }
 
     .meta-prod {
         width: 100%;
-        justify-content: space-between; /* Precio a la izq, stock a la der */
+        justify-content: space-between;
     }
-    
+
     .precio {
         font-size: 1.1rem;
     }

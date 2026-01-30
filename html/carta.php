@@ -20,9 +20,7 @@
 <?php
 include "includes/config.php";
 
-/* =========================
-   MENÚ DE CATEGORÍAS
-   ========================= */
+/* MENÚ DE CATEGORÍAS */
 $sqlCategorias = "SELECT DISTINCT CATEGORIA FROM PRODUCTOS ORDER BY CATEGORIA";
 $resultCategorias = $conn->query($sqlCategorias);
 ?>
@@ -40,17 +38,12 @@ $resultCategorias = $conn->query($sqlCategorias);
 </nav>
 
 <?php
-/* =========================
-   CONSULTA PRODUCTOS
-   ========================= */
-$sqlProductos = "SELECT NOMBRE, CATEGORIA, PRECIO, STOCK 
+$sqlProductos = "SELECT NOMBRE, CATEGORIA, PRECIO, STOCK, IMAGEN 
                  FROM PRODUCTOS 
                  ORDER BY CATEGORIA, NOMBRE";
 $resultProductos = $conn->query($sqlProductos);
 
-/* =========================
-   CONSULTA ESPECIALIDAD
-   ========================= */
+/* CONSULTA ESPECIALIDAD */
 $mesActual = date('m');
 $diaActual = date('d');
 $fechaComparar = "2026-$mesActual-$diaActual";
@@ -69,9 +62,7 @@ if ($resultEspecialidad->num_rows == 0) {
 $especial = $resultEspecialidad->fetch_assoc();
 ?>
 
-<!-- =========================
-     COLUMNA PRODUCTOS
-     ========================= -->
+<!--COLUMNA PRODUCTOS-->
 <section class="columna-productos">
 <?php
 $categoriaActual = "";
@@ -91,8 +82,16 @@ if ($resultProductos && $resultProductos->num_rows > 0) {
 
         echo "<li>";
         echo "<div class='info-prod'>";
+
+        if (!empty($row['IMAGEN'])) {
+            echo "<img src='assets/img/productos/" . htmlspecialchars($row['IMAGEN']) . "' 
+                alt='" . htmlspecialchars($row['NOMBRE']) . "' 
+                class='img-producto'>";
+        }
+
         echo "<span class='nombre'>" . htmlspecialchars($row['NOMBRE']) . "</span>";
         echo "</div>";
+
 
         echo "<div class='meta-prod'>";
         echo "<span class='precio'>" . number_format($row['PRECIO'], 2) . "€</span>";
@@ -109,9 +108,7 @@ if ($resultProductos && $resultProductos->num_rows > 0) {
 ?>
 </section>
 
-<!-- =========================
-     COLUMNA DERECHA
-     ========================= -->
+<!-- COLUMNA DERECHA -->
 <aside class="columna-lateral">
 <?php if ($especial): ?>
     <div class="tarjeta-especialidad">
