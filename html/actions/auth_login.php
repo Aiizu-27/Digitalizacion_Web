@@ -39,10 +39,13 @@ if ($resultado->num_rows === 1) {
         // Si debe cambiar la contraseña
         if ($usuario['CAMBIAR_PASSWORD']) {
             echo "cambiar_password";
+        } elseif ($usuario['ROL'] === 'ADMIN') {
+            echo "login_ok_admin";
+        }elseif($usuario['ROL'] === 'TRABAJADOR') {
+            echo "login_ok_trabajador";
         } else {
-            // Devuelve respuesta según rol
-            echo $usuario['ROL'] === 'ADMIN' ? "login_ok_admin" : "login_ok_cliente";
-        }
+            echo "login_ok_cliente";
+        };
 
     } else {
         echo "contraseña_incorrecta";

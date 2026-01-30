@@ -76,6 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     case "login_ok_admin":
                         window.location.href = "panel/dashboard_admin.php";
                         break;
+                    case "login_ok_trabajador":
+                        window.location.href = "panel/dashboard_trabajador.php";
+                    break;
                     case "login_ok_cliente":
                         window.location.href = "panel/dashboard_cliente.php";
                         break;
