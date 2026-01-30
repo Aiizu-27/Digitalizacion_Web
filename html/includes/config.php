@@ -1,6 +1,6 @@
 <?php
 // ===== CONFIGURACIÓN DE BASE DE DATOS =====
-$host = "localhost";       // Cambia si usas otro host
+$host = "192.168.0.76";       // Cambia si usas otro host
 //$host = "dailydosedb.cfw8im4q8gip.eu-south-2.rds.amazonaws.com";
 $usuario = "root";         // Tu usuario MySQL
 $contrasena = "271304";    // Tu contraseña
