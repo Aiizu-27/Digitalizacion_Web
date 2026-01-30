@@ -56,6 +56,10 @@
                 <label>Nombre</label>
             </div>
             <div class="cajas">
+                <input type="text" name="apellidos" placeholder=" " required>
+                <label>Apellidos</label>
+            </div>
+            <div class="cajas">
                 <input type="email" name="correo" placeholder=" " required>
                 <label>Correo electrónico</label>
             </div>
@@ -80,6 +84,7 @@
             </div>
             <button type="submit">Registrarse</button>
         </form>
+
 
 <!-- Enlace al JS externo -->
 <script src="assets/js/script.js"></script>
