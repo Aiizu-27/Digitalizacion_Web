@@ -256,3 +256,31 @@ ul.productos li:hover {
         font-size: 1.1rem;
     }
 }
+
+/* Botón Añadir al Carrito */
+.btn-carrito {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 6px;
+    background-color: #c68c53; /* café suave */
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.btn-carrito:hover {
+    background-color: #b2793f; /* tono más oscuro al pasar el mouse */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.form-carrito {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

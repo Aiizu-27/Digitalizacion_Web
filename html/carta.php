@@ -92,13 +92,16 @@ if ($resultProductos && $resultProductos->num_rows > 0) {
         echo "<span class='nombre'>" . htmlspecialchars($row['NOMBRE']) . "</span>";
         echo "</div>";
 
-
+        // META PRODUCTO: PRECIO + BOTÓN AÑADIR AL CARRITO
         echo "<div class='meta-prod'>";
         echo "<span class='precio'>" . number_format($row['PRECIO'], 2) . "€</span>";
-
-        $claseStock = ($row['STOCK'] < 10) ? 'stock-bajo' : 'stock-ok';
-        echo "<span class='stock $claseStock'>Stock: " . intval($row['STOCK']) . "</span>";
+        echo "<form class='form-carrito' method='POST' action='carrito.php'>
+                <input type='hidden' name='producto' value='" . htmlspecialchars($row['NOMBRE']) . "'>
+                <input type='hidden' name='precio' value='" . $row['PRECIO'] . "'>
+                <button type='submit' class='btn-carrito'>Añadir al carrito</button>
+              </form>";
         echo "</div>";
+
         echo "</li>";
     }
     echo "</ul>";
