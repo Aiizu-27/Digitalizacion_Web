@@ -2,7 +2,7 @@
 // ===== CONFIGURACIÓN DE BASE DE DATOS =====
 //$host = "localhost";       // Cambia si usas otro host
 $host = "dailydosedb.cfw8im4q8gip.eu-south-2.rds.amazonaws.com";
-$usuario = "admin_dd";         // Tu usuario MySQL
+$usuario = "admin_DD";         // Tu usuario MySQL
 $contrasena = "271304Lu";    // Tu contraseña
 $basedatos = "dailydose";  // Tu base de datos
 
