@@ -3,19 +3,24 @@
 -- =========================
 
 -- Espresso Bar (Proveedor 1, Stock alto)
-INSERT INTO PRODUCTOS (NOMBRE, CATEGORIA, PRECIO, STOCK, ID_PROVEEDOR) VALUES
-('Espresso', 'Espresso Bar', 2.00, 100, 1),
-('Doppio', 'Espresso Bar', 2.60, 80, 1),
-('Americano', 'Espresso Bar', 2.20, 90, 1),
-('Filtro del día (V60 / Chemex / Batch Brew)', 'Espresso Bar', 2.50, 70, 1);
+INSERT INTO PRODUCTOS 
+(NOMBRE, CATEGORIA, PRECIO, STOCK, ID_PROVEEDOR, RUTA_IMAGEN) 
+VALUES
+('Espresso', 'Espresso Bar', 2.00, 100, 1, 'expresso.png'),
+('Doppio', 'Espresso Bar', 2.60, 80, 1, 'doppio.png'),
+('Americano', 'Espresso Bar', 2.20, 90, 1, 'americano.png'),
+('Filtro del día (V60 / Chemex / Batch Brew)', 'Espresso Bar', 2.50, 70, 1, 'filtro-dia.png');
 
 -- Cafés con leche (Proveedor 1, Stock alto)
-INSERT INTO PRODUCTOS (NOMBRE, CATEGORIA, PRECIO, STOCK, ID_PROVEEDOR) VALUES
-('Cortado', 'Cafés con leche', 2.20, 90, 1),
-('Café con leche', 'Cafés con leche', 2.40, 90, 1),
-('Capuccino', 'Cafés con leche', 2.80, 80, 1),
-('Latte', 'Cafés con leche', 3.00, 70, 1),
-('Flat White', 'Cafés con leche', 3.20, 60, 1);
+INSERT INTO PRODUCTOS 
+(NOMBRE, CATEGORIA, PRECIO, STOCK, ID_PROVEEDOR, RUTA_IMAGEN) 
+VALUES
+('Cortado', 'Cafés con leche', 2.20, 90, 1, 'cortado.png'),
+('Café con leche', 'Cafés con leche', 2.40, 90, 1, 'cafe_con_leche.png'),
+('Capuccino', 'Cafés con leche', 2.80, 80, 1, 'capuccino.png'),
+('Latte', 'Cafés con leche', 3.00, 70, 1, 'latte.png'),
+('Flat White', 'Cafés con leche', 3.20, 60, 1, 'flat_white.png');
+
 
 -- Leches alternativas (Proveedor 2, Stock medio)
 INSERT INTO PRODUCTOS (NOMBRE, CATEGORIA, PRECIO, STOCK, ID_PROVEEDOR) VALUES
