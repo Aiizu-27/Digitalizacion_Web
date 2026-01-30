@@ -30,27 +30,17 @@
       display: block;
     }
 
-    .content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: var(--texto-principal);
-      padding: 0 20px; /* evita que se salga en pantallas pequeñas */
-    }
-
-    .content h1 {
+    h1 {
       font-size: 2.5rem;
       margin-bottom: 10px;
     }
 
-    .content p {
+    p {
       font-size: 1.2rem;
       margin-bottom: 20px;
     }
 
-    .content a {
+    a {
       display: inline-block;
       padding: 10px 20px;
       background: var(--rojo-japones);
@@ -61,15 +51,15 @@
       transition: background 0.2s ease-in-out;
     }
 
-    .content a:hover {
+    a:hover {
       background: #d31f0f;
     }
 
     @media (max-width: 600px) {
-      .content h1 {
+      h1 {
         font-size: 1.8rem;
       }
-      .content p {
+      p {
         font-size: 1rem;
       }
     }
