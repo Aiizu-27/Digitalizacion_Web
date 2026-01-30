@@ -116,7 +116,7 @@ if ($resultProductos && $resultProductos->num_rows > 0) {
         echo "<div class='meta-prod'>";
         echo "<span class='precio'>" . number_format($row['PRECIO'], 2) . "€</span>";
         echo "<form class='form-carrito' method='POST' action='carrito.php'>
-                <input type='hidden' name='id_producto' value='" . $row['ID'] . "'>
+                <input type='hidden' name='id_producto' value='" . $row['ID_PRODUCTO'] . "'>
                 <input type='hidden' name='producto' value='" . htmlspecialchars($row['NOMBRE']) . "'>
                 <input type='hidden' name='precio' value='" . $row['PRECIO'] . "'>
                 <input type='hidden' name='stock' value='" . $row['STOCK'] . "'>
