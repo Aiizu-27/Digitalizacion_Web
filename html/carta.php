@@ -23,7 +23,14 @@
 <?php
 include "includes/config.php";
 
-/* MENÚ DE CATEGORÍAS */
+// COMPROBAR CONEXIÓN
+if (!$conn) {
+    die("Conexión fallida: " . mysqli_connect_error());
+}
+
+/* =========================
+   MENÚ DE CATEGORÍAS
+========================= */
 $sqlCategorias = "SELECT DISTINCT CATEGORIA FROM PRODUCTOS ORDER BY CATEGORIA";
 $resultCategorias = $conn->query($sqlCategorias);
 ?>
@@ -32,31 +39,42 @@ $resultCategorias = $conn->query($sqlCategorias);
     <h3>Categorías</h3>
     <ul>
         <?php
-        while ($cat = $resultCategorias->fetch_assoc()) {
-            $idCat = strtolower(str_replace(' ', '-', $cat['CATEGORIA']));
-            echo "<li><a href='#$idCat'>" . htmlspecialchars($cat['CATEGORIA']) . "</a></li>";
+        if ($resultCategorias && $resultCategorias->num_rows > 0) {
+            while ($cat = $resultCategorias->fetch_assoc()) {
+                $idCat = strtolower(str_replace(' ', '-', $cat['CATEGORIA']));
+                echo "<li><a href='#$idCat'>" . htmlspecialchars($cat['CATEGORIA']) . "</a></li>";
+            }
+        } else {
+            echo "<li>No hay categorías disponibles</li>";
         }
         ?>
     </ul>
 </nav>
 
 <?php
-$sqlProductos = "SELECT NOMBRE, CATEGORIA, PRECIO, STOCK, IMAGEN 
+/* =========================
+   PRODUCTOS
+========================= */
+$sqlProductos = "SELECT ID, NOMBRE, CATEGORIA, PRECIO, STOCK, IMAGEN 
                  FROM PRODUCTOS 
                  ORDER BY CATEGORIA, NOMBRE";
 $resultProductos = $conn->query($sqlProductos);
 
-/* CONSULTA ESPECIALIDAD */
-$mesActual = date('m');
-$diaActual = date('d');
-$fechaComparar = "2026-$mesActual-$diaActual";
+/* =========================
+   ESPECIALIDAD DEL DÍA
+========================= */
+$fechaComparar = date('Y-m-d');
 
 $sqlEspecialidad = "SELECT * FROM ESPECIALIDAD_ACTUAL
-                    WHERE '$fechaComparar' BETWEEN FECHA_INICIO AND FECHA_FIN
+                    WHERE ? BETWEEN FECHA_INICIO AND FECHA_FIN
                     LIMIT 1";
 
-$resultEspecialidad = $conn->query($sqlEspecialidad);
+$stmt = $conn->prepare($sqlEspecialidad);
+$stmt->bind_param("s", $fechaComparar);
+$stmt->execute();
+$resultEspecialidad = $stmt->get_result();
 
+// Fallback si no hay especialidad actual
 if ($resultEspecialidad->num_rows == 0) {
     $sqlEspecialidad = "SELECT * FROM ESPECIALIDAD_ACTUAL LIMIT 1";
     $resultEspecialidad = $conn->query($sqlEspecialidad);
@@ -73,12 +91,11 @@ $categoriaActual = "";
 if ($resultProductos && $resultProductos->num_rows > 0) {
     while ($row = $resultProductos->fetch_assoc()) {
 
+        // CAMBIO DE CATEGORÍA
         if ($categoriaActual != $row['CATEGORIA']) {
             if ($categoriaActual != "") echo "</ul>";
-
             $categoriaActual = $row['CATEGORIA'];
             $idCategoria = strtolower(str_replace(' ', '-', $categoriaActual));
-
             echo "<h2 id='$idCategoria'>" . htmlspecialchars($categoriaActual) . "</h2>";
             echo "<ul class='productos'>";
         }
@@ -95,12 +112,14 @@ if ($resultProductos && $resultProductos->num_rows > 0) {
         echo "<span class='nombre'>" . htmlspecialchars($row['NOMBRE']) . "</span>";
         echo "</div>";
 
-        // META PRODUCTO: PRECIO + BOTÓN AÑADIR AL CARRITO
+        // PRECIO + BOTÓN AÑADIR AL CARRITO
         echo "<div class='meta-prod'>";
         echo "<span class='precio'>" . number_format($row['PRECIO'], 2) . "€</span>";
         echo "<form class='form-carrito' method='POST' action='carrito.php'>
+                <input type='hidden' name='id_producto' value='" . $row['ID'] . "'>
                 <input type='hidden' name='producto' value='" . htmlspecialchars($row['NOMBRE']) . "'>
                 <input type='hidden' name='precio' value='" . $row['PRECIO'] . "'>
+                <input type='hidden' name='stock' value='" . $row['STOCK'] . "'>
                 <button type='submit' class='btn-carrito'>Añadir al carrito</button>
               </form>";
         echo "</div>";
@@ -146,12 +165,15 @@ if ($resultProductos && $resultProductos->num_rows > 0) {
         </div>
 
     </div>
+<?php else: ?>
+    <p class="mensaje-vacio">No hay daily special disponible hoy.</p>
 <?php endif; ?>
 </aside>
 
 <?php $conn->close(); ?>
 
 </main>
+
 <?php include "includes/footer.php"; ?>
 <script src="assets/js/script.js"></script>
 </body>
