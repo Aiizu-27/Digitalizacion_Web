@@ -1,63 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - No encontrado | Daily Dose</title>
-    <style>
-      :root {
-        --fondo: #F3F0E9;
-        --texto-principal: #2B2B2B;
-        --rojo-japones: #f42b1dd5;
-      }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - No encontrado | Daily Dose</title>
+  <style>
+    :root {
+      --fondo: #F3F0E9;
+      --texto-principal: #2B2B2B;
+      --rojo-japones: #f42b1dd5;
+    }
 
-      body {
-        margin: 0;
-        font-family: 'CooperBold', Arial, sans-serif;
-        background: var(--fondo);
-        color: var(--texto-principal);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        text-align: center;
-      }
+    body {
+      margin: 0;
+      font-family: 'CooperBold', Arial, sans-serif;
+      background: var(--fondo);
+      color: var(--texto-principal);
+      min-height: 100vh;
+    }
 
-      .bg-image {
-        width: 1000px;
-        height: auto;
-      }
+    .bg-image {
+      width: 100%;
+      position: relative; /* necesario para el contenido centrado */
+    }
 
-      .content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: var(--texto-principal);
-      }
+    .bg-image img {
+      width: 100%;  /* ocupa todo el ancho del contenedor */
+      height: auto; /* mantiene proporciones */
+      display: block;
+    }
 
-      a {
-        display: inline-block;
-        padding: 10px 20px;
-        background: var(--rojo-japones);
-        color: white;
-        border-radius: 5px;
-        margin-top: 15px;
-      }
-    </style>
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: var(--texto-principal);
+      padding: 0 20px; /* evita que se salga en pantallas pequeñas */
+    }
 
+    .content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .content p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .content a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--rojo-japones);
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.2s ease-in-out;
+    }
+
+    .content a:hover {
+      background: #d31f0f;
+    }
+
+    @media (max-width: 600px) {
+      .content h1 {
+        font-size: 1.8rem;
+      }
+      .content p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<div class="bg-image">
-    <img src="assets/img/404.png">
-  <div class="content">
-    <h1>¡Vaya! Te has perdido</h1>
-    <p>La página que buscas no existe en Daily Dose.</p>
-    <br>
-    <a href="/index">VOLVER AL INICIO</a>
+  <div class="bg-image">
+    <img src="assets/img/404.png" alt="Error 404">
+    <div class="content">
+      <h1>¡Vaya! Te has perdido</h1>
+      <p>La página que buscas no existe en Daily Dose.</p>
+      <a href="/index">VOLVER AL INICIO</a>
+    </div>
   </div>
-</div>
-
 </body>
 </html>
