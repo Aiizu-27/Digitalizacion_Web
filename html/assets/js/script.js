@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const respuesta = data.trim();
 
                 if(respuesta === "login_ok_admin"){
-                    window.location.href = "dashboard_admin.php"; // Admin
+                    window.location.href = "panel/dashboard_admin.php"; // Admin
                 } else if(respuesta === "login_ok_cliente"){
                     window.location.href = "panel.php"; // Cliente/Trabajador
                 } else if(respuesta === "contraseña_incorrecta"){
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert("Usuario no encontrado");
                 } else if(respuesta === "cambiar_password"){
                     alert("Debes cambiar tu contraseña primero");
-                    window.location.href = "cambiar_password.php";
+                    window.location.href = "panel/cambiar_password.php";
                 } else if(respuesta === "campos_vacios"){
                     alert("Por favor, completa todos los campos");
                 } else {
