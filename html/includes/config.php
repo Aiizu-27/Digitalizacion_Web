@@ -1,19 +1,31 @@
 <?php
-// TUS DATOS NUEVOS
+// ===== CONFIGURACIÓN DE BASE DE DATOS =====
+$host = "localhost";       // Cambia si usas otro host
 //$host = "dailydosedb.cfw8im4q8gip.eu-south-2.rds.amazonaws.com";
-$host = "localhost";
-$usuario = "root"; // (O el que hayas puesto)
-$contrasena = "271304"; 
-$basedatos = "dailydose";
+$usuario = "root";         // Tu usuario MySQL
+$contrasena = "271304";    // Tu contraseña
+$basedatos = "dailydose";  // Tu base de datos
 
-// Crear conexión
-$conn = new mysqli($host, $usuario, $contrasena, $basedatos);
+// ===== MOSTRAR ERRORES (solo desarrollo) =====
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-// Comprobar conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+// ===== CONEXIÓN A MYSQL =====
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+try {
+    $conn = new mysqli($host, $usuario, $contrasena, $basedatos);
+    $conn->set_charset("utf8"); // Para soportar tildes y ñ
+} catch (Exception $e) {
+    die("Error de conexión a la base de datos: " . $e->getMessage());
 }
 
-// Configurar charset para tildes y ñ
-$conn->set_charset("utf8");
+// ===== FUNCIÓN OPCIONAL PARA DEBUG =====
+// Puedes usar esta función para imprimir errores de consultas fácilmente
+function debugQuery($stmt) {
+    if ($stmt->errno) {
+        echo "Error en consulta: " . $stmt->error;
+    }
+}
 ?>
