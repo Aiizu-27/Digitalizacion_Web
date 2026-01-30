@@ -74,14 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 switch(respuesta){
                     case "login_ok_admin":
-                        window.location.href = "/panel/dashboard_admin.php";
+                        window.location.href = "panel/dashboard_admin.php";
                         break;
                     case "login_ok_cliente":
-                        window.location.href = "/panel.php";
+                        window.location.href = "panel/dashboard_cliente.php";
                         break;
                     case "cambiar_password":
                         alert("Debes cambiar tu contraseña primero");
-                        window.location.href = "/panel/cambiar_password.php";
+                        window.location.href = "panel/cambiar_contraseña.php";
                         break;
                     case "contraseña_incorrecta":
                         alert("Contraseña incorrecta");
