@@ -1,6 +1,7 @@
 <?php
 // TUS DATOS NUEVOS
-$host = "dailydosedb.cfw8im4q8gip.eu-south-2.rds.amazonaws.com";
+//$host = "dailydosedb.cfw8im4q8gip.eu-south-2.rds.amazonaws.com";
+$host = "localhost";
 $usuario = "admin_DD"; // (O el que hayas puesto)
 $contrasena = "271304Lu"; 
 $basedatos = "dailydose";
