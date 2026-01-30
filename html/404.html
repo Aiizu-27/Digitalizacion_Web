@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>404 - No encontrado | Daily Dose</title>
-  <style>
+<style>
     :root {
       --fondo: #F3F0E9;
       --texto-principal: #2B2B2B;
@@ -17,17 +17,20 @@
       background: var(--fondo);
       color: var(--texto-principal);
       min-height: 100vh;
-    }
-
-    .bg-image {
-      width: 100%;
-      position: relative; /* necesario para el contenido centrado */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
     }
 
     .bg-image img {
       width: 100%;  /* ocupa todo el ancho del contenedor */
-      height: auto; /* mantiene proporciones */
+      max-width: 600px; /* opcional: limita tamaño en pantallas grandes */
+      height: auto; 
       display: block;
+      margin-bottom: 30px; /* espacio entre imagen y texto */
     }
 
     h1 {
