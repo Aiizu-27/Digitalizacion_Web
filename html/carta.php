@@ -149,7 +149,7 @@ if ($resultProductos && $resultProductos->num_rows > 0) {
 <?php $conn->close(); ?>
 
 </main>
-
+<?php include "includes/footer.php"; ?>
 <script src="assets/js/script.js"></script>
 </body>
 </html>
