@@ -3,11 +3,10 @@
 /* ========================================= */
 
 /* --- 1. LAYOUT PRINCIPAL (Rejilla de 3 columnas) --- */
-main.carta-layout {
+.carta-layout {
     display: grid;
     grid-template-columns: 180px 1fr 340px; /* menú | productos | especialidad */
     gap: 2.5rem;
-
     max-width: 1200px;
     margin: 40px auto 4rem auto;
     padding: 0 1.5rem;
@@ -16,12 +15,11 @@ main.carta-layout {
 }
 
 /* --- 2. MENÚ LATERAL DE CATEGORÍAS (IZQUIERDA) --- */
-.menu-categorias {
+.carta-layout .menu-categorias {
     position: sticky;
     top: 110px;
     height: fit-content;
     z-index: 10;
-
     background: var(--cristal-fondo);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -31,7 +29,7 @@ main.carta-layout {
     box-shadow: 0 4px 20px var(--cristal-sombra);
 }
 
-.menu-categorias h3 {
+.carta-layout .menu-categorias h3 {
     font-family: 'CooperBold', sans-serif;
     color: var(--rojo-japones);
     font-size: 1.1rem;
@@ -41,17 +39,17 @@ main.carta-layout {
     text-align: center;
 }
 
-.menu-categorias ul {
+.carta-layout .menu-categorias ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.menu-categorias li {
+.carta-layout .menu-categorias li {
     margin-bottom: 0.8rem;
 }
 
-.menu-categorias a {
+.carta-layout .menu-categorias a {
     display: block;
     text-decoration: none;
     color: var(--texto-principal);
@@ -61,19 +59,19 @@ main.carta-layout {
     transition: all 0.25s ease;
 }
 
-.menu-categorias a:hover {
+.carta-layout .menu-categorias a:hover {
     background: rgba(244, 43, 29, 0.08);
     color: var(--rojo-japones);
     padding-left: 1rem;
 }
 
 /* --- 3. COLUMNA CENTRAL: PRODUCTOS --- */
-.columna-productos {
+.carta-layout .columna-productos {
     width: 100%;
 }
 
 /* Títulos de Categoría */
-.columna-productos h2 {
+.carta-layout .columna-productos h2 {
     font-family: 'CooperBold', sans-serif;
     color: var(--rojo-japones);
     font-size: 1.8rem;
@@ -88,16 +86,15 @@ main.carta-layout {
     text-shadow: 1px 1px 0 rgba(0,0,0,0.05);
 }
 
-.columna-productos h2:first-of-type {
+.carta-layout .columna-productos h2:first-of-type {
     margin-top: 0;
 }
 
 /* Lista productos (tarjeta cristal) */
-ul.productos {
+.carta-layout ul.productos {
     list-style: none;
     padding: 0;
     margin: 0 0 2rem 0;
-
     background: var(--cristal-fondo);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -107,7 +104,7 @@ ul.productos {
     overflow: hidden;
 }
 
-ul.productos li {
+.carta-layout ul.productos li {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -116,61 +113,52 @@ ul.productos li {
     transition: all 0.3s ease;
 }
 
-ul.productos li:last-child {
+.carta-layout ul.productos li:last-child {
     border-bottom: none;
 }
 
-ul.productos li:hover {
+.carta-layout ul.productos li:hover {
     background: rgba(244, 43, 29, 0.05);
     padding-left: 2rem;
 }
 
-.info-prod {
+.carta-layout .info-prod {
     flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
-.nombre {
+.carta-layout .nombre {
     font-size: 1.1rem;
     color: var(--texto-principal);
     font-weight: 600;
     display: block;
 }
 
-/* Precio y stock */
-.meta-prod {
+.carta-layout .meta-prod {
     display: flex;
     align-items: center;
     gap: 1.5rem;
 }
 
-.precio {
+.carta-layout .precio {
     font-family: 'CooperBold', sans-serif;
     color: var(--rojo-japones);
     font-size: 1.25rem;
     white-space: nowrap;
 }
 
-.stock {
-    font-size: 0.8rem;
-    opacity: 0.85;
-    background: rgba(0,0,0,0.06);
-    padding: 5px 10px;
-    border-radius: 8px;
-    min-width: 80px;
-    text-align: center;
-    font-weight: 600;
+.carta-layout .img-producto {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-.stock-bajo {
-    color: #d9534f;
-    background: rgba(217, 83, 79, 0.15);
-}
-
-.stock-ok {
-    color: var(--verde-pastel-oscuro);
-}
-
-.mensaje-vacio {
+/* Mensaje vacío */
+.carta-layout .mensaje-vacio {
     text-align: center;
     font-size: 1.2rem;
     background: var(--cristal-fondo);
@@ -178,32 +166,43 @@ ul.productos li:hover {
     border-radius: 12px;
 }
 
-.img-producto {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-right: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+/* --- Botón Añadir al Carrito --- */
+.carta-layout .btn-carrito {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 6px;
+    background-color: #c68c53;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    font-size: 0.95rem;
 }
 
-.info-prod {
+.carta-layout .btn-carrito:hover {
+    background-color: #b2793f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.carta-layout .form-carrito {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    gap: 1rem;
 }
-
 
 /* --- 4. COLUMNA DERECHA: ESPECIALIDAD --- */
-.columna-lateral {
+.carta-layout .columna-lateral {
     position: sticky;
     top: 110px;
     height: fit-content;
     z-index: 10;
 }
 
-/* Tarjeta especial */
-.tarjeta-especialidad {
+.carta-layout .tarjeta-especialidad {
     background: var(--cristal-fondo);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -215,72 +214,43 @@ ul.productos li:hover {
     transition: transform 0.3s ease;
 }
 
-.tarjeta-especialidad:hover {
+.carta-layout .tarjeta-especialidad:hover {
     transform: translateY(-5px);
     border-color: var(--rojo-japones);
 }
 
 /* --- 5. RESPONSIVE --- */
 @media (max-width: 900px) {
-
-    main.carta-layout {
+    .carta-layout {
         grid-template-columns: 1fr;
         gap: 2rem;
         margin-top: 20px;
     }
 
-    .menu-categorias {
+    .carta-layout .menu-categorias {
         display: none;
     }
 
-    .columna-lateral {
+    .carta-layout .columna-lateral {
         position: static;
         order: -1;
     }
 
-    ul.productos li {
+    .carta-layout ul.productos li {
         flex-wrap: wrap;
         gap: 0.5rem;
     }
 
-    .info-prod {
+    .carta-layout .info-prod {
         width: 100%;
     }
 
-    .meta-prod {
+    .carta-layout .meta-prod {
         width: 100%;
         justify-content: space-between;
     }
 
-    .precio {
+    .carta-layout .precio {
         font-size: 1.1rem;
     }
-}
-
-/* Botón Añadir al Carrito */
-.btn-carrito {
-    display: inline-block;
-    padding: 8px 16px;
-    margin-top: 6px;
-    background-color: #c68c53; /* café suave */
-    color: #fff;
-    font-weight: 500;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    text-align: center;
-    font-size: 0.95rem;
-}
-
-.btn-carrito:hover {
-    background-color: #b2793f; /* tono más oscuro al pasar el mouse */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.form-carrito {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
 }
