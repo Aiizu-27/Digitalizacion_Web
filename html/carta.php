@@ -103,8 +103,8 @@ if ($resultProductos && $resultProductos->num_rows > 0) {
         echo "<li>";
         echo "<div class='info-prod'>";
 
-        if (!empty($row['IMAGEN'])) {
-            echo "<img src='assets/img/productos/" . htmlspecialchars($row['IMAGEN']) . "' 
+        if (!empty($row['RUTA_IMAGEN'])) {
+            echo "<img src='assets/img/productos/" . htmlspecialchars($row['RUTA_IMAGEN']) . "' 
                 alt='" . htmlspecialchars($row['NOMBRE']) . "' 
                 class='img-producto'>";
         }
