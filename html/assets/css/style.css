@@ -2,372 +2,62 @@
   outline: 1px solid rgb(21, 0, 255) !important;
 }*/
 
-html, body {
-    margin: 0;
-    padding-top: 80px;
-    height: auto;         /* permite que el body crezca según el contenido */
-    min-height: 100vh;    /* al menos ocupa toda la ventana visible */
-    background: var(--fondo);
+/* =============================
+   RESET Y BOX-SIZING
+   ============================= */
+* {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* =============================
+   VARIABLES (importadas)
+   ============================= */
+@import url('variables.css');
+
+/* =============================
+   ESTILOS GLOBALES
+   ============================= */
+html, body {
     font-family: 'CooperBold', sans-serif;
     font-weight: bold;
-}
-
-/* ============================= */
-/* PÁGINA INICIAL */
-/* ============================= */
-/* Contenedor inicial que ocupa toda la pantalla visible */
-/* --- CONTENEDOR DEL VIDEO FIJO --- */
-.contenedor-fijo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  z-index: 0; /* detrás de todo */
-}
-
-/* --- VIDEO DE FONDO --- */
-.video-fondo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-/* Contenido encima del video */
-.contenido-sobre-video {
-    position: relative;
-    z-index: 1;              /* encima del video */
+    min-height: 100vh;
+    background: var(--fondo);
     color: var(--texto-principal);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;            /* centra verticalmente */
+    padding-top: 80px; /* para header fijo */
 }
 
-
-/* --- CONTENIDO PRINCIPAL SCROLLEABLE --- */
-.contenido-principal {
-  position: relative;
-  z-index: 5;
-  margin-top: calc(100vh + 80px);
-  padding-bottom: 10px; /* deja aire antes del footer */
-  background: linear-gradient(
-    to bottom,
-    rgba(243, 240, 233, 0.05) 0%,
-    rgba(128, 0, 0, 0.15) 100%
-  );
+/* Links por defecto */
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.fila1, .fila2, .fila3 {
-    width: 95%;
-    margin: 2rem auto 0 auto;
-    display: grid;
-    gap: 10px;
-}
-
-/* Fila 1 */
-.fila1 { grid-template-columns: 2fr 1fr; min-height: 300px; height: auto;}
-.div1 {border-radius: 10px 0 0 10px; }
-.div2 {border-radius: 0 10px 10px 0; }
-
-/* Fila 2 */
-.fila2 { grid-template-columns: 1fr 1fr; min-height: 250px; height: auto;}
-.div3 { border-radius: 10px 0 0 10px; }
-.div4 {border-radius: 0 10px 10px 0; }
-
-/* Última fila (fila3) */
-.fila3 {
-   min-height: 300px; 
-   height: auto;
-}
-/* Div interno de fila3 */
-.div5 {
-  border-radius: 10px; /* solo esquinas superiores redondeadas */
-}
-
-.div1, .div2, .div3, .div4, .div5 {
-  background: var(--cristal-fondo);       /* semitransparente usando variable */
-  backdrop-filter: blur(10px);            /* desenfoque de fondo */
-  -webkit-backdrop-filter: blur(10px);    /* Safari */
-  border-radius: 15px;
-  border: 1px solid var(--cristal-borde); /* borde sutil usando variable */
-  color: var(--texto-principal);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  transition: all 0.3s ease; /* suaviza hover o animaciones */
-}
-
-.div1:hover, .div2:hover, .div3:hover, .div4:hover, .div5:hover {
-  background: var(--cristal-hover);       /* fondo al pasar el mouse */
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px var(--cristal-sombra); /* sombra usando variable */
-}
-
-.div2 {
-    flex-direction: column;          /* Para que el texto y la imagen estén en columna */
-    text-align: center;              /* Centrar texto */
-    padding: 2rem 1rem;              /* Espacio interno */
-    gap: 1rem;                       /* Separación entre elementos internos */
-}
-
-.div2 h1 {
-    font-size: 2rem;
-    color: var(--rojo-japones);                     /* Texto blanco sobre rojo */
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
-}
-
-.div2 p {
-    font-size: 1rem;
-    color: var(--texto-principal);
-    max-width: 300px;                /* Limitar ancho del texto */
-    margin: 0 auto 1rem auto;        /* Centrado y margen inferior */
-    line-height: 1.5;
-}
-
-.div2 .imagen-app img {
-    width: 120px;                     /* Tamaño adecuado del logo de app */
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    transition: transform 0.3s;
-}
-
-.div2 .imagen-app img:hover {
-    transform: scale(1.05);          /* Pequeña animación al pasar el mouse */
-}
-
-
-/* ============================= */
-/* FORMULARIO / LOGIN Y REGISTRO */
-/* ============================= */
-/* Aseguramos que el formulario baje lo suficiente y no se superponga con el header */
-.registroContenido {
-    margin-top: 80px;
-    padding: 2rem;
-    display: flex;
-    justify-content: center; /* centra el formulario horizontalmente */
-    background-color: transparent !important; /* elimina el fondo crema */
-}
-
-.formulario {
-    max-width: 400px;
-    width: 90%;
-    padding: 2rem;
-    border-radius: 10px;
-
-    /* Efecto cristal */
-    background: rgba(255, 255, 255, 0.1); /* Fondo translúcido */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde suave */
-    backdrop-filter: blur(10px); /* Desenfoque del fondo */
-    -webkit-backdrop-filter: blur(10px); /* Para Safari */
-
-    /* Otros estilos */
-    box-sizing: border-box;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1); /* Sombra suave */
-    color: var(--texto); /* Asegúrate de tener una variable para el color del texto */
-}
-
-.cajas { 
-    position: relative; 
-    margin-bottom: 1.5rem; 
-}
-
-.cajas input {
-    width: 100%;
-    padding: 10px 10px 10px 5px;
-    font-size: 1rem;
-    border: none;
-    border-bottom: 2px solid var(--rojo-japones);
-    background: transparent;
-    outline: none;
-    color: var(--texto-principal);
-}
-
-.cajas label {
-    position: absolute;
-    top: 10px;
-    left: 5px;
-    color: var(--texto-principal);
-    transition: .3s;
-}
-
-.cajas input:focus + label,
-.cajas input:not(:placeholder-shown) + label {
-    top: -10px;
-    font-size: 0.8rem;
-    color: var(--rojo-japones);
-}
-
-/* Botones de enviar */
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: var(--rojo-japones);
-    border: none;
-    color: var(--texto-principal);
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover { background-color: var(--rojo-oscuro); }
-
-/* ============================= */
-/* PASSWORD BOX / ICONO OJO */
-/* ============================= */
-.password-box {
-    position: relative;
-}
-
-.password-box .icono-ojo {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: var(--rojo-japones);
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.password-box .icono-ojo:hover { color: var(--rojo-oscuro); }
-
-.password-box .icono-ojo svg {
-    width: 100%;
-    height: 100%;
-    stroke: currentColor;
-}
-
-/* ============================= */
-/* TABS LOGIN / REGISTRO */
-/* ============================= */
-.form-tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
-    /* Espacio extra arriba para los tabs */
-    margin-bottom: 1.5rem;
-}
-
-.form-tabs button {
-    flex: 1;
-    padding: 0.8rem 1rem;
-    border: none;
-    background: var(--verde-pastel);
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.form-tabs button.active {
-    background: var(--rojo-japones);
-    color: var(--texto-principal);
-}
-
-/* ============================= */
-/* SECCIÓN SOBRE NOSOTROS */
-/* ============================= */
-.RedesSociales {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
-
-
-/* ============================= */
-/* PANEL DE USUARIO */
-/* ============================= */
-
-/* Ajuste para que no choque con el header fijo */
-.panel-usuario {
-    max-width: 600px;
-
-    /* Solo bajar lo necesario, no auto ni demás márgenes */
-    margin: 100px auto 40px;
-
-    padding: 2rem;
-    background-color: var(--cristal-fondo);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--cristal-borde);
-    border-radius: 12px;
-    box-shadow: 0 6px 20px var(--cristal-sombra);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--texto-principal);
-    transition: background-color 0.3s ease;
-}
-
-/* Título de bienvenida */
-.panel-usuario h1 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 28px;
-    color: var(--rojo-japones);
-}
-
-/* Contenedor de información del usuario */
-.info-usuario {
-    background: var(--cristal-fondo);
-    border: 1px solid var(--cristal-borde);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 30px;
-}
-
-/* Cada línea de información */
-.info-usuario p {
-    font-size: 16px;
-    margin: 10px 0;
-    color: var(--texto-principal);
-}
-
-/* Negrita para los títulos */
-.info-usuario p strong {
-    color: var(--rojo-japones);
-}
-
-/* Botón de cerrar sesión */
-.panel-usuario form button {
+/* Imágenes por defecto */
+img {
+    max-width: 100%;
     display: block;
-    width: 100%;
-    padding: 12px;
-    background-color: var(--rojo-japones);
-    color: var(--fondo);
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
+}
+
+/* Contenedores globales */
+.contenido-principal {
+    position: relative;
+    z-index: 5;
+    padding-bottom: 10px; /* espacio antes del footer */
+}
+
+/* Clases generales de botones (globales) */
+button {
     cursor: pointer;
-    transition: all 0.3s ease;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
 }
 
-.panel-usuario form button:hover {
-    background-color: var(--rojo-oscuro);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-/* Responsivo */
+/* Responsive global */
 @media (max-width: 500px) {
-    .panel-usuario {
-        margin: 100px 20px 30px 20px;
-        padding: 20px;
-    }
-    .panel-usuario h1 {
-        font-size: 22px;
+    html, body {
+        font-size: 14px;
     }
 }
