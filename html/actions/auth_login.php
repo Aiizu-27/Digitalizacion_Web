@@ -1,7 +1,7 @@
 <?php
 // actions/auth_login.php
 session_start();
-require_once "../includes/config.php"; // tu conexión a la BD
+require_once "../includes/config.php"; // Conexión a la BD
 
 $correo = trim($_POST['correo'] ?? '');
 $pass   = $_POST['contrasena'] ?? '';
@@ -28,8 +28,7 @@ if ($resultado->num_rows === 1) {
     // Verificar contraseña
     if (password_verify($pass, $usuario['CONTRASENA'])) {
 
-        // Seguridad extra
-        session_regenerate_id(true);
+        session_regenerate_id(true); // Seguridad extra
 
         $_SESSION['ID_USUARIO']       = $usuario['ID_USUARIO'];
         $_SESSION['NOMBRE']           = $usuario['NOMBRE'];
@@ -41,12 +40,8 @@ if ($resultado->num_rows === 1) {
         if ($usuario['CAMBIAR_PASSWORD']) {
             echo "cambiar_password";
         } else {
-            // REDIRECCIONAR SEGÚN ROL
-            if ($usuario['ROL'] === 'ADMIN') {
-                echo "login_ok_admin";  // Admin va al dashboard_admin.php
-            } else {
-                echo "login_ok_cliente"; // Cliente/Trabajador va al panel normal
-            }
+            // Devuelve respuesta según rol
+            echo $usuario['ROL'] === 'ADMIN' ? "login_ok_admin" : "login_ok_cliente";
         }
 
     } else {

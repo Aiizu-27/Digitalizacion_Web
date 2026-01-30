@@ -59,33 +59,41 @@ document.addEventListener('DOMContentLoaded', () => {
     togglePassword("claveLogin", "iconoOjoLogin");
     togglePassword("claveRegistro", "iconoOjoRegistro");
 
-    // ---------- LOGIN con redirección ----------
+    // ---------- Login con redirección ----------
     const formLogin = document.getElementById("formLogin");
     if(formLogin){
         formLogin.addEventListener('submit', function(e){
             e.preventDefault();
             const formData = new FormData(this);
 
-            fetch('actions/auth_login.php', { method:'POST', body: formData })
+            // Ruta absoluta recomendada
+            fetch('/actions/auth_login.php', { method:'POST', body: formData })
             .then(res => res.text())
             .then(data => {
                 const respuesta = data.trim();
 
-                if(respuesta === "login_ok_admin"){
-                    window.location.href = "panel/dashboard_admin.php"; // Admin
-                } else if(respuesta === "login_ok_cliente"){
-                    window.location.href = "panel.php"; // Cliente/Trabajador
-                } else if(respuesta === "contraseña_incorrecta"){
-                    alert("Contraseña incorrecta");
-                } else if(respuesta === "usuario_no_encontrado"){
-                    alert("Usuario no encontrado");
-                } else if(respuesta === "cambiar_password"){
-                    alert("Debes cambiar tu contraseña primero");
-                    window.location.href = "panel/cambiar_password.php";
-                } else if(respuesta === "campos_vacios"){
-                    alert("Por favor, completa todos los campos");
-                } else {
-                    alert("Error inesperado: " + respuesta);
+                switch(respuesta){
+                    case "login_ok_admin":
+                        window.location.href = "/panel/dashboard_admin.php";
+                        break;
+                    case "login_ok_cliente":
+                        window.location.href = "/panel.php";
+                        break;
+                    case "cambiar_password":
+                        alert("Debes cambiar tu contraseña primero");
+                        window.location.href = "/panel/cambiar_password.php";
+                        break;
+                    case "contraseña_incorrecta":
+                        alert("Contraseña incorrecta");
+                        break;
+                    case "usuario_no_encontrado":
+                        alert("Usuario no encontrado");
+                        break;
+                    case "campos_vacios":
+                        alert("Por favor, completa todos los campos");
+                        break;
+                    default:
+                        console.error("Respuesta inesperada de PHP:", respuesta);
                 }
             })
             .catch(err => console.error("Error en fetch:", err));
