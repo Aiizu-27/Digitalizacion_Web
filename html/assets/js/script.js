@@ -68,14 +68,36 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const formData = new FormData(this);
 
-            // === Depuración temporal ===
             fetch('/actions/auth_login.php', { method:'POST', body: formData })
             .then(res => res.text())
             .then(data => {
-                // Mostrar la respuesta cruda de PHP
-                console.log("Respuesta cruda de PHP:", data);
-                console.log("Códigos ASCII:", data.split("").map(c => c.charCodeAt(0)));
-                alert("Respuesta cruda de PHP:\n" + data);
+                const respuesta = data.trim();
+                switch(respuesta){
+                    case "login_ok_admin":
+                        window.location.href = "/panel/dashboard_admin.php";
+                        break;
+                    case "login_ok_trabajador":
+                        window.location.href = "/panel/dashboard_trabajador.php";
+                        break;
+                    case "login_ok_cliente":
+                        window.location.href = "/panel/dashboard_cliente.php";
+                        break;
+                    case "cambiar_password":
+                        alert("Debes cambiar tu contraseña primero");
+                        window.location.href = "/panel/cambiar_contrasena.php";
+                        break;
+                    case "contraseña_incorrecta":
+                        alert("Contraseña incorrecta");
+                        break;
+                    case "usuario_no_encontrado":
+                        alert("Usuario no encontrado");
+                        break;
+                    case "campos_vacios":
+                        alert("Por favor completa todos los campos");
+                        break;
+                    default:
+                        console.error("Respuesta inesperada de PHP:", respuesta);
+                }
             })
             .catch(err => console.error("Error en fetch:", err));
         });

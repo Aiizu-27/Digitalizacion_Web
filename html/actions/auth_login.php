@@ -1,9 +1,9 @@
 <?php
 // actions/auth_login.php
 session_start();
-require_once "../includes/config.php"; // Ajusta según tu config.php
+require_once "../includes/config.php";
 
-header('Content-Type: text/plain'); // Solo texto
+header('Content-Type: text/plain');
 
 $correo = trim($_POST['correo'] ?? '');
 $pass   = $_POST['contrasena'] ?? '';
@@ -13,46 +13,43 @@ if (empty($correo) || empty($pass)) {
     exit;
 }
 
-// Buscar usuario
+// Preparar y ejecutar query
 $stmt = $conn->prepare("SELECT ID_USUARIO, NOMBRE, APELLIDOS, CONTRASENA, ROL, CAMBIAR_PASSWORD 
                         FROM USUARIOS 
                         WHERE EMAIL = ?");
+if (!$stmt) {
+    echo "error_sql_prepare";
+    exit;
+}
+
 $stmt->bind_param("s", $correo);
-$stmt->execute();
+
+if (!$stmt->execute()) {
+    echo "error_sql_execute";
+    exit;
+}
+
 $resultado = $stmt->get_result();
 
-if ($resultado->num_rows === 1) {
+if ($resultado && $resultado->num_rows === 1) {
     $usuario = $resultado->fetch_assoc();
 
-    if (password_verify($pass, $usuario['CONTRASENA'])) {
+    if (!$usuario) {
+        echo "error_fetch_assoc";
+        exit;
+    }
 
+    // Asegurarse de que las columnas existen
+    $rol = strtoupper($usuario['ROL'] ?? '');
+    $hashPass = $usuario['CONTRASENA'] ?? '';
+
+    if (password_verify($pass, $hashPass)) {
         session_regenerate_id(true);
-
         $_SESSION['ID_USUARIO']       = $usuario['ID_USUARIO'];
         $_SESSION['NOMBRE']           = $usuario['NOMBRE'];
         $_SESSION['APELLIDOS']        = $usuario['APELLIDOS'];
-        $_SESSION['ROL']              = $usuario['ROL'];
+        $_SESSION['ROL']              = $rol;
         $_SESSION['CAMBIAR_PASSWORD'] = $usuario['CAMBIAR_PASSWORD'];
-
-        $rol = strtoupper($usuario['ROL']);
-
-// Depuración temporal
-ob_clean(); // Limpia cualquier salida previa
-header('Content-Type: text/plain'); 
-echo "DEBUG:\n";
-echo "Correo recibido: '" . $correo . "'\n";
-echo "Número de filas encontradas: " . $resultado->num_rows . "\n";
-
-if ($resultado->num_rows === 1) {
-    $usuario = $resultado->fetch_assoc();
-    echo "ROL recibido: '" . $usuario['ROL'] . "'\n";
-    echo "CONTRASEÑA HASH DB: " . $usuario['CONTRASENA'] . "\n";
-} else {
-    echo "Usuario no encontrado\n";
-}
-
-exit; // Para que solo muestre esto
-
 
         if ($usuario['CAMBIAR_PASSWORD']) {
             echo "cambiar_password";
@@ -75,4 +72,5 @@ exit; // Para que solo muestre esto
     exit;
 }
 
+$stmt->close();
 $conn->close();
