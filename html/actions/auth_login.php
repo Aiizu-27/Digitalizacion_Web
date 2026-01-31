@@ -36,6 +36,24 @@ if ($resultado->num_rows === 1) {
 
         $rol = strtoupper($usuario['ROL']);
 
+// Depuración temporal
+ob_clean(); // Limpia cualquier salida previa
+header('Content-Type: text/plain'); 
+echo "DEBUG:\n";
+echo "Correo recibido: '" . $correo . "'\n";
+echo "Número de filas encontradas: " . $resultado->num_rows . "\n";
+
+if ($resultado->num_rows === 1) {
+    $usuario = $resultado->fetch_assoc();
+    echo "ROL recibido: '" . $usuario['ROL'] . "'\n";
+    echo "CONTRASEÑA HASH DB: " . $usuario['CONTRASENA'] . "\n";
+} else {
+    echo "Usuario no encontrado\n";
+}
+
+exit; // Para que solo muestre esto
+
+
         if ($usuario['CAMBIAR_PASSWORD']) {
             echo "cambiar_password";
         } elseif ($rol === 'ADMIN') {
