@@ -57,4 +57,3 @@ if ($resultado->num_rows === 1) {
 
 $stmt->close();
 $conn->close();
-?>
