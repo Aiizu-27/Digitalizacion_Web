@@ -60,31 +60,31 @@ document.addEventListener('DOMContentLoaded', () => {
     togglePassword("claveRegistro", "iconoOjoRegistro");
 
     // ---------- Login con redirección ----------
+    document.addEventListener("DOMContentLoaded", () => {
     const formLogin = document.getElementById("formLogin");
-    if(formLogin){
-        formLogin.addEventListener('submit', function(e){
+
+    if (formLogin) {
+        formLogin.addEventListener("submit", function(e){
             e.preventDefault();
             const formData = new FormData(this);
 
-            // Ruta absoluta recomendada
             fetch('/actions/auth_login.php', { method:'POST', body: formData })
             .then(res => res.text())
             .then(data => {
                 const respuesta = data.trim();
-
                 switch(respuesta){
                     case "login_ok_admin":
-                        window.location.href = "panel/dashboard_admin.php";
+                        window.location.href = "/panel/dashboard_admin.php";
                         break;
                     case "login_ok_trabajador":
-                        window.location.href = "panel/dashboard_trabajador.php";
-                    break;
+                        window.location.href = "/panel/dashboard_trabajador.php";
+                        break;
                     case "login_ok_cliente":
-                        window.location.href = "panel/dashboard_cliente.php";
+                        window.location.href = "/panel/dashboard_cliente.php";
                         break;
                     case "cambiar_password":
                         alert("Debes cambiar tu contraseña primero");
-                        window.location.href = "panel/cambiar_contraseña.php";
+                        window.location.href = "/panel/cambiar_contrasena.php";
                         break;
                     case "contraseña_incorrecta":
                         alert("Contraseña incorrecta");
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         alert("Usuario no encontrado");
                         break;
                     case "campos_vacios":
-                        alert("Por favor, completa todos los campos");
+                        alert("Por favor completa todos los campos");
                         break;
                     default:
                         console.error("Respuesta inesperada de PHP:", respuesta);
@@ -102,6 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(err => console.error("Error en fetch:", err));
         });
     }
+});
+
 
     // ---------- REGISTRO ----------
     const formRegistro = document.getElementById("formRegistro");

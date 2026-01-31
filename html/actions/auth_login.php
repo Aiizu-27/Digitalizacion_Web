@@ -1,23 +1,22 @@
 <?php
 // actions/auth_login.php
 session_start();
-require_once "../includes/config.php"; // Conexión a la BD
+require_once "../includes/config.php"; // Ajusta según tu config.php
+
+header('Content-Type: text/plain'); // Solo texto
 
 $correo = trim($_POST['correo'] ?? '');
 $pass   = $_POST['contrasena'] ?? '';
 
-// Validación básica
 if (empty($correo) || empty($pass)) {
     echo "campos_vacios";
     exit;
 }
 
-// Buscar usuario en USUARIOS
-$stmt = $conn->prepare(
-    "SELECT ID_USUARIO, NOMBRE, APELLIDOS, CONTRASENA, ROL, CAMBIAR_PASSWORD
-     FROM USUARIOS
-     WHERE EMAIL = ?"
-);
+// Buscar usuario
+$stmt = $conn->prepare("SELECT ID_USUARIO, NOMBRE, APELLIDOS, CONTRASENA, ROL, CAMBIAR_PASSWORD 
+                        FROM USUARIOS 
+                        WHERE EMAIL = ?");
 $stmt->bind_param("s", $correo);
 $stmt->execute();
 $resultado = $stmt->get_result();
@@ -25,10 +24,9 @@ $resultado = $stmt->get_result();
 if ($resultado->num_rows === 1) {
     $usuario = $resultado->fetch_assoc();
 
-    // Verificar contraseña
     if (password_verify($pass, $usuario['CONTRASENA'])) {
 
-        session_regenerate_id(true); // Seguridad extra
+        session_regenerate_id(true);
 
         $_SESSION['ID_USUARIO']       = $usuario['ID_USUARIO'];
         $_SESSION['NOMBRE']           = $usuario['NOMBRE'];
@@ -36,24 +34,27 @@ if ($resultado->num_rows === 1) {
         $_SESSION['ROL']              = $usuario['ROL'];
         $_SESSION['CAMBIAR_PASSWORD'] = $usuario['CAMBIAR_PASSWORD'];
 
-        // Si debe cambiar la contraseña
+        $rol = strtoupper($usuario['ROL']);
+
         if ($usuario['CAMBIAR_PASSWORD']) {
             echo "cambiar_password";
-        } elseif ($usuario['ROL'] === 'ADMIN') {
+        } elseif ($rol === 'ADMIN') {
             echo "login_ok_admin";
-        }elseif($usuario['ROL'] === 'TRABAJADOR') {
+        } elseif ($rol === 'TRABAJADOR') {
             echo "login_ok_trabajador";
         } else {
             echo "login_ok_cliente";
-        };
+        }
+        exit;
 
     } else {
         echo "contraseña_incorrecta";
+        exit;
     }
 
 } else {
     echo "usuario_no_encontrado";
+    exit;
 }
 
-$stmt->close();
 $conn->close();
