@@ -4,8 +4,8 @@ session_start();
 require_once "../includes/config.php";
 
 // 1. Imprimimos lo que llega realmente del formulario (RAW)
-//echo "--- PASO 1: Lo que llega del Formulario ---\n";
-//var_dump($_POST); 
+echo "--- PASO 1: Lo que llega del Formulario ---\n";
+var_dump($_POST); 
 
 // 2. Intentamos asignarlo a las variables
 $correo = trim($_POST['correo'] ?? '');

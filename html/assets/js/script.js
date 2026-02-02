@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if(respuesta === "login_ok"){
                     // RUTA CORREGIDA: Ir al controlador 'panel.php'
-                    window.location.href = "panel.php"; 
+                    window.location.href = "pedidos.php"; 
                 } else if(respuesta === "contraseña_incorrecta"){
                     alert("Contraseña incorrecta");
                 } else if(respuesta === "usuario_no_encontrado"){
