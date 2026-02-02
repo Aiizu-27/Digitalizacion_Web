@@ -10,6 +10,7 @@
     <!-- CSS Componentes -->
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/registro.css">
 </head>
 <body>
 

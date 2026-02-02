@@ -6,7 +6,7 @@ require_once "../includes/config.php";
 // 1. RECOGIDA DE DATOS
 // Usamos el operador ?? '' para evitar errores si no llega nada
 $correo = trim($_POST['correo'] ?? '');
-$pass   = trim($_POST['contrasena'] ?? '');
+$pass   = $_POST['contrasena'] ?? '';
 
 // 2. VALIDACIÓN
 // Si alguno de los dos está vacío, paramos aquí.
