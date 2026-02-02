@@ -1,13 +1,13 @@
 <?php
 
-var_dump($_POST);
-exit;
 // actions/auth_login.php
 session_start();
 require_once "../includes/config.php";
 
 $correo = trim($_POST['correo'] ?? '');
-$pass   = $_POST['contrasena'] ?? '';
+$pass = trim($_POST['contrasena'] ?? '');
+
+var_dump($correo, $pass); // depurar antes de empty
 
 // Validación básica  //sale esto cuando se hace click en el iniciar sesion
 if (empty($correo) || empty($pass)) {
