@@ -1,29 +1,21 @@
 <?php
-
 // actions/auth_login.php
 session_start();
 require_once "../includes/config.php";
 
-// === ZONA DE DEPURACIÓN ===
-// Esto interrumpirá el código y te devolverá los datos brutos
-echo "DEBUG_DATOS: ";
-var_dump($_POST); 
-echo " | INPUT_STREAM: ";
-echo file_get_contents('php://input'); 
-exit; // ¡IMPORTANTE! Cortamos aquí para que no siga ejecutando
-// ==========================
-
+// 1. RECOGIDA DE DATOS
+// Usamos el operador ?? '' para evitar errores si no llega nada
 $correo = trim($_POST['correo'] ?? '');
-$pass = trim($_POST['contrasena'] ?? '');
+$pass   = trim($_POST['contrasena'] ?? '');
 
-
-// Validación básica  //sale esto cuando se hace click en el iniciar sesion
-if ($correo == "" || $pass == "") {
-        echo "campos_vacios";
+// 2. VALIDACIÓN
+// Si alguno de los dos está vacío, paramos aquí.
+if (empty($correo) || empty($pass)) {
+    echo "campos_vacios";
     exit;
 }
 
-// Buscar usuario en USUARIOS
+// 3. LÓGICA DE BASE DE DATOS
 $stmt = $conn->prepare(
     "SELECT ID_USUARIO, NOMBRE, APELLIDOS, CONTRASENA, ROL, CAMBIAR_PASSWORD
      FROM USUARIOS
@@ -39,7 +31,7 @@ if ($resultado->num_rows === 1) {
     // Verificar contraseña
     if (password_verify($pass, $usuario['CONTRASENA'])) {
 
-        // Seguridad extra
+        // Seguridad: regenerar ID de sesión para evitar robos
         session_regenerate_id(true);
 
         $_SESSION['ID_USUARIO']       = $usuario['ID_USUARIO'];
@@ -48,7 +40,7 @@ if ($resultado->num_rows === 1) {
         $_SESSION['ROL']              = $usuario['ROL'];
         $_SESSION['CAMBIAR_PASSWORD'] = $usuario['CAMBIAR_PASSWORD'];
 
-        // Si debe cambiar la contraseña
+        // Respuesta final para JS
         if ($usuario['CAMBIAR_PASSWORD']) {
             echo "cambiar_password";
         } else {
