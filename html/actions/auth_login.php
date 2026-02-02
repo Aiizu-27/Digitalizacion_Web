@@ -7,7 +7,7 @@ require_once "../includes/config.php";
 $correo = trim($_POST['correo'] ?? '');
 $pass = trim($_POST['contrasena'] ?? '');
 
-var_dump($correo, $pass); // depurar antes de empty
+//var_dump($correo, $pass); // depurar antes de empty
 
 // Validación básica  //sale esto cuando se hace click en el iniciar sesion
 if (empty($correo) || empty($pass)) {
