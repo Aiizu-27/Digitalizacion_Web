@@ -10,7 +10,7 @@ $pass = trim($_POST['contrasena'] ?? '');
 //var_dump($correo, $pass); // depurar antes de empty
 
 // Validación básica  //sale esto cuando se hace click en el iniciar sesion
-if (empty($correo) || empty($pass)) {
+if ($correo == "" || $pass == "") {
     echo "campos_vacios";
     exit;
 }
