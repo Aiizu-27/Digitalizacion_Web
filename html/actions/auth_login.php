@@ -15,13 +15,17 @@ if (empty($correo) || empty($pass)) {
     exit;
 }
 
+// --- LÍNEA DE PRUEBA ---
+var_dump($_POST); exit;
+// -----------------------
+
 // 3. LÓGICA DE BASE DE DATOS
 $stmt = $conn->prepare(
     "SELECT ID_USUARIO, NOMBRE, APELLIDOS, CONTRASENA, ROL, CAMBIAR_PASSWORD
      FROM USUARIOS
      WHERE EMAIL = ?"
 );
-$stmt->bind_param("s", $correo);
+$stmt->bind_param("s", $correo);  //pone el correo introducido en iniciar sesion en el select
 $stmt->execute();
 $resultado = $stmt->get_result();
 
