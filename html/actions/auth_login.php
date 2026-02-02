@@ -1,4 +1,7 @@
 <?php
+
+var_dump($_POST);
+exit;
 // actions/auth_login.php
 session_start();
 require_once "../includes/config.php";
@@ -6,7 +9,7 @@ require_once "../includes/config.php";
 $correo = trim($_POST['correo'] ?? '');
 $pass   = $_POST['contrasena'] ?? '';
 
-// Validación básica
+// Validación básica  //sale esto cuando se hace click en el iniciar sesion
 if (empty($correo) || empty($pass)) {
     echo "campos_vacios";
     exit;
