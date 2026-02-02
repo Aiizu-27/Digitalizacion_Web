@@ -46,7 +46,7 @@
                     </svg>
                 </span>
             </div>
-            <button type="submit">Iniciar sesión</button>
+            <button type="button">Iniciar sesión</button>
         </form>
 
         <!-- FORMULARIO REGISTRO -->
