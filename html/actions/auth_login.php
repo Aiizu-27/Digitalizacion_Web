@@ -30,13 +30,12 @@ if (empty($pass)) {
     echo "EL IF DICE: \$pass tiene datos (INOCENTE)\n";
 }
 
-exit; // Paramos aquí para que leas el informe
 // 2. VALIDACIÓN
 // Si alguno de los dos está vacío, paramos aquí.
-if (empty($correo) || empty($pass)) {
-    echo "campos_vacios";
-    exit;
-}
+//if (empty($correo) || empty($pass)) {
+//    echo "campos_vacios";
+ //   exit;
+//}
 
 
 // 3. LÓGICA DE BASE DE DATOS
