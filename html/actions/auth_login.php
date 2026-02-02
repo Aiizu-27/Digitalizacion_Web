@@ -4,16 +4,20 @@
 session_start();
 require_once "../includes/config.php";
 
+// --- DEBUG PRO: Guardar lo que llega en un fichero ---
+// Esto creará un archivo llamado "debug_log.txt" en la carpeta actions
+file_put_contents('debug_log.txt', print_r($_POST, true)); 
+//
+
 $correo = trim($_POST['correo'] ?? '');
 $pass = trim($_POST['contrasena'] ?? '');
 
-var_dump($correo, $pass); // depurar antes de empty
 
 // Validación básica  //sale esto cuando se hace click en el iniciar sesion
-//if ($correo == "" || $pass == "") {
-//    echo "campos_vacios";
-//    exit;
-//}
+if ($correo == "" || $pass == "") {
+        echo "campos_vacios";
+    exit;
+}
 
 // Buscar usuario en USUARIOS
 $stmt = $conn->prepare(
