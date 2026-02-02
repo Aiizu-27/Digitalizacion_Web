@@ -9,7 +9,7 @@ require_once "../includes/config.php";
 
 // 2. Intentamos asignarlo a las variables
 $correo = trim($_POST['correo'] ?? '');
-$pass   = trim($_POST['contrasena'] ?? '');
+$pass   = $_POST['contrasena'] ?? '';
 
 // 3. Imprimimos cómo han quedado las variables
 //echo "\n--- PASO 2: Cómo quedan las variables ---\n";
@@ -32,10 +32,10 @@ $pass   = trim($_POST['contrasena'] ?? '');
 
 // 2. VALIDACIÓN
 // Si alguno de los dos está vacío, paramos aquí.
-//if (empty($correo) || empty($pass)) {
-//    echo "campos_vacios";
- //   exit;
-//}
+if (empty($correo) || empty($pass)) {
+    echo "campos_vacios";
+   exit;
+}
 
 
 // 3. LÓGICA DE BASE DE DATOS
