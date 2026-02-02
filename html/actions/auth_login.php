@@ -4,31 +4,31 @@ session_start();
 require_once "../includes/config.php";
 
 // 1. Imprimimos lo que llega realmente del formulario (RAW)
-echo "--- PASO 1: Lo que llega del Formulario ---\n";
-var_dump($_POST); 
+//echo "--- PASO 1: Lo que llega del Formulario ---\n";
+//var_dump($_POST); 
 
 // 2. Intentamos asignarlo a las variables
 $correo = trim($_POST['correo'] ?? '');
 $pass   = trim($_POST['contrasena'] ?? '');
 
 // 3. Imprimimos cómo han quedado las variables
-echo "\n--- PASO 2: Cómo quedan las variables ---\n";
-echo "Variable \$correo: "; var_dump($correo);
-echo "Variable \$pass:   "; var_dump($pass);
+//echo "\n--- PASO 2: Cómo quedan las variables ---\n";
+//echo "Variable \$correo: "; var_dump($correo);
+//echo "Variable \$pass:   "; var_dump($pass);
 
 // 4. Hacemos la prueba de la verdad
-echo "\n--- PASO 3: ¿Qué dice el IF? ---\n";
-if (empty($correo)) {
-    echo "EL IF DICE: \$correo está vacío (CULPABLE)\n";
-} else {
-    echo "EL IF DICE: \$correo tiene datos (INOCENTE)\n";
-}
+//echo "\n--- PASO 3: ¿Qué dice el IF? ---\n";
+//if (empty($correo)) {
+//    echo "EL IF DICE: \$correo está vacío (CULPABLE)\n";
+//} else {
+//    echo "EL IF DICE: \$correo tiene datos (INOCENTE)\n";
+//}
 
-if (empty($pass)) {
-    echo "EL IF DICE: \$pass está vacío (CULPABLE)\n";
-} else {
-    echo "EL IF DICE: \$pass tiene datos (INOCENTE)\n";
-}
+//if (empty($pass)) {
+ //   echo "EL IF DICE: \$pass está vacío (CULPABLE)\n";
+//} else {
+//    echo "EL IF DICE: \$pass tiene datos (INOCENTE)\n";
+//}
 
 // 2. VALIDACIÓN
 // Si alguno de los dos está vacío, paramos aquí.
