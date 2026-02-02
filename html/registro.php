@@ -10,7 +10,6 @@
     <!-- CSS Componentes -->
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/registro.css">
 </head>
 <body>
 
@@ -26,7 +25,7 @@
         </div>
 
         <!-- FORMULARIO LOGIN -->
-        <form id="formLogin" action="actions/auth_login.php" method="POST">
+        <form id="formLogin">
             <div class="cajas">
                 <input type="email" name="correo" placeholder=" " required>
                 <label>Correo electrónico</label>
