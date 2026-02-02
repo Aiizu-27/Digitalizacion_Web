@@ -10,10 +10,10 @@ $pass = trim($_POST['contrasena'] ?? '');
 //var_dump($correo, $pass); // depurar antes de empty
 
 // Validación básica  //sale esto cuando se hace click en el iniciar sesion
-if ($correo == "" || $pass == "") {
-    echo "campos_vacios";
-    exit;
-}
+//if ($correo == "" || $pass == "") {
+//    echo "campos_vacios";
+//    exit;
+//}
 
 // Buscar usuario en USUARIOS
 $stmt = $conn->prepare(
