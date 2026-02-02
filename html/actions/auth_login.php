@@ -4,10 +4,14 @@
 session_start();
 require_once "../includes/config.php";
 
-// --- DEBUG PRO: Guardar lo que llega en un fichero ---
-// Esto creará un archivo llamado "debug_log.txt" en la carpeta actions
-file_put_contents('debug_log.txt', print_r($_POST, true)); 
-//
+// === ZONA DE DEPURACIÓN ===
+// Esto interrumpirá el código y te devolverá los datos brutos
+echo "DEBUG_DATOS: ";
+var_dump($_POST); 
+echo " | INPUT_STREAM: ";
+echo file_get_contents('php://input'); 
+exit; // ¡IMPORTANTE! Cortamos aquí para que no siga ejecutando
+// ==========================
 
 $correo = trim($_POST['correo'] ?? '');
 $pass = trim($_POST['contrasena'] ?? '');
