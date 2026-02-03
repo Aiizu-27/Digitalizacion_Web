@@ -1,4 +1,19 @@
 <?php
+
+// --- EL CHIVATO ---
+echo "<h1>DIAGNÓSTICO</h1>";
+echo "<h3>Lo que llega del formulario:</h3>";
+var_dump($_POST);
+echo "<hr>";
+echo "<h3>Lo que PHP intenta leer:</h3>";
+echo "Correo: [" . ($_POST['correo'] ?? 'NO EXISTE') . "]<br>";
+echo "Contrasena: [" . ($_POST['contrasena'] ?? 'NO EXISTE') . "]<br>";
+exit; // <--- Paramos aquí para leer
+// ------------------
+
+session_start();
+// ... resto del código ...
+
 // actions/auth_login.php
 session_start();
 require_once "../includes/config.php";
