@@ -3,14 +3,12 @@
 session_start();
 require_once "../includes/config.php";
 
-// 1. RECOGIDA DE DATOS (Usando los nombres que hemos confirmado)
+// 1. RECOGIDA DE DATOS
 $correo = trim($_POST['correo'] ?? '');
 $pass   = trim($_POST['contrasena'] ?? '');
 
 // 2. VALIDACIÓN
-// Como ya vimos que llegan datos, este IF ya NO saltará.
 if (empty($correo) || empty($pass)) {
-    // Si por algún milagro falla, te devuelve al index con error
     header("Location: ../index.php?error=campos_vacios");
     exit;
 }
