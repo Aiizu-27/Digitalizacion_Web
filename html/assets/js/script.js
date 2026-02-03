@@ -96,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const respuesta = data.trim(); 
                 
                 if(respuesta === "login_ok"){
-                    // RUTA CORREGIDA: Ir al controlador 'panel.php'
                     window.location.href = "pedidos.php"; 
                 } else if(respuesta === "contraseña_incorrecta"){
                     alert("Contraseña incorrecta");
