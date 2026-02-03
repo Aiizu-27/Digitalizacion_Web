@@ -7,6 +7,8 @@ require_once "../includes/config.php";
 $correo = trim($_POST['correo'] ?? '');
 $pass   = trim($_POST['contrasena'] ?? '');
 
+var_dump("Correo: ", $correo, "Contraseña: ", $pass);
+
 // 2. VALIDACIÓN
 if (empty($correo) || empty($pass)) {
     header("Location: ../index.php?error=campos_vacios");
