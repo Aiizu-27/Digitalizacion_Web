@@ -26,7 +26,7 @@
         </div>
 
         <!-- FORMULARIO LOGIN -->
-        <form action="actions/auth_login.php" method="POST">
+        <form id="formLogin" action="actions/auth_login.php" method="POST">
     
     <div class="cajas">
         <input type="email" name="correo" placeholder=" " required>
