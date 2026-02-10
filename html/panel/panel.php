@@ -26,5 +26,5 @@ $conn->close();
 
 // 5. CARGAR LA VISTA (El HTML)
 // Las variables creadas arriba ($usuario_info) estarán disponibles en este archivo
-include "views/panel_vista.php";
+include "../views/panel_vista.php";
 ?>
