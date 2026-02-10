@@ -83,31 +83,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
 
     // LOGIN
-    if(formLogin) { // Solo ejecutar si el formulario existe
-        formLogin.addEventListener('submit', function(e){
-            e.preventDefault();
-            const formData = new FormData(this);
+    document.getElementById('formLogin').addEventListener('submit', function(e){
+        e.preventDefault();
+        const formData = new FormData(this);
 
-            // RUTA CORREGIDA: 'actions/auth_login.php' (sin ../)
-            fetch('actions/auth_login.php', { method:'POST', body: formData })
-            .then(res => res.text())
-            .then(data => {
-                // Limpiamos espacios por si acaso
-                const respuesta = data.trim(); 
-                
-                if(respuesta === "login_ok"){
-                    window.location.href = "pedidos.php"; 
-                } else if(respuesta === "contraseña_incorrecta"){
-                    alert("Contraseña incorrecta");
-                } else if(respuesta === "usuario_no_encontrado"){
-                    alert("Usuario no encontrado");
-                } else {
-                    alert("Error: " + respuesta);
-                }
-            })
-            .catch(err => console.error("Error en fetch:", err));
-        });
-    }
+        fetch('actions/auth_login.php', { method:'POST', body: formData })
+        .then(res => res.text())
+        .then(data => {
+            if(data === "login_ok"){
+                window.location.href = "panel_usuario.php";
+            } else if(data === "contraseña_incorrecta"){
+                alert("Contraseña incorrecta");
+            } else if(data === "usuario_no_encontrado"){
+                alert("Usuario no encontrado");
+            } else {
+                alert("Error desconocido: " + data);
+            }
+        })
+        .catch(err => console.error("Error en fetch:", err));
+    });
 
     // REGISTRO
     if(formRegistro) { // Solo ejecutar si el formulario existe
