@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(res => res.text())
         .then(data => {
             if(data === "login_ok"){
-                window.location.href = "panel_usuario.php";
+                window.location.href = "panel/panel.php";
             } else if(data === "contraseña_incorrecta"){
                 alert("Contraseña incorrecta");
             } else if(data === "usuario_no_encontrado"){
