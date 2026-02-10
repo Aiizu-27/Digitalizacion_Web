@@ -20,7 +20,7 @@ $correo = $_POST['correo'] ?? '';
 $pass = $_POST['contrasena'] ?? '';
 
 // Preparar y ejecutar consulta
-$stmt = $conn->prepare("SELECT ID_USUARIO, NOMBRE, APELLIDOS, EMAIL, CONTRASENA FROM USUARIO WHERE EMAIL = ?");
+$stmt = $conn->prepare("SELECT ID_USUARIO, NOMBRE, APELLIDOS, EMAIL, CONTRASENA FROM USUARIOS WHERE EMAIL = ?");
 $stmt->bind_param("s", $correo);
 $stmt->execute();
 $resultado = $stmt->get_result();
