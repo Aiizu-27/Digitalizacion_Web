@@ -35,7 +35,13 @@
   <div class="contenido-principal">
     <div class="fila1">
       <div class="div1">
+        <h1>Tu dosis diaria de café y productividad</h1>
+        <p>Café de especialidad, espacios de trabajo y reservas online en el corazón de Madrid.</p>
 
+        <div class="div1-botones">
+          <a href="carta.php" class="btn-principal">Pedir ahora</a>
+          <a href="reservas.php" class="btn-secundario">Reservar sala</a>
+        </div>
       </div>
       <div class="div2">
         <h2>Descarga la app</h2>

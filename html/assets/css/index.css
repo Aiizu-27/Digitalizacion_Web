@@ -164,19 +164,23 @@
 /* BOTONES PRINCIPALES */
 /* ============================= */
 .btn-principal {
-    display: inline-block;
-    background-color: var(--rojo-japones);
-    color: #fff;
-    padding: 0.7rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  background-color: --rojo-japones;
+  color: white;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-right: 10px;
+  transition: 0.3s;
 }
 
 .btn-principal:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-    filter: brightness(0.9);
+  background-color: #80231c;
+}
+
+.btn-secundario {
+  border: 2px solid white;
+  color: white;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 8px;
 }
