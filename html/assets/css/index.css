@@ -164,7 +164,7 @@
 /* BOTONES PRINCIPALES */
 /* ============================= */
 .btn-principal {
-  background-color: --rojo-japones;
+  background-color: var(--rojo-japones);
   color: white;
   padding: 12px 25px;
   text-decoration: none;
@@ -174,12 +174,12 @@
 }
 
 .btn-principal:hover {
-  background-color: #80231c;
+  background-color: var(--rojo-oscuro);
 }
 
 .btn-secundario {
   border: 2px solid white;
-  color: white;
+  color: var(--rojo-oscuro);
   padding: 12px 25px;
   text-decoration: none;
   border-radius: 8px;
