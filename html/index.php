@@ -39,9 +39,11 @@
 
       </div>
       <div class="div2">
-        <H1>Descarga la app</H1>
-        <br>
-        <p>Ve a la tienda y descarga nuestra app para no perderte nada y tener todo al alcance de tu mano</p>
+        <h2>Descarga la app</h2>
+        <p>
+        Gestiona tus pedidos, acumula puntos y reserva tu espacio desde cualquier lugar.
+        Todo tu Daily Dose en la palma de tu mano.
+        </p>
         <div class="imagen-app">
           <img src="assets/img/APP.png">
         </div>
@@ -49,12 +51,27 @@
     </div>
 
     <div class="fila2">
-      <div class="div3"></div>
-      <div class="div4"></div>
+      <div class="div3">
+        <h2>Tu experiencia en 4 pasos</h2>
+        <ul class="pasos">
+          <li>Elige tu bebida favorita desde nuestra carta online.</li>
+          <li>Haz tu pedido o reserva tu sala en pocos clics.</li>
+          <li>Acumula puntos con cada compra.</li>
+          <li>Disfruta tu Daily Dose en un entorno pensado para ti.</li>
+        </ul>
+      </div>
+      <div class="div4">
+
+      </div>
     </div>
 
     <div class="fila3">
-      <div class="div5"></div>
+      <div class="div5">
+        <h2>Cada café cuenta</h2>
+        <p>Con nuestro programa de fidelización, cada compra suma puntos.
+        Canjea recompensas, consulta tu historial y disfruta ventajas exclusivas.</p>
+        <a href="registro.php" class="btn-principal">Crear cuenta</a>
+      </div>
     </div>
   </div>
 
