@@ -9,7 +9,7 @@ $correo = $_POST['correo'] ?? '';
 $pass   = $_POST['contrasena'] ?? '';
 
 $stmt = $conn->prepare(
-    "SELECT ID_USUARIO, NOMBRE, APELLIDOS, EMAIL, CONTRASENA, ROL 
+    "SELECT ID_USUARIO, NOMBRE, APELLIDOS, EMAIL, CONTRASENA, LOWER(ROL) AS ROL 
      FROM USUARIOS 
      WHERE EMAIL = ?"
 );

@@ -91,8 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(res => res.json()) // ahora esperamos JSON
         .then(data => {
             if(data.status === "login_ok"){
-                const rol = data.role.toLowerCase(); // Convertimos a minúsculas
-
                 // Redirigir según rol
                 if(rol === "cliente"){
                     window.location.href = "panel/dashboard_cliente.php";
