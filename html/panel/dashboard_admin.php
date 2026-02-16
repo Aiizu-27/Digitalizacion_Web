@@ -3,7 +3,7 @@ session_start();
 require_once "../includes/config.php"; // archivo con conexión a la base de datos
 
 // Verificar si el usuario es admin
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'ADMIN') {
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'admin') {
     header("Location: login.php");
     exit();
 }
