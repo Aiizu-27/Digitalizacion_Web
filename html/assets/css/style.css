@@ -26,10 +26,14 @@ html, body {
     color: var(--texto-principal);
     padding-top: 80px; /* para header fijo */
 
-    background-color: var(--bg-color, #f4f7f6); 
-    background-image: radial-gradient(var(--rojo-japones, #d9534f) 0.5px, transparent 0.5px);
-    background-size: 20px 20px;
-    opacity: 0.9; 
+    /* 1. Ponemos tu verde pastel como color de fondo principal */
+    background-color: var(--verde-pastel);
+    
+    /* 2. Dibujamos los puntitos (he puesto un blanco semitransparente para que quede suave) */
+    background-image: radial-gradient(rgba(255, 255, 255, 0.6) 1.5px, transparent 1.5px);
+    
+    /* 3. Separación de los puntos */
+    background-size: 25px 25px; 
 }
 
 /* Links por defecto */
