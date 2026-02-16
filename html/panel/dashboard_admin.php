@@ -172,7 +172,7 @@ while($row = $result->fetch_assoc()) {
         </div>
     </details>
 
-    <a href="../index.php" class="logout-btn">Cerrar Sesión</a>
+    <a href="../actions/auth_logout.php" class="logout-btn">Cerrar Sesión</a>
 </div>
 
 </body>
