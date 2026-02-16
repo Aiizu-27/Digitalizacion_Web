@@ -4,7 +4,7 @@ require_once "../includes/config.php"; // archivo con conexión a la base de dat
 
 // Verificar si el usuario es admin
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'admin') {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 
