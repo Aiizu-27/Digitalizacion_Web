@@ -92,11 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if(data.status === "login_ok"){
                 // Redirigir según rol
-                if(rol === "cliente"){
+                if(data.rol === "cliente"){
                     window.location.href = "panel/dashboard_cliente.php";
-                } else if(rol === "empleado"){
+                } else if(data.rol === "empleado"){
                     window.location.href = "panel/dashboard_empleado.php";
-                } else if(rol === "admin"){
+                } else if(data.rol === "admin"){
                     window.location.href = "panel/dashboard_admin.php";
                 } else {
                     alert("Rol desconocido: " + data.role);
