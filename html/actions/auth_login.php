@@ -25,7 +25,7 @@ if ($resultado->num_rows > 0) {
         $_SESSION['ROL']        = $usuario['ROL'];
         echo json_encode([
             "status" => "login_ok",
-            "role"   => $usuario['ROL']
+            "rol"   => $usuario['ROL']
         ]);
         exit;
     } else {
