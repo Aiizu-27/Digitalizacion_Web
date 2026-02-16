@@ -23,9 +23,13 @@ html, body {
     font-family: 'CooperBold', sans-serif;
     font-weight: bold;
     min-height: 100vh;
-    background: var(--fondo);
     color: var(--texto-principal);
     padding-top: 80px; /* para header fijo */
+
+    background-color: var(--bg-color, #f4f7f6); 
+    background-image: radial-gradient(var(--rojo-japones, #d9534f) 0.5px, transparent 0.5px);
+    background-size: 20px 20px;
+    opacity: 0.9; 
 }
 
 /* Links por defecto */
