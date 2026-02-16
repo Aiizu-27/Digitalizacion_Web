@@ -1,3 +1,15 @@
+<?php
+// 1. Iniciamos sesión solo si no estaba ya iniciada en el archivo principal
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// 2. RED DE SEGURIDAD: Definimos la ruta base automáticamente si no existe.
+if (!defined('BASE_URL')) {
+    define('BASE_URL', '/'); 
+}
+?>
+
 <header>
   <div class="logo">DAILY DOSE</div>
 
@@ -7,10 +19,10 @@
   <div class="menu-container" id="menu">
     <nav class="menu-header">
       <ul>
-        <li><a href="index.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'activo' : ''; ?>">Inicio</a></li>
-        <li><a href="carta.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'carta.php' ? 'activo' : ''; ?>">Carta</a></li>
-        <li><a href="pedidos.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'pedidos.php' ? 'activo' : ''; ?>">Pedidos</a></li>
-        <li><a href="promociones.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'promociones.php' ? 'activo' : ''; ?>">Promociones</a></li>
+        <li><a href="<?php echo BASE_URL; ?>index.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'activo' : ''; ?>">Inicio</a></li>
+        <li><a href="<?php echo BASE_URL; ?>carta.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'carta.php' ? 'activo' : ''; ?>">Carta</a></li>
+        <li><a href="<?php echo BASE_URL; ?>pedidos.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'pedidos.php' ? 'activo' : ''; ?>">Pedidos</a></li>
+        <li><a href="<?php echo BASE_URL; ?>promociones.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'promociones.php' ? 'activo' : ''; ?>">Promociones</a></li>
       </ul>
     </nav>
   </div>
@@ -40,11 +52,35 @@
       </span>
     </label>
 
-    <a href="registro.php" class="iconoUsuario" title="Iniciar sesión / Registrarse">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="28" height="28">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-              d="M5.121 17.804A9 9 0 0112 15a9 9 0 016.879 2.804M12 12a5 5 0 100-10 5 5 0 000 10z"/>
-      </svg>
-    </a>
+    <?php if(isset($_SESSION['ROL'])): ?>
+      
+      <?php 
+        // Lógica para enviar al usuario a su panel correspondiente usando BASE_URL
+        $rol_actual = strtolower($_SESSION['ROL']);
+        $link_panel = BASE_URL . 'panel/dashboard_cliente.php'; 
+        
+        if($rol_actual == 'admin') {
+            $link_panel = BASE_URL . 'panel/dashboard_admin.php';
+        } elseif($rol_actual == 'empleado' || $rol_actual == 'trabajador') {
+            $link_panel = BASE_URL . 'panel/dashboard_trabajador.php';
+        }
+      ?>
+      <a href="<?php echo $link_panel; ?>" class="iconoUsuario" title="Ir a Mi Panel">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="green" width="28" height="28">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 0112 15a9 9 0 016.879 2.804M12 12a5 5 0 100-10 5 5 0 000 10z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+        </svg>
+      </a>
+
+    <?php else: ?>
+      
+      <a href="<?php echo BASE_URL; ?>registro.php" class="iconoUsuario" title="Iniciar sesión / Registrarse">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="28" height="28">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 0112 15a9 9 0 016.879 2.804M12 12a5 5 0 100-10 5 5 0 000 10z"/>
+        </svg>
+      </a>
+
+    <?php endif; ?>
+
   </div>
 </header>
