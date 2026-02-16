@@ -8,7 +8,7 @@ $pass   = $_POST['contrasena'] ?? '';
 
 // Preparar y ejecutar consulta
 $stmt = $conn->prepare(
-    "SELECT ID_USUARIO, NOMBRE, APELLIDOS, EMAIL, CONTRASENA 
+    "SELECT ID_USUARIO, NOMBRE, APELLIDOS, EMAIL, CONTRASENA, ROL 
      FROM USUARIOS 
      WHERE EMAIL = ?"
 );
@@ -21,14 +21,20 @@ if ($resultado->num_rows > 0) {
 
     // 🔐 Verificar contraseña cifrada
     if (password_verify($pass, $usuario['CONTRASENA'])) {
+        // Guardar datos en sesión
         $_SESSION['ID_USUARIO'] = $usuario['ID_USUARIO'];
         $_SESSION['NOMBRE']     = $usuario['NOMBRE'];
-        echo "login_ok";
+        $_SESSION['ROL']        = $usuario['ROL']; // Ahora sí existe
+        // Devolver JSON con rol para JS
+        echo json_encode([
+            "status" => "login_ok",
+            "role"   => $usuario['ROL']
+        ]);
     } else {
-        echo "contraseña_incorrecta";
+        echo json_encode(["status" => "contraseña_incorrecta"]);
     }
 } else {
-    echo "usuario_no_encontrado";
+    echo json_encode(["status" => "usuario_no_encontrado"]);
 }
 
 $stmt->close();

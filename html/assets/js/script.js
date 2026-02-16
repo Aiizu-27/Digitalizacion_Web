@@ -88,16 +88,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData(this);
 
         fetch('actions/auth_login.php', { method:'POST', body: formData })
-        .then(res => res.text())
+        .then(res => res.json()) // ahora esperamos JSON
         .then(data => {
-            if(data === "login_ok"){
-                window.location.href = "panel/panel.php";
-            } else if(data === "contraseña_incorrecta"){
+            if(data.status === "login_ok"){
+                const rol = data.role.toLowerCase(); // Convertimos a minúsculas
+
+                // Redirigir según rol
+                if(rol === "cliente"){
+                    window.location.href = "panel/dashboard_cliente.php";
+                } else if(rol === "empleado"){
+                    window.location.href = "panel/dashboard_empleado.php";
+                } else if(rol === "admin"){
+                    window.location.href = "panel/dashboard_admin.php";
+                } else {
+                    alert("Rol desconocido: " + data.role);
+                }
+            } else if(data.status === "contraseña_incorrecta"){
                 alert("Contraseña incorrecta");
-            } else if(data === "usuario_no_encontrado"){
+            } else if(data.status === "usuario_no_encontrado"){
                 alert("Usuario no encontrado");
             } else {
-                alert("Error desconocido: " + data);
+                alert("Error desconocido: " + JSON.stringify(data));
             }
         })
         .catch(err => console.error("Error en fetch:", err));

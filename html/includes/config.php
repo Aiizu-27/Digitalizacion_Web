@@ -29,3 +29,17 @@ function debugQuery($stmt) {
     }
 }
 ?>
+
+function esCliente($conn, $idUsuario) {
+    $stmt = $conn->prepare("SELECT 1 FROM CLIENTES WHERE ID_USUARIO=?");
+    $stmt->bind_param("i", $idUsuario);
+    $stmt->execute();
+    return $stmt->get_result()->num_rows > 0;
+}
+
+function esEmpleado($conn, $idUsuario) {
+    $stmt = $conn->prepare("SELECT 1 FROM EMPLEADOS WHERE ID_USUARIO=?");
+    $stmt->bind_param("i", $idUsuario);
+    $stmt->execute();
+    return $stmt->get_result()->num_rows > 0;
+}
