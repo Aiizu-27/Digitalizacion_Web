@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if(data.rol === "admin"){
                     window.location.href = "panel/dashboard_admin.php";
                 } else {
-                    alert("Rol desconocido: " + data.role);
+                    alert("Rol desconocido: " + data.rol);
                 }
             } else if(data.status === "contraseña_incorrecta"){
                 alert("Contraseña incorrecta");

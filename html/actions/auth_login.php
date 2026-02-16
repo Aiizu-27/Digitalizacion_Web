@@ -2,42 +2,35 @@
 session_start();
 require_once "../includes/config.php";
 
-// Evitar cualquier salida accidental
-ob_start(); 
+// Limpiamos cualquier salida previa
+ob_clean();
+header('Content-Type: application/json');
 
 $correo = $_POST['correo'] ?? '';
 $pass   = $_POST['contrasena'] ?? '';
+$response = [];
 
-$stmt = $conn->prepare(
-    "SELECT ID_USUARIO, NOMBRE, APELLIDOS, EMAIL, CONTRASENA, LOWER(ROL) AS ROL 
-     FROM USUARIOS 
-     WHERE EMAIL = ?"
-);
+$stmt = $conn->prepare("SELECT ID_USUARIO, NOMBRE, APELLIDOS, EMAIL, CONTRASENA, LOWER(ROL) AS ROL FROM USUARIOS WHERE EMAIL = ?");
 $stmt->bind_param("s", $correo);
 $stmt->execute();
 $resultado = $stmt->get_result();
 
-if ($resultado->num_rows > 0) {
-    $usuario = $resultado->fetch_assoc();
+if ($usuario = $resultado->fetch_assoc()) {
     if (password_verify($pass, $usuario['CONTRASENA'])) {
         $_SESSION['ID_USUARIO'] = $usuario['ID_USUARIO'];
         $_SESSION['NOMBRE']     = $usuario['NOMBRE'];
         $_SESSION['ROL']        = $usuario['ROL'];
-        echo json_encode([
-            "status" => "login_ok",
-            "rol"   => $usuario['ROL']
-        ]);
-        exit;
+        
+        $response = ["status" => "login_ok", "rol" => $usuario['ROL']];
     } else {
-        echo json_encode(["status" => "contraseña_incorrecta"]);
-        exit;
+        $response = ["status" => "contraseña_incorrecta"];
     }
 } else {
-    echo json_encode(["status" => "usuario_no_encontrado"]);
-    exit;
+    $response = ["status" => "usuario_no_encontrado"];
 }
 
 $stmt->close();
 $conn->close();
-ob_end_flush();
-?>
+
+echo json_encode($response);
+exit;
