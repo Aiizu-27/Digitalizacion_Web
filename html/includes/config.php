@@ -28,7 +28,6 @@ function debugQuery($stmt) {
         echo "Error en consulta: " . $stmt->error;
     }
 }
-?>
 
 function esCliente($conn, $idUsuario) {
     $stmt = $conn->prepare("SELECT 1 FROM CLIENTES WHERE ID_USUARIO=?");
