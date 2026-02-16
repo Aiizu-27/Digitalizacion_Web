@@ -1,3 +1,7 @@
+<?php
+session_start(); 
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -112,16 +116,30 @@ if ($resultProductos && $resultProductos->num_rows > 0) {
         echo "<span class='nombre'>" . htmlspecialchars($row['NOMBRE']) . "</span>";
         echo "</div>";
 
-        // PRECIO + BOTÓN AÑADIR AL CARRITO
+        // PRECIO + LÓGICA DE BOTÓN AÑADIR AL CARRITO
         echo "<div class='meta-prod'>";
         echo "<span class='precio'>" . number_format($row['PRECIO'], 2) . "€</span>";
-        echo "<form class='form-carrito' method='POST' action='carrito.php'>
-                <input type='hidden' name='id_producto' value='" . $row['ID_PRODUCTO'] . "'>
-                <input type='hidden' name='producto' value='" . htmlspecialchars($row['NOMBRE']) . "'>
-                <input type='hidden' name='precio' value='" . $row['PRECIO'] . "'>
-                <input type='hidden' name='stock' value='" . $row['STOCK'] . "'>
-                <button type='submit' class='btn-carrito'>Añadir al carrito</button>
-              </form>";
+
+        // MÁGIA AQUÍ: Comprobamos si la sesión es de un cliente
+        if (isset($_SESSION['ROL']) && strtolower($_SESSION['ROL']) === 'cliente') {
+            
+            // SI ES CLIENTE: Mostramos el botón de añadir al carrito
+            echo "<form class='form-carrito' method='POST' action='carrito.php'>
+                    <input type='hidden' name='id_producto' value='" . $row['ID_PRODUCTO'] . "'>
+                    <input type='hidden' name='producto' value='" . htmlspecialchars($row['NOMBRE']) . "'>
+                    <input type='hidden' name='precio' value='" . $row['PRECIO'] . "'>
+                    <input type='hidden' name='stock' value='" . $row['STOCK'] . "'>
+                    <button type='submit' class='btn-carrito'>Añadir al carrito</button>
+                  </form>";
+                  
+        } else {
+            
+            // SI NO HA INICIADO SESIÓN (o es admin/trabajador): Mostramos un mensaje o botón de aviso
+            // (Le pongo un poco de estilo en línea, pero puedes llevarlo a tu carta.css usando la clase 'btn-login-pedido')
+            echo "<a href='index.php' class='btn-login-pedido' style='font-size: 0.9em; color: #d9534f; text-decoration: underline;'>Inicia sesión para pedir</a>";
+            
+        }
+
         echo "</div>";
 
         echo "</li>";
