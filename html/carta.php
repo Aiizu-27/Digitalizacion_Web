@@ -136,7 +136,7 @@ if ($resultProductos && $resultProductos->num_rows > 0) {
             
             // SI NO HA INICIADO SESIÓN (o es admin/trabajador): Mostramos un mensaje o botón de aviso
             // (Le pongo un poco de estilo en línea, pero puedes llevarlo a tu carta.css usando la clase 'btn-login-pedido')
-            echo "<a href='index.php' class='btn-login-pedido' style='font-size: 0.9em; color: #d9534f; text-decoration: underline;'>Inicia sesión para pedir</a>";
+            echo "<a href='registro.php' class='btn-login-pedido'>Inicia sesión para pedir</a>";
             
         }
 

@@ -183,7 +183,7 @@
 }
 
 .carta-layout .btn-carrito:hover {
-    background-color: #b2793f;
+    background-color: var(--verde-oscuro);
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
@@ -253,4 +253,10 @@
     .carta-layout .precio {
         font-size: 1.1rem;
     }
+}
+
+.btn-login-pedido{
+    font-size: 0.9em;
+    color: var(--rojo-japones); 
+    text-decoration: underline;
 }
