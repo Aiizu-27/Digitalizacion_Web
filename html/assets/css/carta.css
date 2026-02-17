@@ -183,7 +183,7 @@
 }
 
 .carta-layout .btn-carrito:hover {
-    background-color: var(--verde-oscuro);
+    background-color: var(--verde-pastel-oscuro);
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
@@ -192,6 +192,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+.carta-layout .btn-login-pedido{
+    font-size: 0.9em;
+    color: var(--rojo-japones); 
+    text-decoration: underline;
 }
 
 /* --- 4. COLUMNA DERECHA: ESPECIALIDAD --- */
@@ -253,10 +259,4 @@
     .carta-layout .precio {
         font-size: 1.1rem;
     }
-}
-
-.btn-login-pedido{
-    font-size: 0.9em;
-    color: var(--rojo-japones); 
-    text-decoration: underline;
 }
