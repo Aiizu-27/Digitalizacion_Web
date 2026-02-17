@@ -59,7 +59,6 @@ $stmt_favs->close();
 <head>
     <meta charset="UTF-8">
     <title>Mi Panel - DailyDose</title>
-    <link rel="stylesheet" href="../assets/css/panel.css"> 
 
     <!-- CSS Global -->
     <link rel="stylesheet" href="../assets/css/variables.css">
