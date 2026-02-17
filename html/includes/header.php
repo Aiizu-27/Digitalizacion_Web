@@ -21,10 +21,7 @@ if (!defined('BASE_URL')) {
       <ul>
         <li><a href="<?php echo BASE_URL; ?>index.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'activo' : ''; ?>">Inicio</a></li>
         <li><a href="<?php echo BASE_URL; ?>carta.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'carta.php' ? 'activo' : ''; ?>">Carta</a></li>
-
-        <?php if(isset($_SESSION['ROL'])): ?>
-            <li><a href="<?php echo BASE_URL; ?>promociones.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'promociones.php' ? 'activo' : ''; ?>">Promociones</a></li>
-        <?php endif; ?>
+        <li><a href="<?php echo BASE_URL; ?>promociones.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'promociones.php' ? 'activo' : ''; ?>">Promociones</a></li>
       </ul>
     </nav>
   </div>
