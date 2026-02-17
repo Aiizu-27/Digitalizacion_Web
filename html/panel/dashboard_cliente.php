@@ -2,25 +2,56 @@
 session_start();
 require_once "../includes/config.php";
 
-// --- SEGURIDAD ---
-// Verificamos que esté logueado y que su rol sea EXACTAMENTE 'cliente'
 if (!isset($_SESSION['ROL']) || $_SESSION['ROL'] !== 'cliente') {
     header("Location: ../index.php");
     exit();
 }
 
-// Obtenemos el ID del usuario actual de la sesión
 $id_usuario = $_SESSION['ID_USUARIO'];
 
-// --- OBTENER DATOS DEL CLIENTE (Opcional pero recomendado) ---
-// Podemos sacar sus datos frescos de la BD por si actualizó algo
-$stmt = $conn->prepare("SELECT NOMBRE, APELLIDOS, EMAIL FROM USUARIOS WHERE ID_USUARIO = ?");
+// 1. DATOS DEL CLIENTE (Y sacamos también su ID_CLIENTE para buscar sus pedidos)
+$stmt = $conn->prepare("
+    SELECT u.NOMBRE, u.APELLIDOS, u.EMAIL, c.ID_CLIENTE, c.TELEFONO, c.PUNTOS 
+    FROM USUARIOS u
+    LEFT JOIN CLIENTES c ON u.ID_USUARIO = c.ID_USUARIO
+    WHERE u.ID_USUARIO = ?
+");
 $stmt->bind_param("i", $id_usuario);
 $stmt->execute();
-$resultado = $stmt->get_result();
-$cliente = $resultado->fetch_assoc();
+$cliente = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
+// Guardamos el ID_CLIENTE en una variable (si no existe, le ponemos 0 por seguridad)
+$id_cliente_actual = $cliente['ID_CLIENTE'] ?? 0;
+
+// 2. ÚLTIMOS 5 PEDIDOS DEL CLIENTE (Adaptado a tu tabla PEDIDOS)
+$stmt_pedidos = $conn->prepare("
+    SELECT ID_PEDIDO, FECHA, TOTAL 
+    FROM PEDIDOS 
+    WHERE ID_CLIENTE = ? 
+    ORDER BY FECHA DESC 
+    LIMIT 5
+");
+$stmt_pedidos->bind_param("i", $id_cliente_actual);
+$stmt_pedidos->execute();
+$ultimos_pedidos = $stmt_pedidos->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt_pedidos->close();
+
+// 3. TUS FAVORITOS (Basado en la cantidad total comprada en DETALLE_PEDIDO)
+$stmt_favs = $conn->prepare("
+    SELECT pr.NOMBRE, SUM(dp.CANTIDAD) as VECES_PEDIDO 
+    FROM DETALLE_PEDIDO dp
+    JOIN PEDIDOS p ON dp.ID_PEDIDO = p.ID_PEDIDO
+    JOIN PRODUCTOS pr ON dp.ID_PRODUCTO = pr.ID_PRODUCTO
+    WHERE p.ID_CLIENTE = ?
+    GROUP BY dp.ID_PRODUCTO, pr.NOMBRE
+    ORDER BY VECES_PEDIDO DESC
+    LIMIT 3
+");
+$stmt_favs->bind_param("i", $id_cliente_actual);
+$stmt_favs->execute();
+$favoritos = $stmt_favs->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt_favs->close();
 ?>
 
 <!DOCTYPE html>
