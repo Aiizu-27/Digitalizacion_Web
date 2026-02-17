@@ -104,3 +104,36 @@ footer {
     justify-content: center;
   }
 }
+
+/* Contenedor de los iconos */
+.iconos-redes {
+    display: flex;
+    gap: 15px; /* Espacio entre los iconos */
+    margin-top: 10px;
+}
+
+/* Estilo del enlace que envuelve al SVG */
+.icono-red {
+    /* Color inicial: usa tu variable de texto principal */
+    color: var(--texto-principal, #333); 
+    
+    display: inline-flex; /* Para que se alineen perfectamente */
+    transition: transform 0.3s ease, color 0.3s ease; /* Animación suave */
+}
+
+/* Tamaño de los SVGs */
+.icono-red svg {
+    width: 24px;
+    height: 24px;
+    /* ESTO ES CLAVE: Hereda el color del enlace padre */
+    fill: currentColor; 
+}
+
+/* Efecto HOVER (al pasar el ratón) */
+.icono-red:hover {
+    /* Cambia al color de tu marca */
+    color: var(--rojo-japones, #d9534f); 
+    
+    /* Un pequeño saltito hacia arriba */
+    transform: translateY(-3px); 
+}
