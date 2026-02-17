@@ -31,4 +31,6 @@ if (!isset($_SESSION['ROL'])) {
   <?php include "includes/header.php"; ?>
 
   <?php include "includes/footer.php"; ?>
+
+  <script src="assets/js/script.js"></script>
 </html>
