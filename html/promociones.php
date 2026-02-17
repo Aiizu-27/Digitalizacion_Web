@@ -41,7 +41,7 @@ $result_promos = $conn->query($sql_promos);
     <!-- CSS Componentes -->
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/promociones.css">
+    <link rel="stylesheet" href="assets/css/promociones.css?v=1">
 
 </head>
 
