@@ -75,21 +75,43 @@ $stmt_favs->close();
 
 <?php include "../includes/header.php"; ?>
 
-</div> <div style="text-align: center; margin-top: 50px; margin-bottom: 20px;">
-        <a href="../actions/auth_logout.php" style="background-color: #dc3545; color: white; padding: 12px 25px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 1.1em; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 4px 6px rgba(220, 53, 69, 0.2);" onmouseover="this.style.backgroundColor='#c82333'" onmouseout="this.style.backgroundColor='#dc3545'">
-            
+<main class="dashboard-container">
+    
+    <div class="welcome-header">
+        <h2>¡Hola, <?= htmlspecialchars($cliente['NOMBRE'] ?? 'Cliente') ?>!</h2>
+        <p>Bienvenido a tu panel de DailyDose. Aquí tienes el control de tu cuenta.</p>
+    </div>
+
+    <div class="perfil-seccion">
+        
+        <div class="datos-personales">
+            <h3>Mis Datos</h3>
+            <p><strong>Nombre:</strong> <?= htmlspecialchars(($cliente['NOMBRE'] ?? '') . ' ' . ($cliente['APELLIDOS'] ?? '')) ?></p>
+            <p><strong>Correo:</strong> <?= htmlspecialchars($cliente['EMAIL'] ?? '') ?></p>
+            <p><strong>Teléfono:</strong> <?= htmlspecialchars($cliente['TELEFONO'] ?? 'No especificado') ?></p>
+        </div>
+
+        <div class="puntos-card">
+            <p class="titulo-puntos">Daily Points</p>
+            <div class="cantidad-puntos">
+                <?= htmlspecialchars($cliente['PUNTOS'] ?? '0') ?>
+            </div>
+            <p class="desc-puntos">¡Canjéalos por recompensas!</p>
+        </div>
+
+    </div>
+
+    <div class="logout-container">
+        <a href="../actions/auth_logout.php" class="btn-logout">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
             </svg>
-
             Cerrar Sesión
         </a>
     </div>
-</div>
 
-<?php include "../includes/footer.php"; ?>
+</main> <?php include "../includes/footer.php"; ?>
 
-<!-- JS -->
 <script src="../assets/js/script.js"></script>
 
 </body>
