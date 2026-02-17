@@ -1,0 +1,197 @@
+/* ========================================= */
+/* ESTILOS DEL PANEL DE CLIENTE (GLASSMORPHISM) */
+/* ========================================= */
+
+.dashboard-container {
+    max-width: 1100px;
+    /* Damos margen superior por si tu header es fijo (absolute/fixed) */
+    margin: 120px auto 40px auto; 
+    padding: 0 20px;
+    color: var(--texto-principal);
+}
+
+/* ========================================= */
+/* CAJAS EFECTO CRISTAL (Reutilizando tu core)*/
+/* ========================================= */
+.welcome-header,
+.perfil-seccion,
+.caja-panel,
+.card {
+    background: var(--cristal-fondo);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--cristal-borde);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+}
+
+/* Efecto Hover idéntico al de tu index */
+.welcome-header:hover,
+.perfil-seccion:hover,
+.caja-panel:hover,
+.card:hover {
+    background: var(--cristal-hover);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--cristal-sombra);
+}
+
+/* ========================================= */
+/* TIPOGRAFÍAS Y CABECERAS */
+/* ========================================= */
+.welcome-header h2,
+.caja-panel h3,
+.card h3,
+.datos-personales h3 {
+    color: var(--rojo-japones);
+    margin-top: 0;
+    font-family: 'CooperBold', sans-serif;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+}
+
+/* ========================================= */
+/* SECCIÓN PERFIL Y PUNTOS */
+/* ========================================= */
+.perfil-seccion {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    border-left: 5px solid var(--rojo-japones); /* Toque distintivo */
+}
+
+.datos-personales p {
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: var(--texto-principal);
+}
+
+/* Tarjeta de puntos destacada */
+.puntos-card {
+    background: var(--verde-pastel);
+    padding: 1.5rem 2.5rem;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 180px;
+    box-shadow: inset 0 2px 5px rgba(255,255,255,0.3);
+}
+
+body.dark-mode .puntos-card {
+    /* En modo oscuro, el verde cambia y el texto necesita contraste */
+    color: var(--texto-principal);
+}
+
+.puntos-card .titulo-puntos {
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--verde-pastel-oscuro);
+}
+
+body.dark-mode .puntos-card .titulo-puntos {
+    color: var(--texto-principal);
+}
+
+.puntos-card .cantidad-puntos {
+    font-size: 3.5rem;
+    font-family: 'CooperBold', sans-serif;
+    margin: 10px 0;
+    color: var(--texto-principal);
+}
+
+/* ========================================= */
+/* GRID DE TARJETAS (Navegación y Listas) */
+/* ========================================= */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Listas dentro de cajas (Favoritos, Pedidos) */
+.caja-panel ul {
+    list-style: none;
+    padding: 0;
+}
+
+.caja-panel li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--cristal-borde);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.caja-panel li:last-child {
+    border-bottom: none;
+}
+
+/* Tablas de pedidos */
+.caja-panel table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.caja-panel th {
+    border-bottom: 2px solid var(--cristal-borde);
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.caja-panel td {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+body.dark-mode .caja-panel td {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ========================================= */
+/* BOTONES */
+/* ========================================= */
+.card .btn {
+    display: inline-block;
+    margin-top: 15px;
+    background-color: var(--rojo-japones);
+    color: white;
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.card .btn:hover {
+    background-color: var(--rojo-oscuro);
+}
+
+.logout-container {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+.btn-logout {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: transparent;
+    border: 2px solid var(--rojo-japones);
+    color: var(--rojo-japones);
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: var(--rojo-japones);
+    color: white;
+    box-shadow: 0 4px 15px var(--cristal-sombra);
+}
