@@ -12,14 +12,9 @@
 }
 
 /* =============================
-   VARIABLES (importadas)
-   ============================= */
-@import url('variables.css');
-
-/* =============================
    ESTILOS GLOBALES
    ============================= */
-html, body {
+body {
     font-family: 'CooperBold', sans-serif;
     font-weight: bold;
     min-height: 100vh;
