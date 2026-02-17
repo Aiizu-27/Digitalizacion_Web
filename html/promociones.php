@@ -87,7 +87,7 @@ $result_promos = $conn->query($sql_promos);
             <?php endwhile; ?>
 
         <?php else: ?>
-            <p style="text-align: center; width: 100%;">Actualmente no hay promociones disponibles. ¡Vuelve pronto!</p>
+            <p>Actualmente no hay promociones disponibles. ¡Vuelve pronto!</p>
         <?php endif; ?>
     </section>
 
