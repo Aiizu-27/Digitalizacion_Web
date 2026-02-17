@@ -66,16 +66,16 @@
         </ul>
       </div>
       <div class="div4">
-
+        <h2>Cada café cuenta</h2>
+          <p>Con nuestro programa de fidelización, cada compra suma puntos.
+          Canjea recompensas, consulta tu historial y disfruta ventajas exclusivas.</p>
+          <a href="registro.php" class="btn-principal">Crear cuenta</a>
       </div>
     </div>
 
     <div class="fila3">
       <div class="div5">
-        <h2>Cada café cuenta</h2>
-        <p>Con nuestro programa de fidelización, cada compra suma puntos.
-        Canjea recompensas, consulta tu historial y disfruta ventajas exclusivas.</p>
-        <a href="registro.php" class="btn-principal">Crear cuenta</a>
+        
       </div>
     </div>
   </div>
