@@ -1,0 +1,198 @@
+/* ========================================= */
+/* ESTILOS DEL PANEL DE ADMIN (GLASSMORPHISM) */
+/* ========================================= */
+
+.container {
+    max-width: 1000px;
+    margin: 100px auto 40px auto; /* Margen superior para el header */
+    padding: 30px;
+    background: var(--cristal-fondo);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--cristal-borde);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px var(--cristal-sombra);
+    color: var(--texto-principal);
+}
+
+.container h2 {
+    color: var(--rojo-japones);
+    font-family: 'CooperBold', sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+}
+
+/* ========================================= */
+/* ACORDEONES (DETAILS & SUMMARY) */
+/* ========================================= */
+details {
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--cristal-borde);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode details {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+summary {
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1em;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--texto-principal);
+    transition: background 0.3s;
+}
+
+body.dark-mode summary {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+summary:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode summary:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary:after {
+    content: "▼";
+    font-size: 0.8em;
+    color: var(--rojo-japones);
+    transition: transform 0.3s;
+}
+
+details[open] summary:after {
+    transform: rotate(180deg);
+}
+
+.details-content {
+    padding: 20px;
+    border-top: 1px solid var(--cristal-borde);
+}
+
+/* ========================================= */
+/* TABLAS DE GESTIÓN */
+/* ========================================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 15px 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--cristal-borde);
+}
+
+th {
+    color: var(--verde-pastel-oscuro);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+}
+
+body.dark-mode th {
+    color: var(--verde-pastel);
+}
+
+/* ========================================= */
+/* FORMULARIOS E INPUTS */
+/* ========================================= */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--cristal-borde);
+    border-radius: 8px;
+    color: var(--texto-principal);
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode input,
+body.dark-mode select {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--rojo-japones);
+    box-shadow: 0 0 8px rgba(244, 43, 29, 0.3);
+}
+
+/* ========================================= */
+/* BOTONES */
+/* ========================================= */
+button {
+    cursor: pointer;
+    padding: 10px 20px;
+    background: var(--rojo-japones);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+button:hover {
+    background: var(--rojo-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+button.btn-danger {
+    background: transparent;
+    border: 2px solid #dc3545;
+    color: #dc3545;
+}
+
+button.btn-danger:hover {
+    background: #dc3545;
+    color: white;
+}
+
+/* ========================================= */
+/* BOTÓN DE LOGOUT ADMIN */
+/* ========================================= */
+.logout-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    margin: 40px auto 0;
+    background: transparent;
+    border: 2px solid var(--texto-principal);
+    color: var(--texto-principal);
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: var(--texto-principal);
+    color: var(--fondo);
+}
