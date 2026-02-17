@@ -55,7 +55,7 @@ $result_promos = $conn->query($sql_promos);
         <h1>Centro de Recompensas</h1>
         <p>Canjea tus Daily Points por productos gratis y descuentos exclusivos.</p>
         <div class="marcador-puntos">
-            <?= htmlspecialchars($puntos_actuales) ?> <span>☕</span>
+            <?= htmlspecialchars($puntos_actuales) ?>
         </div>
     </section>
 
@@ -68,7 +68,7 @@ $result_promos = $conn->query($sql_promos);
                         <h3><?= htmlspecialchars($promo['NOMBRE']) ?></h3>
                         <p><?= htmlspecialchars($promo['DESCRIPCION']) ?></p>
                         <div class="coste-puntos">
-                            💎 Valor: <?= $promo['PUNTOS_REQUERIDOS'] ?> puntos
+                            Valor: <?= $promo['PUNTOS_REQUERIDOS'] ?> puntos
                         </div>
                     </div>
 
