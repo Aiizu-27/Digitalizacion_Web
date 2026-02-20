@@ -22,6 +22,10 @@ if (!defined('BASE_URL')) {
         <li><a href="<?php echo BASE_URL; ?>index.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'activo' : ''; ?>">Inicio</a></li>
         <li><a href="<?php echo BASE_URL; ?>carta.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'carta.php' ? 'activo' : ''; ?>">Carta</a></li>
         <li><a href="<?php echo BASE_URL; ?>promociones.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'promociones.php' ? 'activo' : ''; ?>">Promociones</a></li>
+        
+        <?php if (isset($_SESSION['ID_USUARIO'])): ?>
+            <li><a href="<?php echo BASE_URL; ?>mis_pedidos.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'mis_pedidos.php' ? 'activo' : ''; ?>">Mis Pedidos</a></li>
+        <?php endif; ?>
       </ul>
     </nav>
   </div>
