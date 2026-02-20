@@ -83,7 +83,7 @@ $total_pedido = 0;
                     <span class="precio-total"><?= number_format($total_pedido, 2) ?> €</span>
                 </div>
 
-                <form action="actions/procesar_pedido.php" method="POST" class="form-checkout">
+                <form action="actions/procesar_carrito.php" method="POST" class="form-checkout">
                     <div class="cajas">
                         <input type="number" name="numero_mesa" id="numero_mesa" placeholder=" " min="1" max="50">
                         <label for="numero_mesa">Nº de Mesa (Solo local)</label>
