@@ -26,7 +26,7 @@ $total_pedido = 0;
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     
-    <link rel="stylesheet" href="assets/css/carrito.css?v=1">
+    <link rel="stylesheet" href="assets/css/carrito.css>
 </head>
 
 <body>
