@@ -3,12 +3,13 @@ session_start();
 require_once "../includes/config.php";
 
 // --- SEGURIDAD ---
-if (!isset($_SESSION['ROL']) || $_SESSION['ROL'] != 'trabajador') {
+// He añadido un strtoupper y trim por si el rol en BD viene diferente
+if (!isset($_SESSION['ROL']) || strtoupper(trim($_SESSION['ROL'])) != 'TRABAJADOR') {
     header("Location: ../index.php");
     exit();
 }
 
-// 1. OBTENER LA LISTA DE EMPLEADOS (Para el desplegable)
+// 1. OBTENER LA LISTA DE EMPLEADOS
 $sql_empleados = "SELECT e.ID_EMPLEADO, u.NOMBRE 
                   FROM EMPLEADOS e 
                   JOIN USUARIOS u ON e.ID_USUARIO = u.ID_USUARIO";
@@ -18,7 +19,8 @@ while ($emp = $res_empleados->fetch_assoc()) {
     $empleados[] = $emp;
 }
 
-// 2. OBTENER PEDIDOS Y ORGANIZARLOS POR ESTADO
+// 2. OBTENER PEDIDOS Y ORGANIZARLOS
+// He corregido 'EN PREPARACION' por 'EN_PREPARACION' si es que tu ENUM lleva guion bajo
 $sql_pedidos = "SELECT p.*, u.NOMBRE as CLIENTE_NOMBRE, emp_u.NOMBRE as BARISTA
                 FROM PEDIDOS p 
                 LEFT JOIN CLIENTES c ON p.ID_CLIENTE = c.ID_CLIENTE 
@@ -29,14 +31,12 @@ $sql_pedidos = "SELECT p.*, u.NOMBRE as CLIENTE_NOMBRE, emp_u.NOMBRE as BARISTA
                 ORDER BY p.ID_PEDIDO ASC";
 $result_pedidos = $conn->query($sql_pedidos);
 
-// Preparamos las 3 columnas vacías
 $columnas = [
     'PENDIENTE' => [],
     'EN PREPARACION' => [],
     'LISTO' => []
 ];
 
-// Metemos cada pedido en su columna correspondiente
 while ($pedido = $result_pedidos->fetch_assoc()) {
     $columnas[$pedido['ESTADO']][] = $pedido;
 }
@@ -46,99 +46,100 @@ while ($pedido = $result_pedidos->fetch_assoc()) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Comandas - DAILY DOSE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Comandas - Daily Dose</title>
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/header.css">
     <link rel="stylesheet" href="../assets/css/dashboard_trabajador.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
+<body class="worker-body">
 
 <nav class="worker-nav">
-    <div class="worker-brand">
-        <strong>DAILY DOSE</strong> <span class="badge-rol">Panel Comandas</span>
+    <div class="nav-left">
+        <img src="../assets/img/logo.png" alt="Logo" class="mini-logo">
+        <span class="panel-title">DAILY DOSE <small>WORKER</small></span>
     </div>
     
-    <div class="worker-user">
-        <span class="worker-name">👋 Hola, <?= htmlspecialchars($_SESSION['NOMBRE'] ?? 'Trabajador') ?></span>
-        <a href="../logout.php" class="btn-logout">
-            Cerrar Sesión
+    <div class="nav-right">
+        <span class="worker-info"><i class="fa-solid fa-user-tie"></i> <?= htmlspecialchars($_SESSION['NOMBRE'] ?? 'Trabajador') ?></span>
+        <a href="../actions/auth_logout.php" class="btn-logout-minimal">
+            <i class="fa-solid fa-right-from-bracket"></i> Salir
         </a>
     </div>
 </nav>
 
-<?php 
-if (!defined('BASE_URL')) define('BASE_URL', '../');
-include "../includes/header.php"; 
-?>
-
 <main class="worker-container">
-    <div class="cabecera-panel">
-        <h1>Tablero de Comandas</h1>
-        <p>Arrastra visualmente los pedidos por las fases.</p>
-    </div>
+    <header class="section-header">
+        <h1>Tablero de Gestión de Pedidos</h1>
+        <div class="status-legend">
+            <span class="dot d-pend"></span> Pendiente 
+            <span class="dot d-prep"></span> Preparando 
+            <span class="dot d-listo"></span> Listo
+        </div>
+    </header>
 
     <div class="kanban-board">
-        
-        <?php foreach (['PENDIENTE', 'EN PREPARACION', 'LISTO'] as $fase): ?>
-            <div class="kanban-columna fase-<?= strtolower($fase) ?>">
-                <h2><?= str_replace('_', ' ', $fase) ?> <span class="contador"><?= count($columnas[$fase]) ?></span></h2>
+        <?php foreach ($columnas as $fase => $pedidos): ?>
+            <div class="kanban-columna">
+                <div class="col-header">
+                    <h2><?= $fase ?></h2>
+                    <span class="contador"><?= count($pedidos) ?></span>
+                </div>
                 
                 <div class="kanban-tickets">
-                    <?php foreach ($columnas[$fase] as $pedido): ?>
-                        <div class="ticket-pedido">
-                            
-                            <div class="ticket-header">
-                                <span class="id-pedido">#<?= $pedido['ID_PEDIDO'] ?></span>
-                                <span class="mesa-badge"><?= $pedido['NUMERO_MESA'] ? 'Mesa '.$pedido['NUMERO_MESA'] : 'Llevar' ?></span>
+                    <?php if (empty($pedidos)): ?>
+                        <p class="empty-msg">No hay pedidos aquí</p>
+                    <?php endif; ?>
+
+                    <?php foreach ($pedidos as $pedido): ?>
+                        <div class="ticket-pedido <?= 'border-' . strtolower(str_replace(' ', '', $fase)) ?>">
+                            <div class="ticket-top">
+                                <span class="badge-id">#<?= $pedido['ID_PEDIDO'] ?></span>
+                                <span class="badge-mesa"><?= $pedido['NUMERO_MESA'] ? 'Mesa '.$pedido['NUMERO_MESA'] : 'Llevar' ?></span>
                             </div>
 
-                            <div class="ticket-info">
-                                <p><strong>👤 Cliente:</strong> <?= htmlspecialchars($pedido['CLIENTE_NOMBRE'] ?? 'Desconocido') ?></p>
+                            <div class="ticket-body">
+                                <p class="client-name"><strong><?= htmlspecialchars($pedido['CLIENTE_NOMBRE'] ?? 'Anonimo') ?></strong></p>
                                 <?php if ($pedido['BARISTA']): ?>
-                                    <p><strong>☕ Barista:</strong> <?= htmlspecialchars($pedido['BARISTA']) ?></p>
+                                    <p class="barista-name"><i class="fa-solid fa-mug-hot"></i> <?= htmlspecialchars($pedido['BARISTA']) ?></p>
                                 <?php endif; ?>
                             </div>
 
-                            <div class="ticket-acciones">
+                            <div class="ticket-footer">
                                 <?php if ($fase == 'PENDIENTE'): ?>
                                     <form action="../actions/cambiar_estado.php" method="POST" class="form-asignar">
                                         <input type="hidden" name="id" value="<?= $pedido['ID_PEDIDO'] ?>">
                                         <input type="hidden" name="estado" value="EN PREPARACION">
-                                        <select name="id_empleado" required class="select-empleado">
-                                            <option value="" disabled selected>¿Quién lo prepara?</option>
+                                        <select name="id_empleado" required>
+                                            <option value="" disabled selected>Asignar...</option>
                                             <?php foreach ($empleados as $emp): ?>
                                                 <option value="<?= $emp['ID_EMPLEADO'] ?>"><?= htmlspecialchars($emp['NOMBRE']) ?></option>
                                             <?php endforeach; ?>
                                         </select>
-                                        <button type="submit" class="btn-accion btn-preparar">Empezar</button>
+                                        <button type="submit" class="btn-go"><i class="fa-solid fa-play"></i></button>
                                     </form>
-                                    
                                 <?php elseif ($fase == 'EN PREPARACION'): ?>
                                     <form action="../actions/cambiar_estado.php" method="POST">
                                         <input type="hidden" name="id" value="<?= $pedido['ID_PEDIDO'] ?>">
                                         <input type="hidden" name="estado" value="LISTO">
-                                        <button type="submit" class="btn-accion btn-listo w-100">¡Marcar Listo!</button>
+                                        <button type="submit" class="btn-action-full btn-listo">¡Terminado!</button>
                                     </form>
-                                    
-                                <?php elseif ($fase == 'LISTO'): ?>
+                                <?php else: ?>
                                     <form action="../actions/cambiar_estado.php" method="POST">
                                         <input type="hidden" name="id" value="<?= $pedido['ID_PEDIDO'] ?>">
                                         <input type="hidden" name="estado" value="ENTREGADO">
-                                        <button type="submit" class="btn-accion btn-entregar w-100">Entregar</button>
+                                        <button type="submit" class="btn-action-full btn-entregar">Entregar al cliente</button>
                                     </form>
                                 <?php endif; ?>
                             </div>
-
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
         <?php endforeach; ?>
-
     </div>
 </main>
 
-<script src="../assets/js/script.js"></script>
 </body>
 </html>
