@@ -2,8 +2,18 @@
 session_start();
 require_once "../includes/config.php";
 
-// 1. SEGURIDAD: Comprobamos que sea TRABAJADOR, EMPLEADO o ADMIN
-if (!isset($_SESSION['ROL']) || !in_array(strtolower($_SESSION['ROL']), ['empleado', 'trabajador', 'admin'])) {
+// 1. SEGURIDAD A PRUEBA DE BOMBAS
+if (!isset($_SESSION['ROL'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
+// Limpiamos espacios accidentales y lo pasamos a mayúsculas
+$rol_usuario = strtoupper(trim($_SESSION['ROL']));
+
+if (!in_array($rol_usuario, ['EMPLEADO', 'TRABAJADOR', 'ADMIN'])) {
+    // Si quieres ver qué está leyendo exactamente PHP, descomenta la siguiente línea:
+    // die("Error: El rol que lee PHP es: '" . $rol_usuario . "'");
     header("Location: ../index.php");
     exit();
 }
