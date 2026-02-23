@@ -8,20 +8,17 @@ if (!isset($_SESSION['ROL'])) {
     exit();
 }
 
-// Limpiamos espacios accidentales y lo pasamos a mayúsculas
 $rol_usuario = strtoupper(trim($_SESSION['ROL']));
-
 if (!in_array($rol_usuario, ['EMPLEADO', 'TRABAJADOR', 'ADMIN'])) {
-    // Si quieres ver qué está leyendo exactamente PHP, descomenta la siguiente línea:
-    // die("Error: El rol que lee PHP es: '" . $rol_usuario . "'");
     header("Location: ../index.php");
     exit();
 }
 
-// 2. OBTENER PEDIDOS ACTIVOS (Que no estén Entregados ni Cancelados)
-$sql_pedidos = "SELECT p.*, c.NOMBRE as CLIENTE_NOMBRE 
+// 2. OBTENER PEDIDOS ACTIVOS (Con el DOBLE JOIN para llegar al nombre del usuario)
+$sql_pedidos = "SELECT p.*, u.NOMBRE as CLIENTE_NOMBRE 
                 FROM PEDIDOS p 
                 LEFT JOIN CLIENTES c ON p.ID_CLIENTE = c.ID_CLIENTE 
+                LEFT JOIN USUARIOS u ON c.ID_USUARIO = u.ID_USUARIO
                 WHERE p.ESTADO IN ('PENDIENTE', 'EN_PREPARACION', 'LISTO') 
                 ORDER BY 
                     FIELD(p.ESTADO, 'LISTO', 'EN_PREPARACION', 'PENDIENTE'), 
