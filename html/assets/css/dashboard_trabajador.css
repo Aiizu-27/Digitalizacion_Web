@@ -1,24 +1,114 @@
+/* ==========================================================================
+   PANEL TRABAJADOR - ESTILO UNIFICADO
+   ========================================================================== */
+
+/* 1. Reset y Body específico */
+.worker-body {
+    background-color: var(--fondo);
+    padding-top: 80px; /* Espacio para la barra fija */
+}
+
+/* 2. Barra de Navegación Minimalista */
+.worker-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--rojo-japones); /* Usando tu variable principal */
+    color: white;
+    padding: 0 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100;
+    height: 70px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.worker-brand {
+    font-family: 'CooperBold', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+.badge-rol {
+    background: rgba(255,255,255,0.2);
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-left: 12px;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+}
+
+.worker-user {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.worker-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Botón Logout estilo minimalista */
+.btn-logout-minimal {
+    background-color: white;
+    color: var(--rojo-japones);
+    padding: 8px 18px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: all 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-logout-minimal:hover {
+    background-color: var(--fondo);
+    transform: scale(1.05);
+}
+
+/* 3. Contenedor Principal y Tablero */
 .worker-container {
     max-width: 1400px;
-    margin: 120px auto 50px auto;
+    margin: 40px auto;
     padding: 0 20px;
 }
 
-.cabecera-panel {
+.section-header {
     text-align: center;
     margin-bottom: 40px;
 }
 
-.cabecera-panel h1 {
+.section-header h1 {
     color: var(--rojo-japones);
     font-family: 'CooperBold', sans-serif;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
 }
 
-/* TABLERO KANBAN */
+.status-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+.d-pend { background: #ffc107; }
+.d-prep { background: #007bff; }
+.d-listo { background: #28a745; }
+
+/* 4. Columnas Kanban */
 .kanban-board {
     display: flex;
-    gap: 25px;
+    gap: 20px;
     align-items: flex-start;
 }
 
@@ -27,172 +117,112 @@
     background: var(--cristal-fondo);
     backdrop-filter: blur(10px);
     border: 1px solid var(--cristal-borde);
-    border-radius: 15px;
-    padding: 20px;
-    min-height: 500px;
+    border-radius: 20px;
+    padding: 15px;
+    min-height: 600px;
+    transition: all 0.3s ease;
 }
 
-/* Colores superiores de cada columna */
-.fase-pendiente { border-top: 5px solid #ffc107; }
-.fase-en_preparacion { border-top: 5px solid #007bff; }
-.fase-listo { border-top: 5px solid #28a745; }
-
-.kanban-columna h2 {
-    text-align: center;
-    font-family: 'CooperBold', sans-serif;
-    font-size: 1.3rem;
-    margin-top: 0;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px dashed rgba(128,128,128,0.2);
+.col-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+}
+
+.col-header h2 {
+    font-family: 'CooperBold', sans-serif;
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0;
 }
 
 .contador {
     background: var(--rojo-japones);
     color: white;
-    padding: 2px 10px;
-    border-radius: 20px;
-    font-size: 1rem;
+    padding: 2px 12px;
+    border-radius: 15px;
+    font-weight: bold;
 }
 
-/* TICKETS */
-.kanban-tickets {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
+/* 5. Tickets de Pedido */
 .ticket-pedido {
-    background: var(--fondo);
-    border: 1px solid var(--cristal-borde);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid #ccc; /* Por defecto */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
 }
 
-.ticket-pedido:hover { transform: translateY(-3px); }
+/* Colores laterales por fase */
+.border-pendiente { border-left-color: #ffc107; }
+.border-enpreparacion { border-left-color: #007bff; }
+.border-listo { border-left-color: #28a745; }
 
-.ticket-header {
+.ticket-top {
+    padding: 10px 15px;
+    background: rgba(0,0,0,0.02);
     display: flex;
     justify-content: space-between;
-    padding: 10px 15px;
-    background: rgba(0,0,0,0.03);
-    border-bottom: 1px solid var(--cristal-borde);
 }
 
-.id-pedido { font-weight: bold; font-size: 1.1rem; }
-.mesa-badge { background: var(--rojo-japones); color: white; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem; }
+.badge-id { font-weight: bold; color: var(--rojo-japones); }
+.badge-mesa { font-size: 0.8rem; font-weight: 600; color: #666; }
 
-.ticket-info { padding: 15px; font-size: 0.95rem; }
-.ticket-info p { margin: 5px 0; }
+.ticket-body { padding: 15px; }
+.client-name { font-size: 1rem; margin-bottom: 5px; }
+.barista-name { font-size: 0.85rem; color: #007bff; }
 
-.ticket-acciones {
-    padding: 15px;
-    background: rgba(0,0,0,0.02);
-    border-top: 1px solid var(--cristal-borde);
+.ticket-footer {
+    padding: 12px 15px;
+    background: rgba(0,0,0,0.01);
+    border-top: 1px solid #f0f0f0;
 }
 
-/* Formularios y Botones */
+/* 6. Formularios y Botones Internos */
 .form-asignar {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
-.select-empleado {
+.form-asignar select {
+    flex: 1;
     padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    border-radius: 8px;
+    border: 1px solid var(--cristal-borde);
     font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
 }
 
-.btn-accion {
+.btn-go {
+    background: var(--rojo-japones);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-action-full {
+    width: 100%;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
     border: none;
     color: white;
     font-weight: bold;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
     transition: 0.2s;
 }
 
-.w-100 { width: 100%; }
-.btn-preparar { background: #007bff; }
 .btn-listo { background: #28a745; }
 .btn-entregar { background: #6c757d; }
 
-.btn-accion:hover { filter: brightness(0.9); }
-
-/* Móviles: que se ponga uno debajo de otro */
-@media (max-width: 900px) {
+/* Responsive */
+@media (max-width: 1000px) {
     .kanban-board { flex-direction: column; }
     .kanban-columna { width: 100%; min-height: auto; }
-}
-
-/* Barra de navegación superior */
-.worker-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #1a1a1a; /* Un tono oscuro elegante */
-    color: white;
-    padding: 10px 40px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1100;
-    height: 60px;
-}
-
-.worker-brand {
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-}
-
-.badge-rol {
-    background: var(--rojo-japones, #d9534f);
-    font-size: 0.7rem;
-    padding: 2px 8px;
-    border-radius: 10px;
-    margin-left: 10px;
-    text-transform: uppercase;
-}
-
-.worker-user {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.worker-name {
-    font-size: 0.9rem;
-    color: #ccc;
-}
-
-/* El botón de Logout */
-.btn-logout {
-    background-color: transparent;
-    color: #ff4d4d;
-    border: 1px solid #ff4d4d;
-    padding: 6px 15px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: bold;
-    transition: all 0.3s;
-}
-
-.btn-logout:hover {
-    background-color: #ff4d4d;
-    color: white;
-    box-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
-}
-
-/* Ajuste importante: bajar el contenido para que no lo tape la barra */
-.worker-container {
-    margin-top: 100px !important; 
 }
