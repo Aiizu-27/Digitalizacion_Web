@@ -25,14 +25,14 @@ $sql_pedidos = "SELECT p.*, u.NOMBRE as CLIENTE_NOMBRE, emp_u.NOMBRE as BARISTA
                 LEFT JOIN USUARIOS u ON c.ID_USUARIO = u.ID_USUARIO
                 LEFT JOIN EMPLEADOS e ON p.ID_EMPLEADO = e.ID_EMPLEADO
                 LEFT JOIN USUARIOS emp_u ON e.ID_USUARIO = emp_u.ID_USUARIO
-                WHERE p.ESTADO IN ('PENDIENTE', 'EN_PREPARACION', 'LISTO') 
+                WHERE p.ESTADO IN ('PENDIENTE', 'EN PREPARACION', 'LISTO') 
                 ORDER BY p.ID_PEDIDO ASC";
 $result_pedidos = $conn->query($sql_pedidos);
 
 // Preparamos las 3 columnas vacías
 $columnas = [
     'PENDIENTE' => [],
-    'EN_PREPARACION' => [],
+    'EN PREPARACION' => [],
     'LISTO' => []
 ];
 
@@ -67,7 +67,7 @@ include "../includes/header.php";
 
     <div class="kanban-board">
         
-        <?php foreach (['PENDIENTE', 'EN_PREPARACION', 'LISTO'] as $fase): ?>
+        <?php foreach (['PENDIENTE', 'EN PREPARACION', 'LISTO'] as $fase): ?>
             <div class="kanban-columna fase-<?= strtolower($fase) ?>">
                 <h2><?= str_replace('_', ' ', $fase) ?> <span class="contador"><?= count($columnas[$fase]) ?></span></h2>
                 
@@ -91,7 +91,7 @@ include "../includes/header.php";
                                 <?php if ($fase == 'PENDIENTE'): ?>
                                     <form action="../actions/cambiar_estado.php" method="POST" class="form-asignar">
                                         <input type="hidden" name="id" value="<?= $pedido['ID_PEDIDO'] ?>">
-                                        <input type="hidden" name="estado" value="EN_PREPARACION">
+                                        <input type="hidden" name="estado" value="EN PREPARACION">
                                         <select name="id_empleado" required class="select-empleado">
                                             <option value="" disabled selected>¿Quién lo prepara?</option>
                                             <?php foreach ($empleados as $emp): ?>
@@ -101,7 +101,7 @@ include "../includes/header.php";
                                         <button type="submit" class="btn-accion btn-preparar">Empezar</button>
                                     </form>
                                     
-                                <?php elseif ($fase == 'EN_PREPARACION'): ?>
+                                <?php elseif ($fase == 'EN PREPARACION'): ?>
                                     <form action="../actions/cambiar_estado.php" method="POST">
                                         <input type="hidden" name="id" value="<?= $pedido['ID_PEDIDO'] ?>">
                                         <input type="hidden" name="estado" value="LISTO">

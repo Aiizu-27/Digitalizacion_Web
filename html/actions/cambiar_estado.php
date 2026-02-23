@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
         // Aseguramos que el autocommit esté activado para que guarde al momento
         $conn->autocommit(TRUE);
 
-        if ($nuevo_estado == 'EN_PREPARACION' && $id_empleado) {
+        if ($nuevo_estado == 'EN PREPARACION' && $id_empleado) {
             // Caso 1: Pasamos a preparación y asignamos empleado
             $sql = "UPDATE PEDIDOS SET ESTADO = ?, ID_EMPLEADO = ? WHERE ID_PEDIDO = ?";
             $stmt = $conn->prepare($sql);
