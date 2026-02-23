@@ -54,6 +54,19 @@ while ($pedido = $result_pedidos->fetch_assoc()) {
 </head>
 <body>
 
+<nav class="worker-nav">
+    <div class="worker-brand">
+        <strong>DAILY DOSE</strong> <span class="badge-rol">Panel Comandas</span>
+    </div>
+    
+    <div class="worker-user">
+        <span class="worker-name">👋 Hola, <?= htmlspecialchars($_SESSION['NOMBRE'] ?? 'Trabajador') ?></span>
+        <a href="../logout.php" class="btn-logout">
+            Cerrar Sesión
+        </a>
+    </div>
+</nav>
+
 <?php 
 if (!defined('BASE_URL')) define('BASE_URL', '../');
 include "../includes/header.php"; 

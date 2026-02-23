@@ -131,3 +131,68 @@
     .kanban-board { flex-direction: column; }
     .kanban-columna { width: 100%; min-height: auto; }
 }
+
+/* Barra de navegación superior */
+.worker-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1a1a1a; /* Un tono oscuro elegante */
+    color: white;
+    padding: 10px 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100;
+    height: 60px;
+}
+
+.worker-brand {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.badge-rol {
+    background: var(--rojo-japones, #d9534f);
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 10px;
+    text-transform: uppercase;
+}
+
+.worker-user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.worker-name {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* El botón de Logout */
+.btn-logout {
+    background-color: transparent;
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+    padding: 6px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: #ff4d4d;
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
+}
+
+/* Ajuste importante: bajar el contenido para que no lo tape la barra */
+.worker-container {
+    margin-top: 100px !important; 
+}
