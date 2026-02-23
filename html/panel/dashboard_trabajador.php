@@ -50,7 +50,7 @@ while ($pedido = $result_pedidos->fetch_assoc()) {
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/header.css">
-    <link rel="stylesheet" href="../assets/css/worker_panel.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../assets/css/dashboard_trabajador.css?v=<?php echo time(); ?>">
 </head>
 <body>
 
