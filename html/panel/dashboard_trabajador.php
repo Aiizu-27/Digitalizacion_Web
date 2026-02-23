@@ -2,14 +2,8 @@
 session_start();
 require_once "../includes/config.php";
 
-// 1. SEGURIDAD A PRUEBA DE BOMBAS
-if (!isset($_SESSION['ROL'])) {
-    header("Location: ../index.php");
-    exit();
-}
-
-$rol_usuario = strtoupper(trim($_SESSION['ROL']));
-if (!in_array($rol_usuario, ['EMPLEADO', 'TRABAJADOR', 'ADMIN'])) {
+// --- SEGURIDAD ---
+if (!isset($_SESSION['ROL']) || $_SESSION['ROL'] != 'trabajador') {
     header("Location: ../index.php");
     exit();
 }
