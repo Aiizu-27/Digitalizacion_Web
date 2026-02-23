@@ -2,27 +2,41 @@
 session_start();
 require_once "../includes/config.php";
 
-// Seguridad: Comprobamos de nuevo el ROL
-if (!isset($_SESSION['ROL']) || !in_array(strtolower($_SESSION['ROL']), ['empleado', 'trabajador', 'admin'])) {
-    die("Acceso denegado. No tienes permisos para realizar esta acción.");
+if (!isset($_SESSION['ROL'])) {
+    die("Acceso denegado.");
+}
+$rol_usuario = strtoupper(trim($_SESSION['ROL']));
+if (!in_array($rol_usuario, ['EMPLEADO', 'TRABAJADOR', 'ADMIN'])) {
+    die("Acceso denegado.");
 }
 
-if (isset($_GET['id']) && isset($_GET['estado'])) {
-    $id_pedido = intval($_GET['id']);
-    $nuevo_estado = $_GET['estado'];
+// Recogemos los datos (ahora vienen por POST)
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id']) && isset($_POST['estado'])) {
+    $id_pedido = intval($_POST['id']);
+    $nuevo_estado = $_POST['estado'];
+    
+    // Si viene el ID del empleado (cuando pasa a EN_PREPARACION)
+    $id_empleado = !empty($_POST['id_empleado']) ? intval($_POST['id_empleado']) : null;
 
-    // Validar que el estado sea uno de los permitidos por tu base de datos
     $estados_validos = ['PENDIENTE', 'EN_PREPARACION', 'LISTO', 'ENTREGADO', 'CANCELADO'];
     
     if (in_array($nuevo_estado, $estados_validos)) {
-        $stmt = $conn->prepare("UPDATE PEDIDOS SET ESTADO = ? WHERE ID_PEDIDO = ?");
-        $stmt->bind_param("si", $nuevo_estado, $id_pedido);
+        
+        if ($nuevo_estado == 'EN_PREPARACION' && $id_empleado) {
+            // Actualizamos el estado Y le asignamos el trabajador
+            $stmt = $conn->prepare("UPDATE PEDIDOS SET ESTADO = ?, ID_EMPLEADO = ? WHERE ID_PEDIDO = ?");
+            $stmt->bind_param("sii", $nuevo_estado, $id_empleado, $id_pedido);
+        } else {
+            // Solo actualizamos el estado
+            $stmt = $conn->prepare("UPDATE PEDIDOS SET ESTADO = ? WHERE ID_PEDIDO = ?");
+            $stmt->bind_param("si", $nuevo_estado, $id_pedido);
+        }
+        
         $stmt->execute();
         $stmt->close();
     }
 }
 
-// Redirigir de vuelta al panel de comandas rapidísimo
 header("Location: ../panel/dashboard_trabajador.php");
 exit();
 ?>
