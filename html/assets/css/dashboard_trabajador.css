@@ -1,0 +1,160 @@
+/* ========================================= */
+/* PANEL DEL TRABAJADOR (DAILY DOSE)         */
+/* ========================================= */
+
+.worker-container {
+    max-width: 1200px;
+    margin: 120px auto 50px auto;
+    padding: 0 20px;
+}
+
+.cabecera-panel {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cabecera-panel h1 {
+    color: var(--rojo-japones);
+    font-family: 'CooperBold', sans-serif;
+    font-size: 2.5rem;
+}
+
+.cabecera-panel p {
+    color: var(--texto-principal);
+    font-size: 1.1rem;
+}
+
+/* Rejilla de tickets */
+.grid-comandas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    align-items: start;
+}
+
+/* Diseño base del ticket */
+.ticket-pedido {
+    background: var(--cristal-fondo);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px var(--cristal-sombra);
+    border: 1px solid var(--cristal-borde);
+    overflow: hidden;
+    border-top: 6px solid #ccc; /* Cambia según estado */
+    transition: transform 0.2s;
+}
+
+.ticket-pedido:hover {
+    transform: translateY(-3px);
+}
+
+/* Borde superior dinámico */
+.estado-pendiente { border-top-color: #ffc107; }
+.estado-en_preparacion { border-top-color: #007bff; }
+.estado-listo { 
+    border-top-color: #28a745; 
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.3);
+}
+
+/* Cabecera del ticket */
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(0,0,0,0.03);
+    border-bottom: 1px dashed var(--cristal-borde);
+}
+
+.id-pedido {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--rojo-japones);
+}
+
+.mesa-badge {
+    background: var(--rojo-japones);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Info del cliente */
+.ticket-info {
+    padding: 15px 20px;
+    font-size: 0.95rem;
+    color: var(--texto-principal);
+}
+
+.ticket-info p { margin: 5px 0; }
+
+/* Lista de productos a preparar */
+.ticket-productos {
+    padding: 0 20px 20px 20px;
+}
+
+.ticket-productos ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ticket-productos li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(128,128,128,0.2);
+    font-size: 1.1rem;
+    color: var(--texto-principal);
+}
+
+.ticket-productos li:last-child {
+    border-bottom: none;
+}
+
+.ticket-productos li strong {
+    color: var(--verde-pastel-oscuro);
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+/* Botonera de acciones */
+.ticket-acciones {
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(0,0,0,0.05);
+    border-top: 1px solid var(--cristal-borde);
+}
+
+.btn-accion {
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-preparar { background-color: #007bff; }
+.btn-preparar:hover { background-color: #0056b3; }
+
+.btn-listo { background-color: #28a745; font-size: 1.1rem; }
+.btn-listo:hover { background-color: #1e7e34; }
+
+.btn-entregar { background-color: #6c757d; }
+.btn-entregar:hover { background-color: #5a6268; }
+
+.btn-cancelar {
+    background-color: transparent;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+.btn-cancelar:hover {
+    background-color: #dc3545;
+    color: white;
+}
